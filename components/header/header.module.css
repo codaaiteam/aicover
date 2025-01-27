@@ -1,0 +1,77 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(to right, #fff, #ccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.activeLink {
+  color: #fff;
+  text-decoration: none;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.signInButton {
+  background: linear-gradient(to right, #ff4d4d, #f9cb28);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.signInButton:hover {
+  opacity: 0.9;
+}

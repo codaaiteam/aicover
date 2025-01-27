@@ -1,0 +1,219 @@
+.container {
+  min-height: 100vh;
+  background-color: #0D0D0F;
+  color: #FFFFFF;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(13, 13, 15, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.navLinks a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.hero {
+  padding: 48px 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bestPractices, .examples, .structure, .tips {
+  margin: 64px 0;
+}
+
+.bestPractices h2, .examples h2, .structure h2, .tips h2 {
+  font-size: 32px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;  /* 增加圆角 */
+  padding: 24px;
+  transition: transform 0.3s ease;  /* 添加过渡效果 */
+}
+
+.card:hover {
+  transform: translateY(-5px);  /* 添加悬停效果 */
+}
+
+.card h3 {
+  color: #6366F1;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.examplesGrid {
+  display: grid;
+  gap: 32px;
+}
+
+.promptContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.promptText h4 {
+  color: #6366F1;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.promptText p {
+  margin-bottom: 16px;
+}
+
+.example {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 4px;
+  font-style: italic;
+}
+
+.tipsList {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tipsList li {
+  margin-bottom: 16px;
+  padding-left: 24px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tipsList li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #6366F1;
+}
+
+.promptImage {
+  width: 100%;
+  overflow: hidden;  /* 确保GIF不会超出容器 */
+  border-radius: 8px;  /* 图片圆角 */
+  margin-top: 16px;
+}
+
+.exampleImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;  /* 移除图片底部空隙 */
+  object-fit: cover;  /* 确保图片比例一致 */
+}
+.cta {
+  text-align: center;
+  background-color: #1a1b26;
+  padding: 3rem;
+  border-radius: 10px;
+}
+.ctaButton {
+  display: inline-block;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;  /* 移除下划线 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+  
+  .description {
+    font-size: 16px;
+  }
+  
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .promptContent {
+    grid-template-columns: 1fr;
+  }
+
+  .promptImage {
+    margin-top: 24px;
+  }
+
+  .examplesGrid {
+    gap: 24px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .bestPractices h2, .examples h2, .structure h2, .tips h2 {
+    font-size: 24px;
+  }
+}

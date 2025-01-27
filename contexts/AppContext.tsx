@@ -1,3 +1,5 @@
+'use client'
+
 import { ContextProviderProps, ContextProviderValue } from "@/types/context";
 import { createContext, useEffect, useState } from "react";
 

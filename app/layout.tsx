@@ -1,19 +1,20 @@
 import "./globals.css";
 
-import { Toaster, toast } from "sonner";
-
+import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { LanguageProvider } from "@/contexts/language";
+import defaultTranslations from "@/locales/en.json";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "微信红包封面生成器 ｜ AI Cover",
+  title: "Mochi 1 Preview | Open Source Video Generation",
   description:
-    "微信红包封面生成器，利用 AI 技术生成高清精美的微信红包封面图片。",
-  keywords: "微信红包封面, 微信红包, AI 红包封面, AI Cover",
+    "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence, powered by our 10B parameter AsymmDiT architecture",
+  keywords: "video generation, AI, machine learning, motion quality, open source",
 };
 
 export default function RootLayout({
@@ -25,9 +26,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Toaster position="top-center" richColors />
-          {children}
-          <Analytics />
+          <LanguageProvider defaultTranslations={defaultTranslations}>
+            <Toaster position="top-center" richColors />
+            {children}
+            <Analytics />
+          </LanguageProvider>
         </body>
       </html>
     </ClerkProvider>

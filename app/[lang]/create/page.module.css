@@ -1,0 +1,190 @@
+.container {
+  min-height: calc(100vh - 3.5rem);
+  padding: 2rem;
+  background: white;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, hsl(var(--foreground)), hsl(var(--muted-foreground)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: 1.2rem;
+}
+
+.promptContainer {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.promptBox {
+  width: 100%;
+  min-height: 100px;
+  padding: 1rem;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  color: hsl(var(--foreground));
+  font-size: 1rem;
+  resize: none;
+  transition: all 0.2s;
+}
+
+.promptBox:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.1);
+}
+
+.promptActions {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.promptIdeas {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.promptIdea {
+  padding: 0.5rem 1rem;
+  background: hsl(var(--accent));
+  border-radius: 1rem;
+  color: hsl(var(--accent-foreground));
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.promptIdea:hover {
+  background: hsl(var(--accent) / 0.8);
+}
+
+.recentTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.recentHeading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hsl(var(--foreground));
+}
+
+.viewAll {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.viewAll:hover {
+  color: hsl(var(--foreground));
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.videoCard {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.2s;
+}
+
+.videoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.videoCard video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: hsl(var(--muted));
+}
+
+.videoInfo {
+  padding: 1rem;
+}
+
+.videoDescription {
+  font-size: 0.9rem;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.videoDate {
+  font-size: 0.8rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.generateButton {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.generateButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.remainingCount {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background: hsl(var(--background));
+  border: 1px dashed hsl(var(--border));
+  border-radius: 0.5rem;
+  color: hsl(var(--muted-foreground));
+}

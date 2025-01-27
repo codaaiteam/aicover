@@ -1,0 +1,169 @@
+.container {
+  min-height: 100vh;
+  padding: 0 1rem;
+  background-color: #f9fafb;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.description {
+  font-size: 1.25rem;
+  color: #4b5563;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bestPractices,
+.examples,
+.structure,
+.tips,
+.cta {
+  margin-bottom: 4rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  color: #1f2937;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: #4b5563;
+}
+
+.example {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-radius: 0.25rem;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.examplesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.promptContent {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.promptText {
+  flex: 1;
+}
+
+.shortPrompt,
+.longPrompt {
+  margin-bottom: 1.5rem;
+}
+
+.shortPrompt h4,
+.longPrompt h4 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.promptImage {
+  flex-shrink: 0;
+}
+
+.exampleImage {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tipsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.tipsList li {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #4b5563;
+}
+
+.tipsList li:before {
+  content: "💡";
+  margin-right: 0.5rem;
+}
+
+.cta {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ctaButton:hover {
+  background: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .promptContent {
+    flex-direction: column;
+  }
+
+  .promptImage {
+    width: 100%;
+  }
+
+  .exampleImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+}

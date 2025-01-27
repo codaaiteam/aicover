@@ -1,0 +1,35 @@
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.iconContainer {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.5rem;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  color: #4b5563;
+  line-height: 1.5;
+}

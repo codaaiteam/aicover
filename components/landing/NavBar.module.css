@@ -1,0 +1,92 @@
+/* src/app/Components/NavBar.module.css */
+.mainNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a1b26;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.brandName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  margin: 0 2rem;
+  flex: 0 0 auto;
+}
+
+.navLinks a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navLinks a:hover {
+  color: #3b82f6;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.loginButton {
+  padding: 0.5rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+  background-color: #2563eb;
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .mainNav {
+    padding: 1rem;
+  }
+  
+  .brandName {
+    font-size: 1rem;
+  }
+  
+  .navLinks {
+    gap: 1rem;
+    margin: 0 1rem;
+  }
+}

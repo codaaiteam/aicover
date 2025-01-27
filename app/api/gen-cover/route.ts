@@ -1,13 +1,13 @@
 import { respData, respErr } from "@/lib/resp";
-
 import { Cover } from "@/types/cover";
-import { ImageGenerateParams } from "openai/resources/images.mjs";
 import { currentUser } from "@clerk/nextjs";
-import { downloadAndUploadImage } from "@/lib/s3";
 import { genUuid } from "@/lib";
-import { getOpenAIClient } from "@/services/openai";
 import { getUserCredits } from "@/services/order";
 import { insertCover } from "@/models/cover";
+import { generateVideo } from "@/services/fal";
+import { uploadVideoToR2 } from "@/services/r2";
+
+export const maxDuration = 300; // 5 minutes timeout
 
 export async function POST(req: Request) {
   const user = await currentUser();
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { description } = await req.json();
+    const { description, negative_prompt } = await req.json();
     if (!description) {
       return respErr("invalid params");
     }
@@ -28,52 +28,39 @@ export async function POST(req: Request) {
       return respErr("credits not enough");
     }
 
-    const client = getOpenAIClient();
+    // Generate video using FAL AI
+    console.log("Generating video with prompt:", description);
+    const videoUrl = await generateVideo(description, negative_prompt);
+    console.log("Video generated:", videoUrl);
+    
+    // Upload to R2
+    const fileName = `${genUuid()}-${encodeURIComponent(description)}`;
+    console.log("Uploading to R2 with filename:", fileName);
+    const r2Url = await uploadVideoToR2(videoUrl, fileName);
+    console.log("Uploaded to R2:", r2Url);
 
-    const llm_name = "dall-e-3";
-    const img_size = "1024x1792";
-
-    const llm_params: ImageGenerateParams = {
-      prompt: `Generate a brand story image about ${description}`,
-      model: llm_name,
-      n: 1,
-      quality: "hd",
-      response_format: "url",
-      size: img_size,
-      style: "vivid",
-    };
     const created_at = new Date().toISOString();
-
-    const res = await client.images.generate(llm_params);
-    const raw_img_url = res.data[0].url;
-    if (!raw_img_url) {
-      return respErr("generate cover failed");
-    }
-
-    const img_name = encodeURIComponent(description);
-    const s3_img = await downloadAndUploadImage(
-      raw_img_url,
-      process.env.AWS_BUCKET || "trysai",
-      `covers/${img_name}.png`
-    );
-    const img_url = s3_img.Location;
-
     const cover: Cover = {
       user_email: user_email,
       img_description: description,
-      img_size: img_size,
-      img_url: img_url,
-      llm_name: llm_name,
-      llm_params: JSON.stringify(llm_params),
+      img_size: "1920x1080", // Default video size
+      img_url: r2Url,
+      llm_name: "fal-ai/mochi-v1",
+      llm_params: JSON.stringify({
+        prompt: description,
+        negative_prompt: negative_prompt,
+        enable_prompt_expansion: true
+      }),
       created_at: created_at,
       uuid: genUuid(),
       status: 1,
     };
+
     await insertCover(cover);
 
     return respData(cover);
   } catch (e) {
-    console.log("gen cover failed: ", e);
-    return respErr("gen cover failed");
+    console.log("gen video failed: ", e);
+    return respErr("gen video failed");
   }
 }
