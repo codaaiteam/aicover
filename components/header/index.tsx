@@ -10,6 +10,7 @@ import { useLanguage } from "@/contexts/language";
 import LanguageSwitcher from "@/components/landing/language-switcher";
 import { useUser, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { Coins, Crown } from "lucide-react";
 
 export function Header() {
   const { user } = useContext(AppContext);
@@ -33,7 +34,7 @@ export function Header() {
               className="h-6 w-6"
               alt="Mochi Logo"
             />
-            <span className="font-bold inline-block">Mochi</span>
+            <span className="font-bold inline-block">Mochi 1 Preview Generator</span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {navigations.map((tab: Nav, idx: number) => (
@@ -60,17 +61,31 @@ export function Header() {
           </nav>
         </div>
         <div className="flex-1" />
-        <div className="flex items-center justify-between space-x-2">
-          <nav className="flex items-center space-x-2">
-            <LanguageSwitcher currentLocale={currentLocale} />
-            {clerkUser ? (
-              <User user={clerkUser} />
-            ) : (
-              <SignInButton mode="modal" afterSignInUrl={`/${currentLocale}/create`}>
-                <Button variant="outline" size="sm">Sign In</Button>
-              </SignInButton>
-            )}
-          </nav>
+        <div className="flex items-center space-x-4">
+          {clerkUser && (
+            <>
+              <div className="flex items-center space-x-2 text-sm">
+                <Coins className="h-4 w-4" />
+                <span>{t.creditsLeft || "2 credits left"}</span>
+              </div>
+              <Link href={`/${currentLocale}/price`}>
+                <Button variant="outline" size="sm" className="flex items-center space-x-1">
+                  <Crown className="h-4 w-4 text-yellow-500" />
+                  <span>{t.upgrade || "Upgrade"}</span>
+                </Button>
+              </Link>
+            </>
+          )}
+          <LanguageSwitcher currentLocale={currentLocale} />
+          {clerkUser ? (
+            <User />
+          ) : (
+            <SignInButton mode="modal">
+              <Button variant="outline" size="sm">
+                {t.signIn || "Sign In"}
+              </Button>
+            </SignInButton>
+          )}
         </div>
       </div>
     </header>

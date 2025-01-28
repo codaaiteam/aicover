@@ -8,10 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-
-interface LanguageSwitcherProps {
-  currentLocale: string
-}
+import { useLanguage } from "@/contexts/language"
+import { useParams } from "next/navigation"
 
 const languages = [
   { code: 'en', name: 'English' },
@@ -24,13 +22,18 @@ const languages = [
   { code: 'it', name: 'Italiano' }
 ]
 
-export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+export default function LanguageSwitcher() {
   const router = useRouter()
+  const params = useParams()
+  const { currentLocale } = useLanguage()
+  
+  // 使用 URL 参数或默认值作为当前语言
+  const displayLocale = currentLocale || (params?.lang as string) || 'en'
 
   const switchLanguage = (locale: string) => {
     const path = window.location.pathname
-    const newPath = path.startsWith(`/${currentLocale}`)
-      ? path.replace(`/${currentLocale}`, `/${locale}`)
+    const newPath = path.startsWith(`/${displayLocale}`)
+      ? path.replace(`/${displayLocale}`, `/${locale}`)
       : `/${locale}${path}`
     router.push(newPath)
   }
@@ -39,7 +42,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          {currentLocale.toUpperCase()}
+          {displayLocale.toUpperCase()}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -47,7 +50,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
           <DropdownMenuItem
             key={code}
             onClick={() => switchLanguage(code)}
-            className={currentLocale === code ? 'bg-gray-100 dark:bg-gray-800' : ''}
+            className={displayLocale === code ? 'bg-gray-100 dark:bg-gray-800' : ''}
           >
             {name}
           </DropdownMenuItem>

@@ -95,6 +95,33 @@ export async function getUserOrders(
   return orders;
 }
 
+export async function getUserCredits(userEmail: string) {
+  const client = await getDb().connect();
+  try {
+    // Get total credits from successful orders that haven't expired
+    const totalCreditsResult = await client.query(
+      `SELECT COALESCE(SUM(credits), 0) as total_credits 
+       FROM orders 
+       WHERE user_email = $1 
+       AND order_status = 2 
+       AND expired_at > CURRENT_TIMESTAMP`,
+      [userEmail]
+    );
+    const totalCredits = parseInt(totalCreditsResult.rows[0].total_credits);
+
+    // For now, assume used credits is 0 since we haven't implemented video generation tracking yet
+    const usedCredits = 0;
+
+    return {
+      total: totalCredits,
+      used: usedCredits,
+      available: totalCredits - usedCredits
+    };
+  } finally {
+    client.release();
+  }
+}
+
 function formatOrder(row: QueryResultRow): Order {
   const order: Order = {
     order_no: row.order_no,

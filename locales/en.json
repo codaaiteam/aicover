@@ -1,5 +1,6 @@
 {
   "home": "Home",
+  "create": "Create",
   "guide": "Guide",
   "title": "Mochi 1 Preview: Open Source Video Generation with High-Fidelity Motion",
   "description": "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence, powered by our 10B parameter AsymmDiT architecture",
@@ -58,5 +59,25 @@
   "ctaDescription": "Experience the largest openly released video generative model",
   "ctaButton": "Try Mochi 1",
   
-  "moreVideos": "More Videos"
+  "moreVideos": "More Videos",
+  "fastVideosLeft": "fast videos left",
+  "until": "until",
+  "createTitle": "Create Your Video",
+  "createDescription": "Describe your video and watch it come to life",
+  "promptPlaceholder": "Describe your video...",
+  "generating": "Generating...",
+  "generate": "Generate",
+  "needPromptIdeas": "Need prompt ideas?",
+  "recentCreations": "Your recent creations",
+  "viewAllCreations": "View all your creations",
+  "noVideosYet": "No videos yet. Create your first video!",
+  "videoGenerateSuccess": "Video generated successfully!",
+  "creditsLeft": "2 credits left",
+  "upgrade": "Upgrade",
+  "signIn": "Sign In",
+  "signOut": "Sign Out",
+  "pricingTitle": "Simple, transparent pricing",
+  "pricingDescription": "Choose the plan that best fits your needs",
+  "mostPopular": "Most Popular",
+  "pricingFaqTitle": "Frequently Asked Questions"
 }
