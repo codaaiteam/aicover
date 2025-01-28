@@ -2,9 +2,30 @@
 
 import React from "react"
 import { useLanguage } from "@/contexts/language"
+import { useTranslations } from "next-intl"
+import { useParams } from "next/navigation"
 import styles from "./page.module.css"
 
-const PromptExample = ({ t, title, shortPrompt, longPrompt, imageUrl }) => (
+interface PromptExampleProps {
+  t: {
+    example1Title?: string;
+    example1Short?: string;
+    example1Long?: string;
+    example2Title?: string;
+    example2Short?: string;
+    example2Long?: string;
+    example3Title?: string;
+    example3Short?: string;
+    example3Long?: string;
+    [key: string]: string | undefined;
+  };
+  title: string;
+  shortPrompt: string;
+  longPrompt: string;
+  imageUrl: string;
+}
+
+const PromptExample = ({ t, title, shortPrompt, longPrompt, imageUrl }: PromptExampleProps) => (
   <div className={styles.card}>
     <h3>{title}</h3>
     <div className={styles.promptContent}>
