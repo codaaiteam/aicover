@@ -35,7 +35,6 @@ export default function Home() {
             loop
             muted
             playsInline
-            loading="lazy"
             preload="none"
           />
         </div>
@@ -56,7 +55,6 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    loading="lazy"
                     preload="none"
                   />
                 </div>
