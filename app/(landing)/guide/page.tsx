@@ -5,12 +5,17 @@ import { useLanguage } from '@/contexts/language'
 import { useParams } from 'next/navigation'
 import styles from './page.module.css'
 
-const PromptExample = ({ t, title, shortPrompt, longPrompt, videoUrl }: {
+const PromptExample = ({ t, title, shortPrompt, longPrompt, video }: {
   t: any
   title: string
   shortPrompt: string
   longPrompt: string
-  videoUrl: string
+  video: {
+    src: string
+    width: number
+    height: number
+    className: string
+  }
 }) => (
   <div className={styles.card}>
     <h3>{title}</h3>
@@ -27,15 +32,14 @@ const PromptExample = ({ t, title, shortPrompt, longPrompt, videoUrl }: {
       </div>
       <div className={styles.promptImage}>
         <video
-          src={videoUrl}
-          width={400}
-          height={225}
-          className={styles.exampleImage}
+          src={video.src}
+          width={video.width}
+          height={video.height}
+          className={video.className}
           autoPlay
           loop
           muted
           playsInline
-          loading="lazy"
           preload="none"
         />
       </div>
@@ -86,21 +90,36 @@ export default function GuidePage() {
               title={t.example1Title || 'Surreal Sky Kingdom'}
               shortPrompt={t.example1Short || 'SURREAL SKY KINGDOM IN A GLASS GLOBE'}
               longPrompt={t.example1Long || 'Within the confines of a massive glass globe, floating high above a vast, turbulent sea, lies a surreal kingdom in the sky. Jagged cliffs rise from the clouds, dotted with ethereal castles connected by delicate, glowing bridges. The sky is a swirl of colours, a sunset that never ends, bathing the world in soft pinks, purples, and gold.'}
-              videoUrl="https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/sky-kingdom.mp4"
+              video={{
+                src: "https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/sky-kingdom.mp4",
+                width: 400,
+                height: 225,
+                className: styles.exampleImage
+              }}
             />
             <PromptExample
               t={t}
               title={t.example2Title || 'Rural Village at Sunrise'}
               shortPrompt={t.example2Short || 'RURAL VILLAGE AT SUNRISE'}
               longPrompt={t.example2Long || 'A quiet rural village awakens as the first light of dawn breaks over the horizon. The soft glow of the sun gently illuminates the rooftops of small stone cottages, casting long shadows across fields of golden wheat. Birds begin to chirp, and a thin mist lingers just above the ground.'}
-              videoUrl="https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/rural-village.mp4"
+              video={{
+                src: "https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/rural-village.mp4",
+                width: 400,
+                height: 225,
+                className: styles.exampleImage
+              }}
             />
             <PromptExample
               t={t}
               title={t.example3Title || 'City Street Market'}
               shortPrompt={t.example3Short || 'CITY STREET MARKET IN THE EARLY MORNING'}
               longPrompt={t.example3Long || 'In the heart of a bustling city, a street market comes to life in the early hours of the morning. Vendors set up their stalls, displaying fresh produce, colourful fruits, vegetables, and local goods. The camera pans across the market, capturing the sounds of conversations.'}
-              videoUrl="https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/street-market.mp4"
+              video={{
+                src: "https://pub-de18dc3c90824394abf06cb24b33028d.r2.dev/mochi-gif/street-market.mp4",
+                width: 400,
+                height: 225,
+                className: styles.exampleImage
+              }}
             />
           </div>
         </section>
