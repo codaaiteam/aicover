@@ -1,11 +1,10 @@
-import { auth, currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { getUserCredits, getUserOrders } from "@/models/order";
+import { getUserCredits, getUserOrders } from "@/lib/supabase";
 
 export async function GET(req: Request) {
   try {
-    const { userId } = auth();
-    const user = await currentUser();
+    const { userId, user } = auth();
     
     console.log('API auth state:', { 
       userId, 
@@ -15,7 +14,7 @@ export async function GET(req: Request) {
 
     if (!userId || !user) {
       return new NextResponse(
-        JSON.stringify({ error: "Please sign in to continue" }), 
+        JSON.stringify({ error: "Unauthorized" }), 
         { status: 401, headers: { 'Content-Type': 'application/json' } }
       );
     }
