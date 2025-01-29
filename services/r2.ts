@@ -1,4 +1,5 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { Buffer } from "buffer";
 
 const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID;
 const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
@@ -17,7 +18,8 @@ const r2Client = new S3Client({
 
 export const uploadVideoToR2 = async (videoUrl: string, fileName: string) => {
   const response = await fetch(videoUrl);
-  const buffer = await response.arrayBuffer();
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
 
   // 确保文件名使用正确的 URL 编码
   const sanitizedFileName = decodeURIComponent(fileName).replace(/%20/g, ' ');
