@@ -45,6 +45,8 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250124.3",
+    "@netlify/plugin-nextjs": "^5.9.4",
     "@shadcn/ui": "^0.0.4",
     "@types/node": "^20",
     "@types/pg": "^8.11.0",
