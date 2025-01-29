@@ -34,7 +34,7 @@ export default function Navbar() {
             {t.guide || 'Guide'}
           </Button>
         </Link>
-        <LanguageSwitcher currentLocale={currentLocale} />
+        <LanguageSwitcher />
         <Button 
           onClick={() => console.log('Sign in clicked')} 
           className="bg-blue-600 hover:bg-blue-700"
