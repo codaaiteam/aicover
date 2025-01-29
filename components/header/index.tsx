@@ -76,7 +76,7 @@ export function Header() {
               </Link>
             </>
           )}
-          <LanguageSwitcher currentLocale={currentLocale} />
+          <LanguageSwitcher />
           {clerkUser ? (
             <User />
           ) : (
