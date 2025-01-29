@@ -46,7 +46,6 @@ const PromptExample = ({ t, title, shortPrompt, longPrompt, video }: PromptExamp
       <div className={styles.promptImage}>
         <video
           src={video.src}
-          alt={title}
           width={video.width}
           height={video.height}
           className={video.className}
@@ -54,6 +53,7 @@ const PromptExample = ({ t, title, shortPrompt, longPrompt, video }: PromptExamp
           loop
           muted
           playsInline
+          preload="none"
         />
       </div>
     </div>
