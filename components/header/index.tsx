@@ -52,7 +52,7 @@ export function Header() {
                 <Link
                   className="transition-colors hover:text-foreground/80 text-foreground/60"
                   key={idx}
-                  href={tab.url}
+                  href={tab.url || '#'}
                 >
                   {tab.title}
                 </Link>
