@@ -1,80 +1,53 @@
-# AI 红包封面生成器
+# AI 视频生成器
 
-使用 AI 技术生成精美的微信红包封面。
+使用 AI 技术生成精美的视频内容。
 
-## 在线演示
+## 功能特点
 
-[https://aicover.design](https://aicover.design)
+- 🎥 AI 视频生成
+- 🎨 高质量视频输出
+- 💳 积分制收费
+- 🔒 安全的用户认证
+- 💰 在线支付功能
 
-![demo](./preview.png)
+## 技术栈
 
-## 快速开始
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Clerk Auth
+- Stripe 支付
+- Cloudflare R2
 
-1. 克隆项目
+## 开发
 
-```shell
-git clone https://github.com/all-in-aigc/aicover
+```bash
+npm install
+npm run dev
 ```
 
-2. 安装依赖
+## 部署
 
-```shell
-cd aicover
-pnpm install
+项目使用 Netlify 进行部署。
+
+## 环境变量
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_APP_URL=
+NEXT_PUBLIC_SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
-
-3. 初始化数据库
-
-使用本地数据库： [local postgres](https://wiki.postgresql.org/wiki/Homebrew)
-
-或者使用在线数据库： [vercel-postgres](https://vercel.com/docs/storage/vercel-postgres)
-
-或者使用在线数据库： [supabase](https://supabase.com/)
-
-在 `data/install.sql` 文件中复制创建数据库用到的 sql
-
-4. 设置环境变量
-
-在 `aicover` 项目根目录下创建一个 `.env.local` 文件，填入如下的配置内容：
-
-```
-OPENAI_API_KEY=""
-
-POSTGRES_URL=""
-
-AWS_AK=""
-AWS_SK=""
-AWS_REGION=""
-AWS_BUCKET=""
-
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=""
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
-
-STRIPE_PUBLIC_KEY=""
-STRIPE_PRIVATE_KEY=""
-
-WEB_BASE_URI=""
-```
-
-5. 本地开发
-
-```shell
-pnpm dev
-```
-
-打开 `http://localhost:3000` 预览并调试
 
 ## 感谢以下项目
 
-- [aiwallpaper](https://aiwallpaper.shop) 提供代码模板
 - [nextjs](https://nextjs.org/docs) 全栈开发框架
 - [clerk](https://clerk.com/docs/quickstarts/nextjs) 用户鉴权
-- [aws s3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html) 图片存储
 - [stripe](https://stripe.com/docs/development) 支付
-- [node-postgres](https://node-postgres.com/) 数据处理库
 - [tailwindcss](https://tailwindcss.com/) 快速实现页面样式
 
 ## 其他

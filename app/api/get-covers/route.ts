@@ -1,12 +1,10 @@
 import { respData, respErr } from "@/lib/resp";
-
-import { Cover } from "@/types/cover";
+import { Cover, GetCoversRequest } from "@/types/cover";
 import { getCovers } from "@/models/cover";
 
 export async function POST(req: Request) {
   try {
-    const { page } = await req.json();
-    const limit = 30;
+    const { page = 1, limit = 30 } = await req.json() as GetCoversRequest;
 
     const covers: Cover[] = await getCovers(page, limit);
 

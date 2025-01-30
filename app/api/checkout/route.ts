@@ -1,7 +1,7 @@
 import { insertOrder, updateOrderSession } from "@/models/order";
 import { respData, respErr } from "@/lib/resp";
 
-import { Order } from "@/types/order";
+import { Order, CheckoutRequest } from "@/types/order";
 import Stripe from "stripe";
 import { currentUser } from "@clerk/nextjs";
 import { genOrderNo } from "@/lib/order";
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
   console.log("user email: ", user_email);
 
   try {
-    const { credits, currency, amount, plan } = await req.json();
+    const { credits, currency, amount, plan } = await req.json() as CheckoutRequest;
     if (!credits || !amount || !plan || !currency) {
       return respErr("invalid params");
     }

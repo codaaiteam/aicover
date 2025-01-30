@@ -1,5 +1,5 @@
 import { respData, respErr } from "@/lib/resp";
-import { Cover } from "@/types/cover";
+import { Cover, GenerateCoverRequest } from "@/types/cover";
 import { currentUser } from "@clerk/nextjs";
 import { genUuid } from "@/lib";
 import { getUserCredits } from "@/services/order";
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { description, negative_prompt } = await req.json();
+    const { description, negative_prompt } = await req.json() as GenerateCoverRequest;
     if (!description) {
       return respErr("invalid params");
     }

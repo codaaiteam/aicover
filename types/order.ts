@@ -25,3 +25,17 @@ export interface PlanDetails {
   duration: number; // in months
   currency: string;
 }
+
+export interface OrderResponse {
+  url?: string;
+  error?: string;
+  code?: number;
+  message?: string;
+}
+
+export interface CheckoutRequest {
+  credits: number;
+  currency: string;
+  amount: number;
+  plan: 'monthly' | 'one-time';
+}

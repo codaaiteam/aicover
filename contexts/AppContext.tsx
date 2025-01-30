@@ -7,6 +7,12 @@ import { Cover } from "@/types/cover";
 import { User } from "@/types/user";
 import { toast } from "sonner";
 
+interface ApiResponse<T> {
+  code: number;
+  message: string;
+  data?: T;
+}
+
 export const AppContext = createContext({} as ContextProviderValue);
 
 export const AppContextProvider = ({ children }: ContextProviderProps) => {
@@ -24,7 +30,7 @@ export const AppContextProvider = ({ children }: ContextProviderProps) => {
       });
 
       if (resp.ok) {
-        const res = await resp.json();
+        const res = await resp.json() as ApiResponse<User>;
         if (res.data) {
           setUser(res.data);
           return;

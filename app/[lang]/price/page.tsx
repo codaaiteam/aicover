@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+import { OrderResponse } from "@/types/order"
 
 export default function PricePage() {
   const { t } = useLanguage()
@@ -53,7 +54,7 @@ export default function PricePage() {
             }),
           })
 
-          const data = await response.json()
+          const data = await response.json() as OrderResponse
           
           if (!response.ok) {
             throw new Error(data.error || 'Failed to create order')
@@ -87,7 +88,7 @@ export default function PricePage() {
             }),
           })
 
-          const data = await response.json()
+          const data = await response.json() as OrderResponse
           
           if (!response.ok) {
             throw new Error(data.error || 'Failed to create order')

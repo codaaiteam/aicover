@@ -8,19 +8,13 @@ import styles from "./page.module.css"
 import { Clock, Grid2X2, ArrowRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
+import { ApiResponse, Video } from '@/types/api'
 
 const EXAMPLE_PROMPTS = [
   "A serene mountain lake at sunset with gentle ripples",
   "A bustling city street with time-lapse of people and traffic",
   "Cherry blossoms falling in a traditional Japanese garden",
 ]
-
-interface Video {
-  uuid: string;
-  img_url: string;
-  img_description: string;
-  created_at: string;
-}
 
 export default function CreatePage() {
   const { user, isLoaded } = useUser()
@@ -45,16 +39,8 @@ export default function CreatePage() {
     if (!user) return;
     
     try {
-      const response = await fetch('/api/get-covers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          page: 1
-        }),
-      })
-      const data = await response.json()
+      const response = await fetch('/api/videos/recent')
+      const data = (await response.json()) as ApiResponse<Video[]>
       console.log('Recent videos response:', data)
       if (data.code === 0 && data.data) {
         setRecentVideos(data.data)
@@ -80,7 +66,7 @@ export default function CreatePage() {
         }),
       })
 
-      const data = await response.json()
+      const data = (await response.json()) as ApiResponse<{ url: string }>
       
       if (data.code === 0 && data.data) {
         toast.success(t.videoGenerateSuccess || "Video generated successfully!")
@@ -88,7 +74,7 @@ export default function CreatePage() {
         await fetchRecentVideos()
         setPrompt("")
       } else {
-        throw new Error(data.msg || "Failed to generate video")
+        throw new Error(data.message || "Failed to generate video")
       }
     } catch (error) {
       console.error("Failed to generate video:", error)

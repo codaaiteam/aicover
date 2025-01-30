@@ -3,14 +3,14 @@
 import { KeyboardEvent, useContext, useRef, useState } from "react";
 
 import { AppContext } from "@/contexts/AppContext";
-import { Cover } from "@/types/cover";
+import { Cover, GenerateCoverResponse } from "@/types/cover";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export default function () {
   const router = useRouter();
   const { setCovers, user, fetchUserInfo } = useContext(AppContext);
-  const [description, setDiscription] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -24,9 +24,9 @@ export default function () {
   };
 
   const handleSubmit = async () => {
-    console.log("description", description);
-    if (!description) {
-      toast.error("请输入红包封面描述");
+    console.log("prompt", prompt);
+    if (!prompt) {
+      toast.error("请输入视频描述");
       inputRef.current?.focus();
       return;
     }
@@ -45,7 +45,7 @@ export default function () {
 
     try {
       const params = {
-        description: description,
+        prompt: prompt,
       };
 
       setLoading(true);
@@ -56,7 +56,7 @@ export default function () {
         },
         body: JSON.stringify(params),
       });
-      const { code, message, data } = await resp.json();
+      const { code, message, data } = await resp.json() as GenerateCoverResponse;
       setLoading(false);
 
       if (resp.status === 401) {
@@ -72,7 +72,7 @@ export default function () {
       }
 
       fetchUserInfo();
-      setDiscription("");
+      setPrompt("");
 
       toast.success("生成成功");
       if (data) {
@@ -89,10 +89,10 @@ export default function () {
       <input
         type="text"
         className="mb-1 h-9 w-full rounded-md border border-solid border-primary px-3 py-6 text-sm text-[#333333] focus:border-primary"
-        placeholder="输入要生成的红包封面描述"
+        placeholder="输入要生成的视频描述"
         ref={inputRef}
-        value={description}
-        onChange={(e) => setDiscription(e.target.value)}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
         onKeyDown={handleInputKeydown}
       />
       {loading ? (

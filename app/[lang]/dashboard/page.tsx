@@ -45,7 +45,7 @@ export default function DashboardPage() {
       if (!response.ok) {
         throw new Error('Failed to fetch user data')
       }
-      const data = await response.json()
+      const data = await response.json() as UserData
       setUserData(data)
     } catch (error) {
       console.error('Error fetching user data:', error)
@@ -66,13 +66,13 @@ export default function DashboardPage() {
   const getOrderStatus = (status: number) => {
     switch (status) {
       case 1:
-        return 'Pending'
+        return t.orderStatusPending || 'Pending'
       case 2:
-        return 'Completed'
+        return t.orderStatusPaid || 'Paid'
       case 3:
-        return 'Failed'
+        return t.orderStatusCancelled || 'Cancelled'
       default:
-        return 'Unknown'
+        return t.orderStatusUnknown || 'Unknown'
     }
   }
 
