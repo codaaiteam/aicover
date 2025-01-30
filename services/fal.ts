@@ -7,22 +7,79 @@ export const getFalClient = () => {
   return fal;
 };
 
-export const generateVideo = async (prompt: string, negative_prompt: string = "") => {
-  const client = getFalClient();
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+const withTimeout = async <T>(
+  promise: Promise<T>,
+  timeoutMs: number,
+  errorMessage: string
+): Promise<T> => {
+  let timeoutHandle: NodeJS.Timeout;
   
-  const result = await client.subscribe("fal-ai/mochi-v1", {
-    input: {
-      prompt,
-      negative_prompt,
-      enable_prompt_expansion: true
-    },
-    logs: true,
-    onQueueUpdate: (update) => {
-      if (update.status === "IN_PROGRESS") {
-        console.log("Generation progress:", update.logs.map((log) => log.message));
-      }
-    },
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeoutHandle = setTimeout(() => {
+      reject(new Error(`Operation timed out after ${timeoutMs}ms: ${errorMessage}`));
+    }, timeoutMs);
   });
 
-  return result.data.video.url;
+  try {
+    const result = await Promise.race([promise, timeoutPromise]);
+    clearTimeout(timeoutHandle!);
+    return result;
+  } catch (error) {
+    clearTimeout(timeoutHandle!);
+    throw error;
+  }
+};
+
+export const generateVideo = async (prompt: string, negative_prompt: string = "") => {
+  const client = getFalClient();
+  let attempts = 0;
+  const maxAttempts = 3;
+  const timeoutMs = 300000; // 5 minutes
+  
+  while (attempts < maxAttempts) {
+    try {
+      console.log(`Attempt ${attempts + 1} of ${maxAttempts} to generate video`);
+      console.log("Prompt:", prompt);
+      console.log("Negative prompt:", negative_prompt);
+      
+      const result = await withTimeout(
+        client.subscribe("fal-ai/mochi-v1", {
+          input: {
+            prompt,
+            negative_prompt,
+            seed: Math.floor(Math.random() * 1000000) // 添加随机种子以获得不同的结果
+          },
+          logs: true,
+          onQueueUpdate: (update) => {
+            if (update.status === "IN_PROGRESS") {
+              console.log("Generation progress:", update.logs.map((log) => log.message));
+            }
+          },
+        }),
+        timeoutMs,
+        "Video generation"
+      );
+
+      if (!result.data?.video?.url) {
+        throw new Error("No video URL in response");
+      }
+
+      return result.data.video.url;
+    } catch (error: any) {
+      console.error(`Failed attempt ${attempts + 1}:`, error);
+      attempts++;
+      
+      if (attempts === maxAttempts) {
+        const errorMessage = error?.message || 'Unknown error';
+        throw new Error(`Failed to generate video after ${maxAttempts} attempts: ${errorMessage}`);
+      }
+      
+      // Wait before retrying
+      await sleep(2000 * attempts); // Exponential backoff
+    }
+  }
+
+  throw new Error("Failed to generate video");
 };

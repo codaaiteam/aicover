@@ -46,6 +46,7 @@ const publicRoutes = [
   "/robots.txt",
   "/sitemap.xml",
   "/oauth/callback/(.*)",  // OAuth 回调路径
+  "/v1/oauth_callback",    // Clerk OAuth 回调路径
 ];
 
 export default authMiddleware({

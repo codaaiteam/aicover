@@ -16,30 +16,49 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { description, negative_prompt } = await req.json() as GenerateCoverRequest;
+    const body = await req.json();
+    console.log("Received request body:", body);
+    
+    const { description, negative_prompt } = body as GenerateCoverRequest;
     if (!description) {
-      return respErr("invalid params");
+      return respErr("invalid params: description is required");
     }
 
     const user_email = user.emailAddresses[0].emailAddress;
+    console.log("User email:", user_email);
 
     const user_credits = await getUserCredits(user_email);
+    console.log("User credits:", user_credits);
+    
     if (!user_credits || user_credits.left_credits < 1) {
       return respErr("credits not enough");
     }
 
     // Generate video using FAL AI
     console.log("Generating video with prompt:", description);
-    const videoUrl = await generateVideo(description, negative_prompt);
-    console.log("Video generated:", videoUrl);
+    let videoUrl;
+    try {
+      videoUrl = await generateVideo(description, negative_prompt);
+      console.log("Video generated:", videoUrl);
+    } catch (error: any) {
+      console.error("Failed to generate video:", error);
+      return respErr(`Failed to generate video: ${error?.message || 'Unknown error'}`);
+    }
     
     // Upload to R2
-    const fileName = `${genUuid()}-${encodeURIComponent(description)}`;
-    console.log("Uploading to R2 with filename:", fileName);
-    const r2Url = await uploadVideoToR2(videoUrl, fileName);
-    console.log("Uploaded to R2:", r2Url);
+    let r2Url;
+    try {
+      const fileName = `${genUuid()}-${encodeURIComponent(description)}`;
+      console.log("Uploading to R2 with filename:", fileName);
+      r2Url = await uploadVideoToR2(videoUrl, fileName);
+      console.log("Uploaded to R2:", r2Url);
+    } catch (error: any) {
+      console.error("Failed to upload to R2:", error);
+      return respErr(`Failed to upload video: ${error?.message || 'Unknown error'}`);
+    }
 
     const created_at = new Date().toISOString();
+    const uuid = genUuid();
     const cover: Cover = {
       user_email: user_email,
       img_description: description,
@@ -49,18 +68,24 @@ export async function POST(req: Request) {
       llm_params: JSON.stringify({
         prompt: description,
         negative_prompt: negative_prompt,
-        enable_prompt_expansion: true
+        seed: Math.floor(Math.random() * 1000000)
       }),
       created_at: created_at,
-      uuid: genUuid(),
-      status: 1,
+      uuid: uuid,
+      status: 1, // 1: success
     };
 
-    await insertCover(cover);
+    try {
+      await insertCover(cover);
+      console.log("Cover inserted into database");
+    } catch (error: any) {
+      console.error("Failed to insert cover:", error);
+      return respErr(`Failed to save video: ${error?.message || 'Unknown error'}`);
+    }
 
     return respData(cover);
-  } catch (e) {
-    console.log("gen video failed: ", e);
-    return respErr("gen video failed");
+  } catch (error: any) {
+    console.error("Failed to process request:", error);
+    return respErr(`Request failed: ${error?.message || 'Unknown error'}`);
   }
 }
