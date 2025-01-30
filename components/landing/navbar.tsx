@@ -18,6 +18,10 @@ export default function Navbar() {
     return currentLocale === 'en' ? '/guide' : `/${currentLocale}/guide`
   }
 
+  const getSignInPath = () => {
+    return currentLocale === 'en' ? '/sign-in' : `/${currentLocale}/sign-in`
+  }
+
   return (
     <nav className="p-4 bg-transparent flex items-center justify-between">
       <Link href="/" className="flex items-center">
@@ -40,7 +44,7 @@ export default function Navbar() {
         {isLoaded && (
           <>
             {!user && (
-              <Link href="/sign-in">
+              <Link href={getSignInPath()}>
                 <Button 
                   variant="outline"
                   className="text-gray-900 dark:text-white"

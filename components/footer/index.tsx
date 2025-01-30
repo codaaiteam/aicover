@@ -34,7 +34,7 @@ export default function Footer() {
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               2024{" "}
               <a href="/" className="hover:underline">
-                Mochi 1
+                Mochi 1 Preview
               </a>
               . {t.allRightsReserved || 'All Rights Reserved'}
             </span>

@@ -27,8 +27,10 @@ function getLanguage(request: NextRequest) {
 
 const publicRoutes = [
   "/",
-  "/(.*)/sign-in(.*)",
-  "/(.*)/sign-up(.*)",
+  "/sign-in(.*)",  // 默认登录路径
+  "/(en|zh|ja|ko|es|fr|de|it)/sign-in(.*)",  // 带语言前缀的登录路径
+  "/sign-up(.*)",  // 默认注册路径
+  "/(en|zh|ja|ko|es|fr|de|it)/sign-up(.*)",  // 带语言前缀的注册路径
   "/(.*)/guide",
   "/(.*)/create",
   "/(.*)/pricing",
