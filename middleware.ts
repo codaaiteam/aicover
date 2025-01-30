@@ -31,6 +31,10 @@ const publicRoutes = [
   "/(.*)/sign-up(.*)",
   "/(.*)/guide",
   "/(.*)/create",
+  "/(.*)/pricing",
+  "/api/(.*)",
+  "/(en|zh|ja|ko|es|fr|de|it)$", // 语言根路径
+  "/(en|zh|ja|ko|es|fr|de|it)/$", // 语言根路径（带斜杠）
   "/_next(.*)",
   "/favicon.ico",
   "/robots.txt",
@@ -62,16 +66,7 @@ export default authMiddleware({
     return NextResponse.redirect(newUrl);
   },
   afterAuth: (auth, req) => {
-    const pathname = req.nextUrl.pathname;
-    
-    // 检查是否是需要认证的路由
-    if (!auth.userId && !publicRoutes.some(pattern => {
-      const regex = new RegExp(`^${pattern.replace(/\*/g, '.*')}$`);
-      return regex.test(pathname);
-    })) {
-      const lang = getLanguage(req);
-      return NextResponse.redirect(new URL(`/${lang}/sign-in`, req.url));
-    }
+    // 不再做自动跳转，只返回 next
     return NextResponse.next();
   },
 });

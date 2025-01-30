@@ -32,7 +32,7 @@ export default function () {
     }
 
     if (!user) {
-      toast.error("请先登录");
+      toast.error("请先登录后再生成封面");
       router.push("/sign-in");
       return;
     }

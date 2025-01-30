@@ -5,11 +5,13 @@ import { useRouter, useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import LanguageSwitcher from "@/components/landing/language-switcher"
 import { useLanguage } from "@/contexts/language"
+import { useUser } from "@clerk/nextjs"
 
 export default function Navbar() {
   const router = useRouter()
   const params = useParams()
   const { t } = useLanguage()
+  const { user, isLoaded } = useUser()
   const currentLocale = (params?.lang as string) || 'en'
 
   const getGuidePath = () => {
@@ -35,12 +37,27 @@ export default function Navbar() {
           </Button>
         </Link>
         <LanguageSwitcher />
-        <Button 
-          onClick={() => console.log('Sign in clicked')} 
-          className="bg-blue-600 hover:bg-blue-700"
-        >
-          {t.tryNow || 'Try Now'}
-        </Button>
+        {isLoaded && (
+          <>
+            {!user && (
+              <Link href="/sign-in">
+                <Button 
+                  variant="outline"
+                  className="text-gray-900 dark:text-white"
+                >
+                  {t.signIn || 'Sign In'}
+                </Button>
+              </Link>
+            )}
+            <Link href={`/${currentLocale}/create`}>
+              <Button 
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                {t.tryNow || 'Try Now'}
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   )

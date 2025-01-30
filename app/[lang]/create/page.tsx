@@ -26,14 +26,28 @@ export default function CreatePage() {
   const [remainingVideos, setRemainingVideos] = useState(2)
   const [resetTime, setResetTime] = useState("4:30 PM")
   const [recentVideos, setRecentVideos] = useState<Video[]>([])
+  const [publicVideos, setPublicVideos] = useState<Video[]>([])
 
   useEffect(() => {
-    if (isLoaded && !user) {
-      router.push(`/${currentLocale}/sign-in`)
-    } else if (user) {
+    // 获取公共视频
+    fetchPublicVideos()
+    // 如果用户已登录，获取用户视频
+    if (user) {
       fetchRecentVideos()
     }
-  }, [user, isLoaded, router, currentLocale])
+  }, [user])
+
+  const fetchPublicVideos = async () => {
+    try {
+      const response = await fetch('/api/videos/public')
+      const data = (await response.json()) as ApiResponse<Video[]>
+      if (data.code === 0 && data.data) {
+        setPublicVideos(data.data)
+      }
+    } catch (error) {
+      console.error('Failed to fetch public videos:', error)
+    }
+  }
 
   const fetchRecentVideos = async () => {
     if (!user) return;
@@ -41,7 +55,6 @@ export default function CreatePage() {
     try {
       const response = await fetch('/api/videos/recent')
       const data = (await response.json()) as ApiResponse<Video[]>
-      console.log('Recent videos response:', data)
       if (data.code === 0 && data.data) {
         setRecentVideos(data.data)
       }
@@ -53,6 +66,12 @@ export default function CreatePage() {
   const handleSubmit = async () => {
     if (!prompt.trim() || loading) return
     
+    if (!user) {
+      toast.error(t.pleaseLoginFirst || "Please login to generate videos")
+      router.push('/sign-in')
+      return
+    }
+
     setLoading(true)
     try {
       const response = await fetch('/api/gen-cover', {
@@ -84,14 +103,65 @@ export default function CreatePage() {
     }
   }
 
-  if (!user) return null
+  const renderVideoGrid = (videos: Video[], title: string) => (
+    <>
+      <div className={styles.recentTitle}>
+        <h2 className={styles.recentHeading}>{title}</h2>
+        {user && (
+          <a href={`/${currentLocale}/videos`} className={styles.viewAll}>
+            <Grid2X2 size={16} />
+            {t.viewAllCreations || "View all your creations"}
+            <ArrowRight size={16} />
+          </a>
+        )}
+      </div>
+
+      <div className={styles.videoGrid}>
+        {videos.map((video) => {
+          const url = new URL(video.img_url);
+          const pathSegments = url.pathname.split('/');
+          const filename = pathSegments.pop();
+          const path = pathSegments.join('/');
+          const fixedUrl = `${url.origin}${path}/${encodeURIComponent(filename || '')}`;
+          
+          return (
+            <div key={video.uuid} className={styles.videoCard}>
+              <video
+                key={fixedUrl}
+                src={fixedUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                className={styles.videoElement}
+              />
+              <div className={styles.videoInfo}>
+                <p className={styles.videoDescription}>{video.img_description}</p>
+                <p className={styles.videoDate}>
+                  {new Date(video.created_at).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+        {videos.length === 0 && (
+          <div className={styles.emptyState}>
+            <p>{t.noVideosYet || "No videos yet"}</p>
+          </div>
+        )}
+      </div>
+    </>
+  )
 
   return (
     <div className={styles.container}>
-      <div className={styles.remainingCount}>
-        <Clock size={16} />
-        {remainingVideos} {t.fastVideosLeft || "fast videos left"} {t.until || "until"} {resetTime}
-      </div>
+      {user && (
+        <div className={styles.remainingCount}>
+          <Clock size={16} />
+          {remainingVideos} {t.fastVideosLeft || "fast videos left"} {t.until || "until"} {resetTime}
+        </div>
+      )}
 
       <header className={styles.header}>
         <h1 className={styles.title}>{t.createTitle || 'Create Your Video'}</h1>
@@ -111,7 +181,7 @@ export default function CreatePage() {
         <div className={styles.promptActions}>
           <Button
             onClick={handleSubmit}
-            disabled={loading || !prompt.trim() || remainingVideos === 0}
+            disabled={loading || !prompt.trim()}
           >
             {loading ? (
               <>
@@ -140,70 +210,11 @@ export default function CreatePage() {
         ))}
       </div>
 
-      <div className={styles.recentTitle}>
-        <h2 className={styles.recentHeading}>{t.recentCreations || "Your recent creations"}</h2>
-        <a href={`/${currentLocale}/videos`} className={styles.viewAll}>
-          <Grid2X2 size={16} />
-          {t.viewAllCreations || "View all your creations"}
-          <ArrowRight size={16} />
-        </a>
-      </div>
-
-      <div className={styles.videoGrid}>
-        {recentVideos.map((video) => {
-          console.log('Processing video:', video);
-          
-          // 对 URL 进行正确的编码
-          const url = new URL(video.img_url);
-          const pathSegments = url.pathname.split('/');
-          const filename = pathSegments.pop(); // 获取文件名
-          const path = pathSegments.join('/'); // 获取路径
-          
-          // 重新构建 URL，只对文件名部分进行编码
-          const fixedUrl = `${url.origin}${path}/${encodeURIComponent(filename || '')}`;
-          
-          console.log('Video URL:', {
-            original: video.img_url,
-            fixed: fixedUrl
-          });
-          
-          return (
-            <div key={video.uuid} className={styles.videoCard}>
-              <video
-                key={fixedUrl}
-                src={fixedUrl}
-                autoPlay
-                loop
-                muted
-                playsInline
-                controls
-                onError={(e) => {
-                  console.error('Video failed to load:', {
-                    originalUrl: video.img_url,
-                    fixedUrl,
-                    error: e
-                  });
-                }}
-                onLoadStart={() => console.log('Video load started:', fixedUrl)}
-                onLoadedData={() => console.log('Video loaded successfully:', fixedUrl)}
-                style={{ display: 'block' }}
-                className={styles.videoElement}
-              />
-              <div className={styles.videoInfo}>
-                <p className={styles.videoDescription}>{video.img_description}</p>
-                <p className={styles.videoDate}>
-                  {new Date(video.created_at).toLocaleDateString()}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-        {recentVideos.length === 0 && (
-          <div className={styles.emptyState}>
-            <p>{t.noVideosYet || "No videos yet. Create your first video!"}</p>
-          </div>
-        )}
-      </div>
+      {/* 用户已登录时显示其视频 */}
+      {user && renderVideoGrid(recentVideos, t.recentCreations || "Your recent creations")}
+      
+      {/* 显示公共视频 */}
+      {renderVideoGrid(publicVideos, t.communityCreations || "Community creations")}
     </div>
   )
 }

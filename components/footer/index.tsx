@@ -1,72 +1,60 @@
-import Social from "@/components/social";
+import { useLanguage } from "@/contexts/language";
 
-export default function () {
+export default function Footer() {
+  const { t } = useLanguage();
+
   return (
-    <section>
-      <div className="w-screen flex-col px-6 py-20 lg:flex lg:px-10 xl:px-24">
-        <div className="lg:flex lg:flex-row lg:justify-between">
+    <footer className="w-full bg-gray-50 dark:bg-gray-900">
+      <div className="mx-auto w-full max-w-screen-xl p-6 py-12 lg:py-16">
+        <div className="md:flex md:justify-between">
+          <div className="mb-6 md:mb-0">
+            <div className="flex items-center">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                Mochi 1 Preview
+              </span>
+            </div>
+            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+              {t.footerDescription || 'Create beautiful AI-generated videos in seconds'}
+            </p>
+          </div>
           <div>
-            <p>AI 视频生成器</p>
-            <div className="mb-8 mt-6">{/* <Social /> */}</div>
-          </div>
-          <div className="flex grow flex-row flex-wrap lg:mx-10 lg:flex-nowrap lg:justify-center">
-            <div className="my-5 mr-8 flex max-w-[200px] grow basis-[100px] flex-col space-y-5 lg:mx-10 lg:mt-0">
-              <p className="font-inter font-medium text-black">其他作品</p>
-              <a
-                href="https://gpts.works"
-                target="_blank"
-                className="font-inter font-light text-gray-500"
-              >
-                GPTs Works
-              </a>
-              <a
-                href="https://gptalk.one"
-                target="_blank"
-                className="font-inter font-light text-gray-500"
-              >
-                GPTalk
-              </a>
-              <a
-                href="https://readknown.cn"
-                target="_blank"
-                className="font-inter font-light text-gray-500"
-              >
-                知了 zKnown
-              </a>
-            </div>
-            <div className="my-5 mr-8 flex max-w-[200px] grow basis-[100px] flex-col space-y-5 lg:mx-10 lg:mt-0">
-              <p className="font-inter font-medium text-black">友情链接</p>
-              <a
-                href="https://aiwallpaper.shop"
-                target="_blank"
-                className="font-inter font-light text-gray-500"
-              >
-                AI Wallpaper
-              </a>
-            </div>
-          </div>
-          <div className="mt-10 flex flex-col lg:mt-0">
-            <div className="mb-4 flex flex-row items-center">
-              <p className="block">联系作者: </p>
-              <p className="font-inter ml-4 text-black">me@idoubi.cc</p>
-            </div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              {t.contact || 'Contact'}
+            </h2>
+            <ul className="text-gray-600 dark:text-gray-400">
+              <li className="mb-4">
+                <span className="font-medium">Email:</span> contact@mochi1preview.com
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="mx-auto my-12 w-full border border-[#E4E4E7] lg:my-20"></div>
-        <div>
-          <p className="font-inter text-center text-sm text-gray-500 lg:mt-0">
-            &copy; Copyright 2024.{" "}
-            <a
-              href="https://aicover.design"
-              target="_blank"
-              className="text-primary hidden md:inline-block"
-            >
-              aicover.design
-            </a>{" "}
-            All rights reserved.
-          </p>
+        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center">
+            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+              2024{" "}
+              <a href="/" className="hover:underline">
+                Mochi 1
+              </a>
+              . {t.allRightsReserved || 'All Rights Reserved'}
+            </span>
+            <div className="flex space-x-4 mt-2 sm:mt-0 sm:ml-4">
+              <a
+                href="/terms"
+                className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+              >
+                {t.terms || 'Terms'}
+              </a>
+              <a
+                href="/privacy"
+                className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+              >
+                {t.privacy || 'Privacy'}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }
