@@ -44,7 +44,7 @@ export default function Navbar() {
         {isLoaded && (
           <>
             {!user && (
-              <Link href={getSignInPath()}>
+              <Link href="/(auth)/sign-in">
                 <Button 
                   variant="outline"
                   className="text-gray-900 dark:text-white"

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://mochi1preview.com'
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.mochi1preview.com'
 const languages = ['en', 'zh', 'ja', 'ko', 'es', 'fr', 'de', 'it']
 
 export default function sitemap(): MetadataRoute.Sitemap {
