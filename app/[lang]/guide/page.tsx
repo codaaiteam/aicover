@@ -2,7 +2,7 @@
 
 import React from "react"
 import { useLanguage } from "@/contexts/language"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import styles from "./page.module.css"
 
 interface PromptExampleProps {
@@ -61,14 +61,27 @@ const PromptExample = ({ t, title, shortPrompt, longPrompt, video }: PromptExamp
 );
 
 export default function GuidePage() {
-  const { t, currentLocale } = useLanguage()
+  const { t } = useLanguage()
+  const params = useParams()
+  const router = useRouter()
+  const currentLocale = (params?.lang as string) || 'en'
+
+  const handleTryMochi = () => {
+    router.push(currentLocale === 'en' ? '/create' : `/${currentLocale}/create`)
+  }
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <section className={styles.hero}>
-          <h1 className={styles.title}>{t.guideTitle || 'Master the Art of Mochi Video Prompts'}</h1>
-          <p className={styles.description}>{t.guideDescription || 'Learn how to create compelling prompts for generating impressive AI videos with Mochi'}</p>
+          <h1 className={styles.title}>{t.guideTitle || 'Master the Art of Mochi 1 Video Prompts'}</h1>
+          <p className={styles.description}>{t.guideDescription || 'Learn how to create compelling prompts for generating impressive AI videos with Mochi 1'}</p>
+          <button 
+            className={styles.tryButton}
+            onClick={handleTryMochi}
+          >
+            {t.tryMochi || 'Try Mochi'}
+          </button>
         </section>
 
         <section className={styles.bestPractices}>

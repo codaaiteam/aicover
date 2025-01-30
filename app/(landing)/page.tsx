@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/contexts/language'
@@ -13,7 +13,12 @@ import videoData from '@/data/videoData'
 export default function Home() {
   const { t } = useLanguage()
   const params = useParams()
+  const router = useRouter()
   const currentLocale = (params?.lang as string) || 'en'
+
+  const handleTryNow = () => {
+    router.push(currentLocale === 'en' ? '/create' : `/${currentLocale}/create`)
+  }
 
   return (
     <main className={styles.main}>
@@ -21,7 +26,10 @@ export default function Home() {
         <div className={styles.left}>
           <h1>{t.title || 'AI Cover: Professional Video Cover Generation'}</h1>
           <p>{t.description || 'Generate professional video covers for your content with AI. Perfect for YouTube, social media, and more.'}</p>
-          <button className={styles.ctaButton}>
+          <button 
+            className={styles.ctaButton}
+            onClick={handleTryNow}
+          >
             {t.tryNow || 'Try Now'}
           </button>
         </div>
