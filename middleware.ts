@@ -31,6 +31,10 @@ const publicRoutes = [
   "/(en|zh|ja|ko|es|fr|de|it)/sign-in(.*)",  // 带语言前缀的登录路径
   "/sign-up(.*)",  // 默认注册路径
   "/(en|zh|ja|ko|es|fr|de|it)/sign-up(.*)",  // 带语言前缀的注册路径
+  "/sign-in/authorize",  // OAuth 授权路径
+  "/sign-up/authorize",  // OAuth 授权路径
+  "/(en|zh|ja|ko|es|fr|de|it)/sign-in/authorize",  // 带语言前缀的 OAuth 授权路径
+  "/(en|zh|ja|ko|es|fr|de|it)/sign-up/authorize",  // 带语言前缀的 OAuth 授权路径
   "/(.*)/guide",
   "/(.*)/create",
   "/(.*)/pricing",
@@ -41,6 +45,7 @@ const publicRoutes = [
   "/favicon.ico",
   "/robots.txt",
   "/sitemap.xml",
+  "/oauth/callback/(.*)",  // OAuth 回调路径
 ];
 
 export default authMiddleware({
