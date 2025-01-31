@@ -13,6 +13,8 @@ const supabase = createClient(
   }
 );
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const { userId } = auth();
@@ -32,23 +34,21 @@ export async function GET() {
       .limit(10);
 
     if (error) {
-      console.error("Database query failed:", error);
-      throw error;
+      console.error("Error fetching recent videos:", error);
+      return NextResponse.json(
+        { code: 2, message: "Failed to fetch videos" },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({
-      code: 0,
-      data: data || [],
-      message: "Success",
+    return NextResponse.json({ 
+      code: 0, 
+      data: data || [] 
     });
-  } catch (error: any) {
-    console.error("Failed to fetch recent videos:", error);
+  } catch (error) {
+    console.error("Unexpected error in recent videos route:", error);
     return NextResponse.json(
-      {
-        code: 1,
-        message: "Failed to fetch recent videos",
-        error: process.env.NODE_ENV === "development" ? error.message : undefined
-      },
+      { code: 3, message: "Internal server error" },
       { status: 500 }
     );
   }

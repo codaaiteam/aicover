@@ -2,20 +2,21 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { getUserCredits, getUserOrders } from "@/lib/supabase";
 
-export async function GET(req: Request) {
+export const dynamic = 'force-dynamic';  // Explicitly mark as dynamic
+
+export async function GET() {
   try {
     const { userId, user } = auth();
-    
+
     console.log('API auth state:', { 
       userId, 
-      userEmail: user?.emailAddresses[0]?.emailAddress,
-      headers: Object.fromEntries(req.headers.entries())
+      userEmail: user?.emailAddresses[0]?.emailAddress
     });
 
     if (!userId || !user) {
-      return new NextResponse(
-        JSON.stringify({ error: "Unauthorized" }), 
-        { status: 401, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        { error: "Unauthorized" }, 
+        { status: 401 }
       );
     }
 
@@ -30,9 +31,9 @@ export async function GET(req: Request) {
     return NextResponse.json({ credits, orders });
   } catch (error) {
     console.error("Error fetching user credits:", error);
-    return new NextResponse(
-      JSON.stringify({ error: "Failed to fetch user data" }), 
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    return NextResponse.json(
+      { error: "Failed to fetch user data" }, 
+      { status: 500 }
     );
   }
 }

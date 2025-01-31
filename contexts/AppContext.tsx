@@ -1,9 +1,6 @@
 'use client'
 
-import { ContextProviderProps, ContextProviderValue } from "@/types/context";
-import { createContext, useEffect, useState } from "react";
-
-import { Cover } from "@/types/cover";
+import { createContext, useContext, useEffect, useState } from "react";
 import { User } from "@/types/user";
 import { toast } from "sonner";
 
@@ -13,11 +10,28 @@ interface ApiResponse<T> {
   data?: T;
 }
 
+interface ContextProviderProps {
+  children: React.ReactNode;
+}
+
+interface ContextProviderValue {
+  user: User | null | undefined;
+  setUser: (user: User | null | undefined) => void;
+  setCovers?: (covers: any[]) => void;
+}
+
 export const AppContext = createContext({} as ContextProviderValue);
+
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("useAppContext must be used within an AppContextProvider");
+  }
+  return context;
+};
 
 export const AppContextProvider = ({ children }: ContextProviderProps) => {
   const [user, setUser] = useState<User | null | undefined>(undefined);
-  const [covers, setCovers] = useState<Cover[] | null>(null);
 
   const fetchUserInfo = async function () {
     try {
@@ -50,8 +64,17 @@ export const AppContextProvider = ({ children }: ContextProviderProps) => {
     fetchUserInfo();
   }, []);
 
+  // Placeholder for setCovers to maintain compatibility
+  const setCovers = () => {
+    console.warn("Covers functionality has been removed");
+  };
+
   return (
-    <AppContext.Provider value={{ user, fetchUserInfo, covers, setCovers }}>
+    <AppContext.Provider value={{
+      user,
+      setUser,
+      setCovers,
+    }}>
       {children}
     </AppContext.Provider>
   );

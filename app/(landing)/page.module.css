@@ -14,6 +14,25 @@
   gap: 4rem;
 }
 
+.skeletonVideo {
+  background: #eee;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+.skeletonFeature {
+  height: 200px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8 }
+  50% { opacity: 0.4 }
+  100% { opacity: 0.8 }
+}
+
 .left {
   flex: 1;
 }

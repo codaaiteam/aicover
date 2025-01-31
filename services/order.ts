@@ -3,7 +3,6 @@ import { getUserOrders, updateOrderStatus } from "@/models/order";
 import { Order } from "@/types/order";
 import Stripe from "stripe";
 import { UserCredits } from "@/types/user";
-import { getUserCoversCount } from "@/models/cover";
 
 export async function handleOrderSession(session_id: string) {
   const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY || "");
@@ -35,7 +34,7 @@ export async function getUserCredits(user_email: string): Promise<UserCredits> {
   };
 
   try {
-    const used_credits = await getUserCoversCount(user_email);
+    const used_credits = 0; // Default to 0
     user_credits.used_credits = Number(used_credits);
 
     const orders = await getUserOrders(user_email);
@@ -50,14 +49,9 @@ export async function getUserCredits(user_email: string): Promise<UserCredits> {
       });
     }
 
-    user_credits.left_credits = user_credits.total_credits - used_credits;
-    if (user_credits.left_credits < 0) {
-      user_credits.left_credits = 0;
-    }
-
     return user_credits;
-  } catch (e) {
-    console.log("get user credits failed: ", e);
+  } catch (error) {
+    console.error("Failed to get user credits:", error);
     return user_credits;
   }
 }
