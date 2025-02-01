@@ -11,3 +11,12 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# 只添加函数超时配置
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@clerk/nextjs"]
+  included_files = ["schema.sql"]
+
+[functions.gen-cover]
+  timeout = "900s"    # 15 分钟
