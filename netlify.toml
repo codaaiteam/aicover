@@ -24,6 +24,26 @@
 [functions.api]
   timeout = "900s"    # 15 分钟
 
+# API 重定向规则
+[[redirects]]
+  from = "/api/videos/public"
+  to = "/.netlify/functions/api/videos/public"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/videos/recent"
+  to = "/.netlify/functions/api/videos/recent"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/gen-cover"
+  to = "/.netlify/functions/api/gen-cover"
+  status = 200
+  force = true
+
+# 通用 API 重定向规则放在最后
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
