@@ -115,15 +115,19 @@ export default function CreatePage() {
           </a>
         )}
       </div>
-
+  
       <div className={styles.videoGrid}>
         {videos.map((video) => {
+          // 保持 URL 处理逻辑
+          console.log('处理视频 URL:', video.img_url);
+
           const url = new URL(video.img_url);
           const pathSegments = url.pathname.split('/');
           const filename = pathSegments.pop();
           const path = pathSegments.join('/');
           const fixedUrl = `${url.origin}${path}/${encodeURIComponent(filename || '')}`;
-          
+          console.log('处理后的 URL:', fixedUrl);
+
           return (
             <div key={video.uuid} className={styles.videoCard}>
               <video
@@ -135,6 +139,9 @@ export default function CreatePage() {
                 playsInline
                 controls
                 className={styles.videoElement}
+                onError={(e) => {
+                  console.error('Video load error for URL:', fixedUrl);
+                }}
               />
               <div className={styles.videoInfo}>
                 <p className={styles.videoDescription}>{video.img_description}</p>
@@ -152,7 +159,7 @@ export default function CreatePage() {
         )}
       </div>
     </>
-  )
+  );
 
   return (
     <div className={styles.container}>
