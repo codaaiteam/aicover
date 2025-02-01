@@ -11,3 +11,21 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@clerk/nextjs"]
+  included_files = ["schema.sql"]
+
+# 视频生成函数设置更长的超时时间
+[functions.gen-cover]
+  timeout = "900s"    # 15 分钟
+
+[functions.api]
+  timeout = "900s"    # 15 分钟
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
