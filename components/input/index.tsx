@@ -30,24 +30,25 @@ export default function () {
       inputRef.current?.focus();
       return;
     }
-
+  
     if (!user) {
       toast.error("请先登录后再生成封面");
       router.push("/sign-in");
       return;
     }
-
+  
     if (user.credits && user.credits.left_credits < 1) {
       toast.error("余额不足，请先充值");
       router.push("/pricing");
       return;
     }
-
+  
     try {
       const params = {
-        prompt: prompt,
+        description: prompt,  // 改这里：prompt 改为 description
+        negative_prompt: "blurry, low quality, distorted, pixelated"
       };
-
+  
       setLoading(true);
       const resp = await fetch("/api/gen-cover", {
         method: "POST",
@@ -56,34 +57,40 @@ export default function () {
         },
         body: JSON.stringify(params),
       });
-      const { code, message, data } = await resp.json() as GenerateCoverResponse;
-      setLoading(false);
-
-      if (resp.status === 401) {
-        toast.error("请先登录");
-        router.push("/sign-in");
-        return;
+      
+      // 添加错误处理
+      if (!resp.ok) {
+        const text = await resp.text();
+        console.error('API Error:', {
+          status: resp.status,
+          text
+        });
+        throw new Error(text);
       }
-      console.log("gen wallpaper resp", resp);
-
+  
+      const { code, message, data } = await resp.json();
+      setLoading(false);
+  
       if (code !== 0) {
         toast.error(message);
         return;
       }
-
+  
       fetchUserInfo();
       setPrompt("");
-
+  
       toast.success("生成成功");
       if (data) {
         console.log("new cover", data);
         setCovers((covers: Cover[]) => [data, ...covers]);
       }
     } catch (e) {
-      console.log("gen cover failed", e);
+      console.error("gen cover failed", e);
+      setLoading(false);
+      toast.error(e instanceof Error ? e.message : "生成失败");
     }
   };
-
+  
   return (
     <div className="relative max-w-2xl mx-auto mt-4 md:mt-16">
       <input
