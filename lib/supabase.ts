@@ -7,28 +7,40 @@ const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 export const supabase = createClient<Database>(supabaseUrl, supabaseKey)
 
 export async function getUserCredits(userEmail: string) {
-  const { data: orders, error } = await supabase
-    .from('orders')
+  // 先获取用户基本积分
+  const { data: userData, error: userError } = await supabase
+    .from('users')
     .select('credits')
-    .eq('user_email', userEmail)
-    .eq('order_status', 2)
-    .gte('expired_at', new Date().toISOString())
+    .eq('email', userEmail)
+    .single()
 
-  if (error) {
-    console.error('Error fetching credits:', error)
-    throw error
+  if (userError) {
+    console.error('Error fetching user credits:', userError)
+    throw userError
   }
 
-  const totalCredits = orders?.reduce((sum, order) => sum + (order.credits || 0), 0) || 0
-  const usedCredits = 0 // 暂时 hardcode
+  // 计算已使用的积分（通过视频生成记录）
+  const { count: usedCredits, error: videoError } = await supabase
+    .from('videos')
+    .select('id', { count: 'exact' })
+    .eq('user_email', userEmail)
+    .eq('status', 1)  // 只计算成功的视频
 
+  if (videoError) {
+    console.error('Error counting used credits:', videoError)
+    throw videoError
+  }
+
+  const totalCredits = userData?.credits || 0
+  
   return {
-    total: totalCredits,
-    used: usedCredits,
-    available: totalCredits - usedCredits
+    total_credits: totalCredits,
+    used_credits: usedCredits || 0,
+    left_credits: totalCredits - (usedCredits || 0),
+    one_time_credits: 1,  // 保持与现有接口一致
+    monthly_credits: totalCredits - 1  // 保持与现有接口一致
   }
 }
-
 export async function getUserOrders(userEmail: string) {
   const { data: orders, error } = await supabase
     .from('orders')
@@ -66,6 +78,22 @@ export async function createOrder(orderData: {
   }
 
   return data
+}
+
+export async function updateUserCredits(userEmail: string, credits: number) {
+  const { data, error } = await supabase
+    .from('users')
+    .update({ credits: credits })
+    .eq('email', userEmail)
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Error updating user credits:', error);
+    throw error;
+  }
+
+  return data;
 }
 
 export async function updateOrderStatus(orderNo: string, status: number) {

@@ -6,7 +6,7 @@ import { getDb } from "./db";
 export async function insertCover(cover: Cover) {
   const db = getDb();
   const res = await db.query(
-    `INSERT INTO covers 
+    `INSERT INTO videos 
         (user_email, img_description, img_size, img_url, llm_name, llm_params, created_at, uuid, status) 
         VALUES 
         ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -26,10 +26,25 @@ export async function insertCover(cover: Cover) {
 
   return res;
 }
+export async function getUserVideosCount(user_email: string): Promise<number> {
+  const db = getDb();
+  const res = await db.query(
+    `SELECT count(1) as count FROM videos WHERE user_email = $1 AND status = 1`,
+    [user_email]
+  );
+  if (res.rowCount === 0) {
+    return 0;
+  }
+
+  const { rows } = res;
+  const row = rows[0];
+
+  return row.count;
+}
 
 export async function getCoversCount(): Promise<number> {
   const db = getDb();
-  const res = await db.query(`SELECT count(1) as count FROM covers`);
+  const res = await db.query(`SELECT count(1) as count FROM videos`);
   if (res.rowCount === 0) {
     return 0;
   }
@@ -43,7 +58,7 @@ export async function getCoversCount(): Promise<number> {
 export async function getUserCoversCount(user_email: string): Promise<number> {
   const db = getDb();
   const res = await db.query(
-    `SELECT count(1) as count FROM covers WHERE user_email = $1`,
+    `SELECT count(1) as count FROM videos WHERE user_email = $1`,
     [user_email]
   );
   if (res.rowCount === 0) {
@@ -59,7 +74,7 @@ export async function getUserCoversCount(user_email: string): Promise<number> {
 export async function findCoverById(id: number): Promise<Cover | undefined> {
   const db = getDb();
   const res = await db.query(
-    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from covers as w left join users as u on w.user_email = u.email where w.id = $1`,
+    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from videos as w left join users as u on w.user_email = u.email where w.id = $1`,
     [id]
   );
   if (res.rowCount === 0) {
@@ -76,7 +91,7 @@ export async function findCoverByUuid(
 ): Promise<Cover | undefined> {
   const db = getDb();
   const res = await db.query(
-    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from covers as w left join users as u on w.user_email = u.email where w.uuid = $1`,
+    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from videos as w left join users as u on w.user_email = u.email where w.uuid = $1`,
     [uuid]
   );
   if (res.rowCount === 0) {
@@ -102,7 +117,7 @@ export async function getRandCovers(
 
   const db = getDb();
   const res = await db.query(
-    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from covers as w left join users as u on w.user_email = u.email where w.status = 1 order by random() limit $1 offset $2`,
+    `select w.*, u.uuid as user_uuid, u.email as user_email, u.nickname as user_name, u.avatar_url as user_avatar from videos as w left join users as u on w.user_email = u.email where w.status = 1 order by random() limit $1 offset $2`,
     [limit, offset]
   );
 
@@ -126,7 +141,7 @@ export async function getCovers(page: number, limit: number): Promise<Cover[]> {
 
   const db = getDb();
   const res = await db.query(
-    `SELECT * FROM covers WHERE status = 1 ORDER BY created_at DESC LIMIT $1 OFFSET $2`,
+    `SELECT * FROM videos WHERE status = 1 ORDER BY created_at DESC LIMIT $1 OFFSET $2`,
     [limit, offset]
   );
   if (res.rowCount === 0) {
