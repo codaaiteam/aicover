@@ -80,7 +80,10 @@ export const AppContextProvider = ({ children }: ContextProviderProps) => {
   return (
     <Context.Provider value={{
       user,
-      fetchUserInfo: () => {}, // 不再需要这个函数，但为了兼容性保留空函数
+      fetchUserInfo: async () => {
+        // 返回一个空的 Promise
+        return Promise.resolve();
+      },
       covers,
       setCovers,
       pendingTasks,
