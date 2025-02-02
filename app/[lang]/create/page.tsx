@@ -113,7 +113,7 @@ export default function CreatePage() {
       });
 
       setPrompt("");
-      toast.success("视频开始生成，您可以离开此页面");
+      // toast.success("视频开始生成，您可以离开此页面");
 
       // 开始轮询状态
       const checkStatus = async () => {
