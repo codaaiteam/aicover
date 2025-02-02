@@ -19,7 +19,13 @@ const EXAMPLE_PROMPTS = [
 ]
 
 export default function CreatePage() {
-  const { user, isLoaded } = useUser()
+  const { user, isLoaded } = useUser();  // useUser 只提供这两个属性
+  console.log('Clerk auth state:', { 
+    isLoaded,
+    isAuthenticated: !!user,  // 使用 user 是否存在来判断登录状态
+    userId: user?.id,
+    userEmail: user?.emailAddresses[0]?.emailAddress 
+  });
   const router = useRouter()
   const { t, currentLocale } = useLanguage()
   
@@ -30,7 +36,6 @@ export default function CreatePage() {
   const [recentVideos, setRecentVideos] = useState<Video[]>([])
   const [publicVideos, setPublicVideos] = useState<Video[]>([])
   const [generationStatus, setGenerationStatus] = useState("")
-
   // 在现有 context 获取后添加
   const context = useContext(AppContext);
   console.log('AppContext value:', context);
