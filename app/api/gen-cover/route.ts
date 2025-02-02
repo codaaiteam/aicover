@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const user_email = user.emailAddresses[0].emailAddress;
     console.log("User email:", user_email);
 
-    // 获取用户积分信息
+    // 积分检查
     const credits = await getUserCredits(user_email);
     console.log("User credits:", credits);
 
@@ -36,65 +36,84 @@ export async function POST(req: Request) {
       return respErr("credits not enough");
     }
 
-    // 生成视频
-    console.log("Generating video with prompt:", description);
-    let videoUrl;
-    try {
-      videoUrl = await generateVideo(description, negative_prompt);
-      console.log("Video generated:", videoUrl);
-    } catch (error: any) {
-      console.error("Failed to generate video:", error);
-      return respErr(`Failed to generate video: ${error?.message || 'Unknown error'}`);
+    // 创建待处理的记录
+    const uuid = genUuid();
+    const video: Cover = {
+      user_email,
+      img_description: description,
+      img_size: "1024x1024",
+      img_url: '', // 先为空
+      llm_name: "fal-ai/mochi-v1",
+      llm_params: JSON.stringify({
+        model: "fal-ai/mochi-v1",
+        prompt: description,
+        negative_prompt,
+        seed: Math.floor(Math.random() * 1000000)
+      }),
+      created_at: new Date().toISOString(),
+      uuid,
+      status: 0 // 0: pending, 1: success, 2: failed
+    };
+
+    // 先插入待处理记录
+    await insertCover(video);
+    console.log("Pending video record inserted");
+
+    // 扣除积分
+    const newCredits = credits.total_credits - 1;
+    const { error: updateError } = await supabase
+      .from('users')
+      .update({ credits: newCredits })
+      .eq('email', user_email);
+
+    if (updateError) {
+      console.error("Failed to update user credits:", updateError);
+      // 如果扣除积分失败，删除记录并返回错误
+      await supabase.from('videos').delete().eq('uuid', uuid);
+      return respErr("Failed to update credits");
     }
 
-    // 上传到 R2
-    let r2Url;
-    try {
-      const uuid = genUuid();
-      const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
-      console.log("Uploading to R2 with filename:", fileName);
-      r2Url = await uploadVideoToR2(videoUrl, fileName);
-      console.log("Uploaded to R2:", r2Url);
+    // 异步开始生成过程
+    generateVideo(description, negative_prompt)
+      .then(async (videoUrl) => {
+        try {
+          const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
+          const r2Url = await uploadVideoToR2(videoUrl, fileName);
+          
+          // 更新记录状态为成功
+          await supabase
+            .from('videos')
+            .update({ 
+              status: 1,
+              img_url: r2Url 
+            })
+            .eq('uuid', uuid);
+            
+          console.log("Video generation completed:", uuid);
+        } catch (error) {
+          console.error("Failed in upload phase:", error);
+          await supabase
+            .from('videos')
+            .update({ 
+              status: 2,  // 失败
+              error: error.message 
+            })
+            .eq('uuid', uuid);
+        }
+      })
+      .catch(async (error) => {
+        console.error("Failed in generation phase:", error);
+        await supabase
+          .from('videos')
+          .update({ 
+            status: 2,  // 失败
+            error: error.message 
+          })
+          .eq('uuid', uuid);
+      });
 
-      const video: Cover = {
-        user_email,
-        img_description: description,
-        img_size: "1024x1024",
-        img_url: r2Url,
-        llm_name: "fal-ai/mochi-v1",
-        llm_params: JSON.stringify({
-          model: "fal-ai/mochi-v1",
-          prompt: description,
-          negative_prompt,
-          seed: Math.floor(Math.random() * 1000000)
-        }),
-        created_at: new Date().toISOString(),
-        uuid,
-        status: 1
-      };
-
-      // 插入视频记录
-      await insertCover(video);
-      console.log("Video record inserted into database");
-
-      // 更新用户积分
-      const newCredits = credits.total_credits - 1;
-      const { error: updateError } = await supabase
-        .from('users')
-        .update({ credits: newCredits })
-        .eq('email', user_email);
-
-      if (updateError) {
-        console.error("Failed to update user credits:", updateError);
-        // 即使更新积分失败，我们仍然返回成功，因为视频已经生成
-      }
-
-      return respData(video);
-
-    } catch (error: any) {
-      console.error("Failed to process video:", error);
-      return respErr(`Failed to process video: ${error?.message || 'Unknown error'}`);
-    }
+    // 立即返回任务ID
+    return respData({ uuid, status: 0 });
 
   } catch (error: any) {
     console.error("Failed to process request:", error);

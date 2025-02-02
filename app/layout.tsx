@@ -1,11 +1,11 @@
 import "./globals.css";
-
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { LanguageProvider } from "@/contexts/language";
+import { AppContextProvider } from "@/contexts/AppContext"; // 改为从 AppContext 导入
 import defaultTranslations from "@/locales/en.json";
 import Script from "next/script";
 
@@ -13,13 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mochi 1 Preview | Open Source Video Generation",
-  description:
-    "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence, powered by our 10B parameter AsymmDiT architecture",
+  description: "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence",
   keywords: "video generation, AI, machine learning, motion quality, open source",
   authors: [{ name: "Genmo AI" }],
   applicationName: "Mochi 1 Preview",
-  themeColor: "#ffffff",
-  viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -29,11 +26,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
@@ -45,22 +48,24 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <LanguageProvider defaultTranslations={defaultTranslations}>
-            <Toaster position="top-center" richColors />
-            {children}
-            <Analytics />
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-LLSSGYG1PT"
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-LLSSGYG1PT');
-              `}
-            </Script>
+            <AppContextProvider>
+              <Toaster position="top-center" richColors />
+              {children}
+              <Analytics />
+            </AppContextProvider>
           </LanguageProvider>
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-LLSSGYG1PT"
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-LLSSGYG1PT');
+            `}
+          </Script>
         </body>
       </html>
     </ClerkProvider>

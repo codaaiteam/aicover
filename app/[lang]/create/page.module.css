@@ -22,7 +22,28 @@
   color: hsl(var(--muted-foreground));
   font-size: 1.2rem;
 }
+.pendingTasks {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
 
+.pendingTask {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: white;
+  border-radius: 0.25rem;
+}
+
+.timeElapsed {
+  margin-left: auto;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
 .promptContainer {
   position: relative;
   margin-bottom: 3rem;

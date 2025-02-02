@@ -9,6 +9,8 @@ import { Clock, Grid2X2, ArrowRight, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { ApiResponse, Video } from '@/types/api'
+import { AppContext } from "@/contexts/AppContext"
+import { useContext } from "react"
 
 const EXAMPLE_PROMPTS = [
   "A serene mountain lake at sunset with gentle ripples",
@@ -27,6 +29,17 @@ export default function CreatePage() {
   const [resetTime, setResetTime] = useState("4:30 PM")
   const [recentVideos, setRecentVideos] = useState<Video[]>([])
   const [publicVideos, setPublicVideos] = useState<Video[]>([])
+  const [generationStatus, setGenerationStatus] = useState("")
+
+  // 在现有 context 获取后添加
+  const context = useContext(AppContext);
+  console.log('AppContext value:', context);
+
+  // 然后再解构
+  const { pendingTasks, addPendingTask, removePendingTask } = context;
+  console.log('Destructured values:', { pendingTasks, addPendingTask, removePendingTask });
+    // const { pendingTasks, addPendingTask, removePendingTask } = useContext(AppContext)
+
 
   useEffect(() => {
     // 获取公共视频
@@ -63,73 +76,111 @@ export default function CreatePage() {
     }
   }
 
+  // app/[lang]/create/page.tsx
   const handleSubmit = async () => {
-    if (!prompt.trim() || loading) return
+    if (!prompt.trim() || loading) return;
     
     if (!user) {
-      toast.error(t.pleaseLoginFirst || "Please login to generate videos")
-      router.push('/sign-in')
-      return
+      toast.error(t.pleaseLoginFirst || "Please login to generate videos");
+      router.push('/sign-in');
+      return;
     }
 
-    setLoading(true)
+    if (typeof addPendingTask !== 'function') {
+      console.error('addPendingTask is not a function:', addPendingTask);
+      return;
+    }
+
+    setLoading(true);
     try {
       const response = await fetch('/api/gen-cover', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           description: prompt,
           negative_prompt: "blurry, low quality, distorted, pixelated"
         }),
-      })
+      });
 
-      const data = (await response.json()) as ApiResponse<{ url: string }>
-      
-      if (data.code === 0 && data.data) {
-        toast.success(t.videoGenerateSuccess || "Video generated successfully!")
-        setRemainingVideos(prev => Math.max(0, prev - 1))
-        await fetchRecentVideos()
-        setPrompt("")
-      } else {
-        throw new Error(data.message || "Failed to generate video")
-      }
+      const { code, data } = await response.json();
+      if (code !== 0 || !data?.uuid) throw new Error("Failed to start generation");
+
+      // 添加到待处理任务列表
+      addPendingTask({
+        uuid: data.uuid,
+        description: prompt,
+        startTime: Date.now()
+      });
+
+      setPrompt("");
+      toast.success("视频开始生成，您可以离开此页面");
+
+      // 开始轮询状态
+      const checkStatus = async () => {
+        const statusResp = await fetch(`/api/videos/status/${data.uuid}`);
+        const statusData = await statusResp.json();
+        
+        if (statusData.code === 0) {
+          const status = statusData.data.status;
+          
+          if (status === 1) { // 成功
+            toast.success(t.videoGenerateSuccess || "Video generated successfully!");
+            await fetchRecentVideos();
+            removePendingTask(data.uuid);
+          } else if (status === 2) { // 失败
+            removePendingTask(data.uuid);
+            throw new Error(statusData.data.error || "Generation failed");
+          } else { // 继续等待
+            setTimeout(checkStatus, 5000);
+          }
+        }
+      };
+
+      checkStatus();
+
     } catch (error) {
-      console.error("Failed to generate video:", error)
-      toast.error(error instanceof Error ? error.message : "Failed to generate video")
+      console.error("Failed to generate video:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to generate video");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const renderVideoGrid = (videos: Video[], title: string) => (
-    <>
-      <div className={styles.recentTitle}>
-        <h2 className={styles.recentHeading}>{title}</h2>
-        {user && (
-          <a href={`/${currentLocale}/videos`} className={styles.viewAll}>
-            <Grid2X2 size={16} />
-            {t.viewAllCreations || "View all your creations"}
-            <ArrowRight size={16} />
-          </a>
-        )}
-      </div>
-  
-      <div className={styles.videoGrid}>
-        {videos.map((video) => {
-          // 保持 URL 处理逻辑
-          console.log('处理视频 URL:', video.img_url);
+const renderVideoGrid = (videos: Video[], title: string) => (
+  <>
+    <div className={styles.recentTitle}>
+      <h2 className={styles.recentHeading}>{title}</h2>
+      {user && (
+        <a href={`/${currentLocale}/videos`} className={styles.viewAll}>
+          <Grid2X2 size={16} />
+          {t.viewAllCreations || "View all your creations"}
+          <ArrowRight size={16} />
+        </a>
+      )}
+    </div>
 
-          const url = new URL(video.img_url);
-          const pathSegments = url.pathname.split('/');
-          const filename = pathSegments.pop();
-          const path = pathSegments.join('/');
-          const fixedUrl = `${url.origin}${path}/${encodeURIComponent(filename || '')}`;
-          console.log('处理后的 URL:', fixedUrl);
+    <div className={styles.videoGrid}>
+      {videos.map((video) => {
+        let fixedUrl = video.img_url;
+        
+        // 只有当 URL 有效时才进行处理
+        if (video.img_url && video.img_url.startsWith('http')) {
+          try {
+            const url = new URL(video.img_url);
+            const pathSegments = url.pathname.split('/');
+            const filename = pathSegments.pop();
+            const path = pathSegments.join('/');
+            fixedUrl = `${url.origin}${path}/${encodeURIComponent(filename || '')}`;
+          } catch (error) {
+            console.error('Invalid video URL:', video.img_url);
+            // 使用原始 URL 或者一个默认的错误图像
+            fixedUrl = video.img_url || '/placeholder-video.mp4';
+          }
+        }
 
-          return (
-            <div key={video.uuid} className={styles.videoCard}>
+        return (
+          <div key={video.uuid} className={styles.videoCard}>
+            {fixedUrl ? (
               <video
                 key={fixedUrl}
                 src={fixedUrl}
@@ -143,23 +194,29 @@ export default function CreatePage() {
                   console.error('Video load error for URL:', fixedUrl);
                 }}
               />
-              <div className={styles.videoInfo}>
-                <p className={styles.videoDescription}>{video.img_description}</p>
-                <p className={styles.videoDate}>
-                  {new Date(video.created_at).toLocaleDateString()}
-                </p>
+            ) : (
+              <div className={styles.videoPlaceholder}>
+                Video not available
               </div>
+            )}
+            <div className={styles.videoInfo}>
+              <p className={styles.videoDescription}>{video.img_description}</p>
+              <p className={styles.videoDate}>
+                {new Date(video.created_at).toLocaleDateString()}
+              </p>
             </div>
-          );
-        })}
-        {videos.length === 0 && (
-          <div className={styles.emptyState}>
-            <p>{t.noVideosYet || "No videos yet"}</p>
           </div>
-        )}
-      </div>
-    </>
-  );
+        );
+      })}
+      {videos.length === 0 && (
+        <div className={styles.emptyState}>
+          <p>{t.noVideosYet || "No videos yet"}</p>
+        </div>
+      )}
+    </div>
+  </>
+);
+  const hasPendingTasks = Array.isArray(pendingTasks) && pendingTasks.length > 0;
 
   return (
     <div className={styles.container}>
@@ -186,19 +243,19 @@ export default function CreatePage() {
           disabled={loading}
         />
         <div className={styles.promptActions}>
-          <Button
-            onClick={handleSubmit}
-            disabled={loading || !prompt.trim()}
-          >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {t.generating || "Generating..."}
-              </>
-            ) : (
-              t.generate || "Generate"
-            )}
-          </Button>
+        <Button
+          onClick={handleSubmit}
+          disabled={loading || !prompt.trim()}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {generationStatus || t.generating || "Generating..."}
+            </>
+          ) : (
+            t.generate || "Generate"
+          )}
+        </Button>
         </div>
       </div>
 
@@ -216,7 +273,20 @@ export default function CreatePage() {
           </button>
         ))}
       </div>
-
+      {hasPendingTasks && (
+        <div className={styles.pendingTasks}>
+          <h3>{t.pendingTasks || "Pending Tasks"}</h3>
+          {pendingTasks.map(task => (
+            <div key={task.uuid} className={styles.pendingTask}>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span>{task.description}</span>
+              <span className={styles.timeElapsed}>
+                {Math.floor((Date.now() - task.startTime) / 1000)}s
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
       {/* 用户已登录时显示其视频 */}
       {user && renderVideoGrid(recentVideos, t.recentCreations || "Your recent creations")}
       

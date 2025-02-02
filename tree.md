@@ -65,12 +65,16 @@
 │   │   ├── videos
 │   │   │   ├── public
 │   │   │   │   └── route.ts
-│   │   │   └── recent
-│   │   │       └── route.ts
+│   │   │   ├── recent
+│   │   │   │   └── route.ts
+│   │   │   └── status
+│   │   │       └── [uuid]
+│   │   │           └── route.ts
 │   │   └── webhook
 │   │       └── route.ts
 │   ├── contexts
-│   │   └── AppContext.tsx
+│   │   ├── AppContext.tsx
+│   │   └── AppProvider.tsx
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.tsx
@@ -234,4 +238,4 @@
 │   └── user.ts
 └── vercel.json
 
-64 directories, 171 files
+66 directories, 173 files
