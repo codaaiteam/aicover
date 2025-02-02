@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { Cover } from "@/types/cover";
 import { User } from "@/types/user";
 import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
 
 // 添加 PendingTask 接口
 export interface PendingTask {
@@ -31,6 +32,7 @@ const Context = createContext({} as ExtendedContextProviderValue);
 export { Context as AppContext };
 
 export const AppContextProvider = ({ children }: ContextProviderProps) => {
+  const { user: clerkUser } = useUser();  // 添加 Clerk user
   const [user, setUser] = useState<User | null | undefined>(undefined);
   const [covers, setCovers] = useState<Cover[] | null>(null);
   const [pendingTasks, setPendingTasks] = useState<PendingTask[]>([]);
@@ -49,6 +51,15 @@ export const AppContextProvider = ({ children }: ContextProviderProps) => {
   }, []);
 
   useEffect(() => {
+    console.log('Clerk user changed:', clerkUser);
+    if (clerkUser) {
+      fetchUserInfo();
+    } else {
+      setUser(null);
+    }
+  }, [clerkUser]);
+
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('pendingVideoTasks', JSON.stringify(pendingTasks));
     }
@@ -56,27 +67,29 @@ export const AppContextProvider = ({ children }: ContextProviderProps) => {
 
   const fetchUserInfo = async function () {
     try {
-      const uri = "/api/get-user-info";
-      const params = {};
-
-      const resp = await fetch(uri, {
+      console.log('Fetching user info...');
+      const resp = await fetch("/api/get-user-info", {
         method: "POST",
-        body: JSON.stringify(params),
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
 
       if (resp.ok) {
         const res = await resp.json() as ApiResponse<User>;
+        console.log('User info response:', res);
         if (res.data) {
           setUser(res.data);
           return;
         }
       }
 
+      console.log('Failed to get user info:', resp.status);
       setUser(null);
     } catch (e) {
+      console.error("Failed to fetch user info:", e);
       setUser(null);
-      console.log("get user info failed: ", e);
-      toast.error("get user info failed");
+      toast.error("Failed to get user info");
     }
   };
 
