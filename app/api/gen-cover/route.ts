@@ -8,7 +8,7 @@ import { generateVideo } from "@/services/fal";
 import { uploadVideoToR2 } from "@/services/r2";
 import { supabase } from "@/lib/supabase";
 
-export const maxDuration = 300; // 5 minutes timeout
+export const maxDuration = 300;
 
 export async function POST(req: Request) {
   const user = await currentUser();
@@ -80,7 +80,6 @@ export async function POST(req: Request) {
           const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
           const r2Url = await uploadVideoToR2(videoUrl, fileName);
           
-          // 更新记录状态为成功
           await supabase
             .from('videos')
             .update({ 
@@ -92,22 +91,24 @@ export async function POST(req: Request) {
           console.log("Video generation completed:", uuid);
         } catch (error) {
           console.error("Failed in upload phase:", error);
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
           await supabase
             .from('videos')
             .update({ 
-              status: 2,  // 失败
-              error: error.message 
+              status: 2,
+              error: errorMessage 
             })
             .eq('uuid', uuid);
         }
       })
       .catch(async (error) => {
         console.error("Failed in generation phase:", error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
         await supabase
           .from('videos')
           .update({ 
-            status: 2,  // 失败
-            error: error.message 
+            status: 2,
+            error: errorMessage 
           })
           .eq('uuid', uuid);
       });
@@ -115,8 +116,9 @@ export async function POST(req: Request) {
     // 立即返回任务ID
     return respData({ uuid, status: 0 });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("Failed to process request:", error);
-    return respErr(`Request failed: ${error?.message || 'Unknown error'}`);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return respErr(`Request failed: ${errorMessage}`);
   }
 }

@@ -29,6 +29,11 @@ export async function GET(
       description: data.img_description
     });
   } catch (error) {
-    return respErr(`Failed to get status: ${error.message}`);
+    // 添加错误类型检查
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : 'Unknown error occurred';
+    
+    return respErr(`Failed to get status: ${errorMessage}`);
   }
 }

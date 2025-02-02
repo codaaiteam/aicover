@@ -40,7 +40,14 @@ export default function CreatePage() {
   console.log('Destructured values:', { pendingTasks, addPendingTask, removePendingTask });
     // const { pendingTasks, addPendingTask, removePendingTask } = useContext(AppContext)
 
-
+  // 先定义响应类型
+  interface GenCoverResponse {
+    code: number;
+    data?: {
+      uuid: string;
+    };
+    message?: string;
+  }
   useEffect(() => {
     // 获取公共视频
     fetchPublicVideos()
@@ -76,75 +83,83 @@ export default function CreatePage() {
     }
   }
 
-  // app/[lang]/create/page.tsx
-  const handleSubmit = async () => {
-    if (!prompt.trim() || loading) return;
-    
-    if (!user) {
-      toast.error(t.pleaseLoginFirst || "Please login to generate videos");
-      router.push('/sign-in');
-      return;
-    }
 
-    if (typeof addPendingTask !== 'function') {
-      console.error('addPendingTask is not a function:', addPendingTask);
-      return;
-    }
 
-    setLoading(true);
-    try {
-      const response = await fetch('/api/gen-cover', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          description: prompt,
-          negative_prompt: "blurry, low quality, distorted, pixelated"
-        }),
-      });
+const handleSubmit = async () => {
+  if (!prompt.trim() || loading) return;
+  
+  if (!user) {
+    toast.error(t.pleaseLoginFirst || "Please login to generate videos");
+    router.push('/sign-in');
+    return;
+  }
 
-      const { code, data } = await response.json();
-      if (code !== 0 || !data?.uuid) throw new Error("Failed to start generation");
+  if (!addPendingTask) {
+    console.error('addPendingTask is not available');
+    return;
+  }
 
-      // 添加到待处理任务列表
-      addPendingTask({
-        uuid: data.uuid,
+  setLoading(true);
+  try {
+    const response = await fetch('/api/gen-cover', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         description: prompt,
-        startTime: Date.now()
-      });
+        negative_prompt: "blurry, low quality, distorted, pixelated"
+      }),
+    });
 
-      setPrompt("");
-      // toast.success("视频开始生成，您可以离开此页面");
+    // 添加类型断言
+    const { code, data } = await response.json() as GenCoverResponse;
+    if (code !== 0 || !data?.uuid) throw new Error("Failed to start generation");
 
-      // 开始轮询状态
-      const checkStatus = async () => {
-        const statusResp = await fetch(`/api/videos/status/${data.uuid}`);
-        const statusData = await statusResp.json();
-        
-        if (statusData.code === 0) {
-          const status = statusData.data.status;
-          
-          if (status === 1) { // 成功
-            toast.success(t.videoGenerateSuccess || "Video generated successfully!");
-            await fetchRecentVideos();
-            removePendingTask(data.uuid);
-          } else if (status === 2) { // 失败
-            removePendingTask(data.uuid);
-            throw new Error(statusData.data.error || "Generation failed");
-          } else { // 继续等待
-            setTimeout(checkStatus, 5000);
-          }
-        }
+    addPendingTask({
+      uuid: data.uuid,
+      description: prompt,
+      startTime: Date.now()
+    });
+
+    setPrompt("");
+    toast.success("视频开始生成，您可以离开此页面");
+
+    // 开始轮询状态
+    const checkStatus = async () => {
+      const statusResp = await fetch(`/api/videos/status/${data.uuid}`);
+      // 添加类型断言
+      const statusData = await statusResp.json() as {
+        code: number;
+        data: {
+          status: number;
+          error?: string;
+        };
       };
+      
+      if (statusData.code === 0) {
+        const status = statusData.data.status;
+        
+        if (status === 1) { // 成功
+          toast.success(t.videoGenerateSuccess || "Video generated successfully!");
+          await fetchRecentVideos();
+          removePendingTask(data.uuid);
+        } else if (status === 2) { // 失败
+          removePendingTask(data.uuid);
+          throw new Error(statusData.data.error || "Generation failed");
+        } else { // 继续等待
+          setTimeout(checkStatus, 5000);
+        }
+      }
+    };
 
-      checkStatus();
+    checkStatus();
 
-    } catch (error) {
-      console.error("Failed to generate video:", error);
-      toast.error(error instanceof Error ? error.message : "Failed to generate video");
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (error) {
+    console.error("Failed to generate video:", error);
+    toast.error(error instanceof Error ? error.message : "Failed to generate video");
+  } finally {
+    setLoading(false);
+  }
+};
 
 const renderVideoGrid = (videos: Video[], title: string) => (
   <>
