@@ -11,44 +11,31 @@ import { supabase } from "@/lib/supabase";
 export const maxDuration = 300;
 
 export async function POST(req: Request) {
-  const user = await currentUser();
-  if (!user?.emailAddresses?.[0]) {
-    return respErr("no auth");
-  }
-
   try {
-
-    const { data, error } = await supabase.from('users').select('count');
-    if (error) {
-      console.error('Supabase connection error:', error);
-      return respErr('Database connection failed, please try again later');
+    // 1. 检查用户认证
+    const user = await currentUser();
+    if (!user?.emailAddresses?.[0]) {
+      return respErr("no auth");
     }
-    const body = await req.json();
-    console.log("Received request body:", body);
+    const user_email = user.emailAddresses[0].emailAddress;
+    console.log("Processing request for user:", user_email);
 
+    // 2. 验证请求内容
+    const body = await req.json();
     const { description, negative_prompt } = body as GenerateCoverRequest;
     if (!description) {
       return respErr("invalid params: description is required");
     }
 
-    const user_email = user.emailAddresses[0].emailAddress;
-    console.log("User email:", user_email);
-
-    // 积分检查
-    const credits = await getUserCredits(user_email);
-    console.log("User credits:", credits);
-
-    if (!credits || credits.left_credits < 1) {
-      return respErr("credits not enough");
-    }
-
-    // 创建待处理的记录
+    // 3. 生成UUID先
     const uuid = genUuid();
+
+    // 4. 创建视频记录
     const video: Cover = {
       user_email,
       img_description: description,
       img_size: "1024x1024",
-      img_url: '', // 先为空
+      img_url: '',
       llm_name: "fal-ai/mochi-v1",
       llm_params: JSON.stringify({
         model: "fal-ai/mochi-v1",
@@ -58,80 +45,90 @@ export async function POST(req: Request) {
       }),
       created_at: new Date().toISOString(),
       uuid,
-      status: 0 // 0: pending, 1: success, 2: failed
+      status: 0
     };
 
-    // 先插入待处理记录
-    await insertCover(video);
-    console.log("Pending video record inserted");
+    // 5. 数据库操作 - 使用 supabase 事务
+    const { data: userCredits, error: creditsError } = await supabase
+      .from('users')
+      .select('credits')
+      .eq('email', user_email)
+      .single();
 
-    // 扣除积分
-    const newCredits = credits.total_credits - 1;
+    if (creditsError) {
+      console.error('Failed to get user credits:', creditsError);
+      return respErr("Failed to check credits");
+    }
+
+    if (!userCredits || userCredits.credits < 1) {
+      return respErr("Not enough credits");
+    }
+
+    // 6. 执行插入和更新操作
+    const { error: insertError } = await supabase
+      .from('videos')
+      .insert([video]);
+
+    if (insertError) {
+      console.error('Failed to insert video record:', insertError);
+      return respErr("Failed to create video record");
+    }
+
     const { error: updateError } = await supabase
       .from('users')
-      .update({ credits: newCredits })
+      .update({ credits: userCredits.credits - 1 })
       .eq('email', user_email);
 
     if (updateError) {
-      console.error("Failed to update user credits:", updateError);
-      // 如果扣除积分失败，删除记录并返回错误
+      console.error('Failed to update credits:', updateError);
+      // 回滚 - 删除之前插入的记录
       await supabase.from('videos').delete().eq('uuid', uuid);
       return respErr("Failed to update credits");
     }
 
-    // 异步开始生成过程
+    // 7. 开始异步生成
     generateVideo(description, negative_prompt)
-    .then(async (videoUrl) => {
-      console.log('Video generation successful:', videoUrl);
-      try {
-        const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
-        console.log('Uploading to R2:', fileName);
-        const r2Url = await uploadVideoToR2(videoUrl, fileName);
-        console.log('Upload successful:', r2Url);
-        
-        const { error: updateError } = await supabase
+      .then(async (videoUrl) => {
+        try {
+          const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
+          const r2Url = await uploadVideoToR2(videoUrl, fileName);
+          
+          await supabase
+            .from('videos')
+            .update({ 
+              status: 1,
+              img_url: r2Url 
+            })
+            .eq('uuid', uuid);
+            
+          console.log("Video generation completed:", uuid);
+        } catch (error) {
+          console.error("Generation phase error:", error);
+          await supabase
+            .from('videos')
+            .update({ 
+              status: 2,
+              error: error instanceof Error ? error.message : 'Unknown error'
+            })
+            .eq('uuid', uuid);
+        }
+      })
+      .catch(async (error) => {
+        console.error("Generation error:", error);
+        await supabase
           .from('videos')
           .update({ 
-            status: 1,
-            img_url: r2Url 
+            status: 2,
+            error: error instanceof Error ? error.message : 'Unknown error'
           })
           .eq('uuid', uuid);
-          
-        if (updateError) {
-          console.error('Database update error:', updateError);
-          throw updateError;
-        }
-        
-        console.log("Video generation completed:", uuid);
-      } catch (error) {
-        console.error("Upload/Database error:", error);
-        throw error;
-      }
-    })
-    .catch(async (error) => {
-      console.error("Generation error:", error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      await supabase
-        .from('videos')
-        .update({ 
-          status: 2,
-          error: errorMessage 
-        })
-        .eq('uuid', uuid);
-    });
+      });
 
-    // 立即返回任务ID
+    // 8. 立即返回任务ID
     return respData({ uuid, status: 0 });
 
   } catch (error) {
-    console.error('Request error:', error);
-    const errorMessage = error instanceof Error 
-      ? error.message
-      : 'Service temporarily unavailable';
-      
-    return respErr(errorMessage.includes('ENOTFOUND')
-      ? 'Database connection failed, please try again later'
-      : errorMessage
-    );
+    console.error("Request error:", error);
+    return respErr(error instanceof Error ? error.message : 'Request failed');
   }
 }
