@@ -17,6 +17,12 @@ export async function POST(req: Request) {
   }
 
   try {
+
+    const { data, error } = await supabase.from('users').select('count');
+    if (error) {
+      console.error('Supabase connection error:', error);
+      return respErr('Database connection failed, please try again later');
+    }
     const body = await req.json();
     console.log("Received request body:", body);
 
@@ -118,8 +124,14 @@ export async function POST(req: Request) {
     return respData({ uuid, status: 0 });
 
   } catch (error) {
-    console.error("Failed to process request:", error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-    return respErr(`Request failed: ${errorMessage}`);
+    console.error('Request error:', error);
+    const errorMessage = error instanceof Error 
+      ? error.message
+      : 'Service temporarily unavailable';
+      
+    return respErr(errorMessage.includes('ENOTFOUND')
+      ? 'Database connection failed, please try again later'
+      : errorMessage
+    );
   }
 }
