@@ -75,43 +75,44 @@ export async function POST(req: Request) {
 
     // 异步开始生成过程
     generateVideo(description, negative_prompt)
-      .then(async (videoUrl) => {
-        try {
-          const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
-          const r2Url = await uploadVideoToR2(videoUrl, fileName);
-          
-          await supabase
-            .from('videos')
-            .update({ 
-              status: 1,
-              img_url: r2Url 
-            })
-            .eq('uuid', uuid);
-            
-          console.log("Video generation completed:", uuid);
-        } catch (error) {
-          console.error("Failed in upload phase:", error);
-          const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-          await supabase
-            .from('videos')
-            .update({ 
-              status: 2,
-              error: errorMessage 
-            })
-            .eq('uuid', uuid);
-        }
-      })
-      .catch(async (error) => {
-        console.error("Failed in generation phase:", error);
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-        await supabase
+    .then(async (videoUrl) => {
+      console.log('Video generation successful:', videoUrl);
+      try {
+        const fileName = `${uuid}-${encodeURIComponent(description)}.mp4`;
+        console.log('Uploading to R2:', fileName);
+        const r2Url = await uploadVideoToR2(videoUrl, fileName);
+        console.log('Upload successful:', r2Url);
+        
+        const { error: updateError } = await supabase
           .from('videos')
           .update({ 
-            status: 2,
-            error: errorMessage 
+            status: 1,
+            img_url: r2Url 
           })
           .eq('uuid', uuid);
-      });
+          
+        if (updateError) {
+          console.error('Database update error:', updateError);
+          throw updateError;
+        }
+        
+        console.log("Video generation completed:", uuid);
+      } catch (error) {
+        console.error("Upload/Database error:", error);
+        throw error;
+      }
+    })
+    .catch(async (error) => {
+      console.error("Generation error:", error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      await supabase
+        .from('videos')
+        .update({ 
+          status: 2,
+          error: errorMessage 
+        })
+        .eq('uuid', uuid);
+    });
 
     // 立即返回任务ID
     return respData({ uuid, status: 0 });
