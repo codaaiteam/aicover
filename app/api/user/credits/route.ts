@@ -1,6 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { getUserCredits, getUserOrders } from "@/lib/supabase";
+import { dynamic } from "@/app/route-segment-config";
+
+export { dynamic };
 
 export async function GET(req: Request) {
   try {

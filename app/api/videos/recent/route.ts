@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { auth, currentUser } from "@clerk/nextjs";
+import { dynamic } from "@/app/route-segment-config";
+
+export { dynamic };
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,

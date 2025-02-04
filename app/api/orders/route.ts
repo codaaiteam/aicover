@@ -7,7 +7,7 @@ import { insertOrder, updateOrderSession } from "@/models/order";
 
 // 使用新的路由段配置
 export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 // Validate environment variables first
