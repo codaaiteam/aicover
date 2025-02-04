@@ -62,6 +62,7 @@ const PLANS: { [key: string]: PlanDetails } = {
   }
 };
 
+// app/api/orders/route.ts
 export async function POST(req: Request) {
   try {
     // 1. Authenticate user
@@ -87,6 +88,8 @@ export async function POST(req: Request) {
       return respErr("Invalid plan selected");
     }
 
+    console.log("Plan details:", planDetails);
+
     // 4. Generate order number and expiration date
     const orderNo = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const now = new Date();
@@ -95,6 +98,7 @@ export async function POST(req: Request) {
       : new Date(now.setMonth(now.getMonth() + planDetails.duration));
 
     // 5. Create order record
+    console.log("Creating order record in database...");
     const { error: insertError } = await supabase
       .from('orders')
       .insert([{
@@ -118,6 +122,17 @@ export async function POST(req: Request) {
 
     // 6. Create Stripe checkout session
     try {
+      console.log("Creating Stripe session with config:", {
+        currency: planDetails.currency,
+        amount: planDetails.price,
+        name: planDetails.name,
+        credits: planDetails.credits,
+        duration: planDetails.duration,
+      });
+
+      // Check Stripe key
+      console.log("Using Stripe key:", process.env.STRIPE_SECRET_KEY?.substring(0, 8) + "...");
+
       const session = await stripe.checkout.sessions.create({
         line_items: [{
           price_data: {
@@ -141,7 +156,10 @@ export async function POST(req: Request) {
         },
       });
 
-      console.log("Stripe session created:", session.id);
+      console.log("Stripe session created:", {
+        sessionId: session.id,
+        url: session.url
+      });
 
       // 7. Update order with session ID
       if (session.id) {
@@ -152,14 +170,19 @@ export async function POST(req: Request) {
 
         if (updateError) {
           console.error('Failed to update session ID:', updateError);
-          // Non-critical error, continue
         }
       }
 
+      console.log("Returning successful response with URL");
       return respData({ url: session.url });
 
-    } catch (stripeError) {
-      console.error('Stripe session creation failed:', stripeError);
+    } catch (stripeError: any) {
+      console.error('Stripe session creation failed:', {
+        error: stripeError.message,
+        type: stripeError.type,
+        code: stripeError.code,
+        stack: stripeError.stack
+      });
       
       // Rollback - delete the order record
       await supabase
@@ -173,6 +196,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Order creation error:", {
       message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined,
       error
     });
     return respErr(error instanceof Error ? error.message : "Failed to process order");
