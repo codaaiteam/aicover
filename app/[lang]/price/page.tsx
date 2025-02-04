@@ -25,45 +25,94 @@ export default function PricePage() {
     userEmail: user?.emailAddresses[0]?.emailAddress 
   })
 
+// app/[lang]/price/page.tsx
 const handlePlanSelect = async (plan: string) => {
   if (!user && plan !== 'Free') {
-    router.push('/sign-in');
-    return;
+    router.push('/sign-in')
+    return
   }
 
-  if (loading) return;
+  if (loading) return
 
   switch (plan) {
     case 'Free':
-      router.push('/create');
-      break;
+      router.push('/create')
+      break
     case 'Basic':
     case 'Pro':
     case 'Pay As You Go':
       try {
-        setLoading(plan);
-        const response = await fetch('/api/orders', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            plan: plan.toLowerCase(),
-            isYearly: isYearly,
-          }),
-        });
+        setLoading(plan)
 
-        const data = await response.json();
+        // 添加重试逻辑
+        const maxRetries = 3;
+        let currentTry = 0;
+        let lastError;
 
-        if (data.code !== 0 || !data.data?.url) {
-          throw new Error(data.message || 'Failed to create order');
+        while (currentTry < maxRetries) {
+          try {
+            currentTry++;
+            console.log(`Attempt ${currentTry} of ${maxRetries}`);
+
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 30000); // 30 秒超时
+
+            const response = await fetch('/api/orders', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                plan: plan.toLowerCase(),
+                isYearly,
+              }),
+              signal: controller.signal
+            });
+
+            clearTimeout(timeout);
+
+            const data = await response.json();
+            
+            if (!response.ok) {
+              throw new Error(data.message || `HTTP error! status: ${response.status}`);
+            }
+
+            if (!data.data?.url) {
+              throw new Error('No checkout URL in response');
+            }
+
+            // 成功获取到 URL，进行重定向
+            window.location.href = data.data.url;
+            return;
+
+          } catch (error) {
+            lastError = error;
+            if (error.name === 'AbortError') {
+              console.log('Request timed out, retrying...');
+              // 请求超时，继续重试
+              continue;
+            }
+            
+            if (currentTry === maxRetries) {
+              // 最后一次尝试也失败了
+              break;
+            }
+
+            // 等待一段时间后重试
+            await new Promise(resolve => setTimeout(resolve, 2000 * currentTry));
+          }
         }
 
-        // 直接重定向到 Stripe Checkout
-        window.location.href = data.data.url;
+        // 如果所有重试都失败了
+        throw lastError || new Error('Failed to create order after multiple attempts');
+
       } catch (error) {
         console.error('Error creating order:', error);
-        toast.error(error instanceof Error ? error.message : 'Failed to process payment');
+        toast.error(
+          error instanceof Error 
+            ? `Failed to create order: ${error.message}` 
+            : 'Failed to process payment'
+        );
       } finally {
         setLoading(null);
       }

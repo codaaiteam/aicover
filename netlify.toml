@@ -10,9 +10,14 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  
+
 # 添加基本安全头
 [[headers]]
   for = "/*"
   [headers.values]
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+[functions]
+  included_files = ["public/**"]
+  node_bundler = "esbuild"
+  timeout = 30  # 设置为30秒

@@ -9,7 +9,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 300;
 
-// Validate required environment variables
+// 验证环境变量
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error("Missing STRIPE_SECRET_KEY");
 }
@@ -18,68 +18,112 @@ if (!process.env.NEXT_PUBLIC_APP_URL) {
   throw new Error("Missing NEXT_PUBLIC_APP_URL");
 }
 
-// Initialize Stripe
+// 初始化 Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2023-10-16"
 });
 
-// Plan definitions
+// 定义套餐
 const PLANS: { [key: string]: PlanDetails } = {
   "basic-monthly": {
     name: "Basic Monthly",
-    price: 1990,
+    price: 1990, // $19.90
     credits: 50,
     duration: 1,
     currency: "usd"
   },
   "basic-yearly": {
     name: "Basic Yearly",
-    price: 19900,
+    price: 19900, // $199.00
     credits: 50,
     duration: 12,
     currency: "usd"
   },
   "pro-monthly": {
     name: "Pro Monthly",
-    price: 4990,
+    price: 4990, // $49.90
     credits: 150,
     duration: 1,
     currency: "usd"
   },
   "pro-yearly": {
     name: "Pro Yearly",
-    price: 49900,
+    price: 49900, // $499.00
     credits: 150,
     duration: 12,
     currency: "usd"
   },
   "pay-as-you-go": {
     name: "Pay As You Go",
-    price: 5000,
+    price: 5000, // $50.00
     credits: 55,
     duration: 0,
     currency: "usd"
   }
 };
 
-// app/api/orders/route.ts
+// 创建 Stripe Session 的函数
+async function createStripeSession(
+  planDetails: PlanDetails, 
+  orderNo: string, 
+  userEmail: string, 
+  userId: string
+): Promise<Stripe.Checkout.Session> {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error('Stripe session creation timeout'));
+    }, 10000); // 10 秒超时
+
+    stripe.checkout.sessions.create({
+      line_items: [{
+        price_data: {
+          currency: planDetails.currency,
+          product_data: {
+            name: planDetails.name,
+            description: `${planDetails.credits} videos ${planDetails.duration ? `for ${planDetails.duration} months` : ''}`
+          },
+          unit_amount: planDetails.price,
+        },
+        quantity: 1,
+      }],
+      mode: "payment",
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/en/dashboard?success=true&order=${orderNo}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/en/price?canceled=true`,
+      customer_email: userEmail,
+      metadata: {
+        order_no: orderNo,
+        user_id: userId,
+        credits: planDetails.credits.toString()
+      },
+    }).then(session => {
+      clearTimeout(timeoutId);
+      resolve(session);
+    }).catch(error => {
+      clearTimeout(timeoutId);
+      reject(error);
+    });
+  });
+}
+
 export async function POST(req: Request) {
   try {
-    // 1. Authenticate user
+    console.log("Starting order creation process...");
+
+    // 1. 验证用户
     const user = await currentUser();
     if (!user?.emailAddresses?.[0]) {
       return respErr("no auth");
     }
     const userEmail = user.emailAddresses[0].emailAddress;
-    console.log("Creating order for user:", userEmail);
+    console.log("User authenticated:", userEmail);
 
-    // 2. Parse and validate request
+    // 2. 获取请求数据
     const body = await req.json();
     console.log("Request body:", body);
     
     const { plan, isYearly } = body as CreateOrderParams;
     
-    // 3. Get plan details
+    // 3. 获取套餐详情
     const planKey = plan === 'pay-as-you-go' ? plan : `${plan}-${isYearly ? 'yearly' : 'monthly'}`;
     const planDetails = PLANS[planKey];
     
@@ -88,17 +132,17 @@ export async function POST(req: Request) {
       return respErr("Invalid plan selected");
     }
 
-    console.log("Plan details:", planDetails);
+    console.log("Selected plan:", planDetails);
 
-    // 4. Generate order number and expiration date
+    // 4. 生成订单号和过期时间
     const orderNo = `${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const now = new Date();
     const expiredAt = planDetails.duration === 0 
       ? new Date(now.getFullYear() + 100, now.getMonth(), now.getDate())
       : new Date(now.setMonth(now.getMonth() + planDetails.duration));
 
-    // 5. Create order record
-    console.log("Creating order record in database...");
+    // 5. 创建订单记录
+    console.log("Creating order record...");
     const { error: insertError } = await supabase
       .from('orders')
       .insert([{
@@ -114,54 +158,25 @@ export async function POST(req: Request) {
       }]);
 
     if (insertError) {
-      console.error('Failed to create order record:', insertError);
+      console.error('Database error:', insertError);
       return respErr("Failed to create order");
     }
 
     console.log("Order record created:", orderNo);
 
-    // 6. Create Stripe checkout session
+    // 6. 创建 Stripe checkout session
     try {
-      console.log("Creating Stripe session with config:", {
-        currency: planDetails.currency,
-        amount: planDetails.price,
-        name: planDetails.name,
-        credits: planDetails.credits,
-        duration: planDetails.duration,
-      });
+      console.log("Creating Stripe session...");
+      const session = await createStripeSession(
+        planDetails,
+        orderNo,
+        userEmail,
+        user.id
+      );
 
-      // Check Stripe key
-      console.log("Using Stripe key:", process.env.STRIPE_SECRET_KEY?.substring(0, 8) + "...");
+      console.log("Stripe session created:", session.id);
 
-      const session = await stripe.checkout.sessions.create({
-        line_items: [{
-          price_data: {
-            currency: planDetails.currency,
-            product_data: {
-              name: planDetails.name,
-              description: `${planDetails.credits} videos ${planDetails.duration ? `for ${planDetails.duration} months` : ''}`
-            },
-            unit_amount: planDetails.price,
-          },
-          quantity: 1,
-        }],
-        mode: "payment",
-        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/en/dashboard?success=true&order=${orderNo}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/en/price?canceled=true`,
-        customer_email: userEmail,
-        metadata: {
-          order_no: orderNo,
-          user_id: user.id,
-          credits: planDetails.credits.toString()
-        },
-      });
-
-      console.log("Stripe session created:", {
-        sessionId: session.id,
-        url: session.url
-      });
-
-      // 7. Update order with session ID
+      // 7. 更新订单记录添加 session ID
       if (session.id) {
         const { error: updateError } = await supabase
           .from('orders')
@@ -170,33 +185,36 @@ export async function POST(req: Request) {
 
         if (updateError) {
           console.error('Failed to update session ID:', updateError);
+          // 非致命错误，继续执行
         }
       }
 
-      console.log("Returning successful response with URL");
+      // 8. 返回成功响应
       return respData({ url: session.url });
 
     } catch (stripeError: any) {
-      console.error('Stripe session creation failed:', {
-        error: stripeError.message,
+      console.error('Stripe error:', {
+        message: stripeError.message,
         type: stripeError.type,
-        code: stripeError.code,
-        stack: stripeError.stack
+        code: stripeError.code
       });
       
-      // Rollback - delete the order record
+      // 删除订单记录
       await supabase
         .from('orders')
         .delete()
         .eq('order_no', orderNo);
 
-      return respErr("Failed to create payment session");
+      // 返回具体错误信息
+      if (stripeError.message === 'Stripe session creation timeout') {
+        return respErr("Payment session creation timed out");
+      }
+      return respErr(stripeError.message || "Failed to create payment session");
     }
 
   } catch (error) {
-    console.error("Order creation error:", {
+    console.error("General error:", {
       message: error instanceof Error ? error.message : "Unknown error",
-      stack: error instanceof Error ? error.stack : undefined,
       error
     });
     return respErr(error instanceof Error ? error.message : "Failed to process order");
