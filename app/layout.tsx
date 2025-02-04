@@ -12,8 +12,8 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mochi 1 Preview | Open Source Video Generation",
-  description: "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence",
+  title: "Mochi 1 Preview | Text to Video AI Start with Free without Watermark",
+  description: "Experience high-quality Mochi 1 Preview videos powered by advanced text-to-video AI technology. Start with Free without Watermark today and transform your text descriptions into stunning, professionally rendered videos with natural motion and precise prompt interpretation.",
   keywords: "video generation, AI, machine learning, motion quality, open source",
   authors: [{ name: "Genmo AI" }],
   applicationName: "Mochi 1 Preview",
