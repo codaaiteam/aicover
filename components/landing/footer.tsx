@@ -12,16 +12,16 @@ export default function Footer() {
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             Built by{" "}
             <a
-              href="https://codeium.com"
+              href="https://mochi1preview.com"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              Codeium
+              Mochi 1 Preview
             </a>
             . The source code is available on{" "}
             <a
-              href="https://github.com/codeium/mochi"
+              href="https://github.com/genmoai/mochi"
               target="_blank"
               rel="noreferrer"
               className="font-medium underline underline-offset-4"

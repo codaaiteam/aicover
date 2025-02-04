@@ -21,7 +21,7 @@ export function Header() {
     { name: "home", title: t.home, url: `/${currentLocale}`, target: "_self" },
     { name: "create", title: t.create || "Create", url: `/${currentLocale}/create`, target: "_self" },
     { name: "guide", title: t.guide, url: `/${currentLocale}/guide`, target: "_self" },
-    { name: "github", title: "GitHub", url: "https://github.com/codeium/mochi", target: "_blank" },
+    { name: "github", title: "GitHub", url: "https://github.com/genmoai/mochi", target: "_blank" },
   ];
 
   return (
