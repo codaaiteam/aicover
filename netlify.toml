@@ -3,12 +3,14 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18.17.0"
+  NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps --force"
+  NETLIFY_USE_NPM = "true"
+  NETLIFY_USE_PNPM = "false"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
+  
 # 添加基本安全头
 [[headers]]
   for = "/*"
