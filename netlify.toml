@@ -20,4 +20,6 @@
 [functions]
   included_files = ["public/**"]
   node_bundler = "esbuild"
-  timeout = 30  # 设置为30秒
+
+[functions.timeout]
+  duration = 30  # 30秒超时
