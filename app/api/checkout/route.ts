@@ -81,8 +81,8 @@ export async function POST(req: Request) {
         credits: credits,
       },
       mode: plan === "monthly" ? "subscription" : "payment",
-      success_url: `${process.env.WEB_BASE_URI}/pay-success/{CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.WEB_BASE_URI}/pricing`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?success=true&order=${order_no}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/price?canceled=true`,
     };
 
     if (currency === "cny") {
