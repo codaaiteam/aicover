@@ -3,17 +3,11 @@
   publish = ".next"
 
 [build.environment]
-  NEXT_TELEMETRY_DISABLED = "1"
-  NETLIFY_USE_NPM = "true"
-  NETLIFY_USE_PNPM = "false"
-  NODE_VERSION = "18"
+  NODE_VERSION = "18.17.0"
   NPM_FLAGS = "--legacy-peer-deps --force"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[functions]
-  external_node_modules = ["@clerk/nextjs"]
 
 # 添加基本安全头
 [[headers]]
