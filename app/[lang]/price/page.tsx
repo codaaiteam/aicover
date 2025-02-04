@@ -25,89 +25,51 @@ export default function PricePage() {
     userEmail: user?.emailAddresses[0]?.emailAddress 
   })
 
-  const handlePlanSelect = async (plan: string) => {
-    if (!user && plan !== 'Free') {
-      router.push('/sign-in')
-      return
-    }
-
-    if (loading) return // Prevent double clicks
-
-    switch (plan) {
-      case 'Free':
-        router.push('/create')
-        break
-      case 'Basic':
-      case 'Pro':
-        try {
-          setLoading(plan)
-          const token = await getToken()
-          const response = await fetch('/api/orders', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              plan: plan.toLowerCase(),
-              isYearly: isYearly,
-            }),
-          })
-
-          const data = await response.json() as OrderResponse
-          
-          if (!response.ok) {
-            throw new Error(data.error || 'Failed to create order')
-          }
-
-          if (data.url) {
-            window.location.href = data.url
-          } else {
-            throw new Error('No checkout URL returned')
-          }
-        } catch (error) {
-          console.error('Error creating order:', error)
-          toast.error(error instanceof Error ? error.message : 'Failed to process payment. Please try again.')
-        } finally {
-          setLoading(null)
-        }
-        break
-      case 'Pay As You Go':
-        try {
-          setLoading(plan)
-          const token = await getToken()
-          const response = await fetch('/api/orders', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              plan: 'pay-as-you-go',
-              isYearly: false,
-            }),
-          })
-
-          const data = await response.json() as OrderResponse
-          
-          if (!response.ok) {
-            throw new Error(data.error || 'Failed to create order')
-          }
-
-          if (data.url) {
-            window.location.href = data.url
-          } else {
-            throw new Error('No checkout URL returned')
-          }
-        } catch (error) {
-          console.error('Error creating order:', error)
-          toast.error(error instanceof Error ? error.message : 'Failed to process payment. Please try again.')
-        } finally {
-          setLoading(null)
-        }
-        break
-    }
+const handlePlanSelect = async (plan: string) => {
+  if (!user && plan !== 'Free') {
+    router.push('/sign-in');
+    return;
   }
+
+  if (loading) return;
+
+  switch (plan) {
+    case 'Free':
+      router.push('/create');
+      break;
+    case 'Basic':
+    case 'Pro':
+    case 'Pay As You Go':
+      try {
+        setLoading(plan);
+        const response = await fetch('/api/orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            plan: plan.toLowerCase(),
+            isYearly: isYearly,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (data.code !== 0 || !data.data?.url) {
+          throw new Error(data.message || 'Failed to create order');
+        }
+
+        // 直接重定向到 Stripe Checkout
+        window.location.href = data.data.url;
+      } catch (error) {
+        console.error('Error creating order:', error);
+        toast.error(error instanceof Error ? error.message : 'Failed to process payment');
+      } finally {
+        setLoading(null);
+      }
+      break;
+  }
+};
 
   const plans = [
     {
