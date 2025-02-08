@@ -28,6 +28,48 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5 mb-6">
+          <a
+            href="https://c2story.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            AI Generate Story
+          </a>
+          <a
+            href="https://www.playsprunkiphrase4.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            Play Sprunki Phrase 4
+          </a>
+          <a
+            href="https://www.blockblastsolvers.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            Block Blast Solver
+          </a>
+          <a
+            href="https://www.miside-online.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            Miside Online Game
+          </a>
+          <a
+            href="https://www.hailuoai.work"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+          >
+            Hailuo AI Video
+          </a>
+        </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="flex flex-col sm:flex-row sm:items-center">
