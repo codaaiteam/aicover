@@ -5,18 +5,17 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { LanguageProvider } from "@/contexts/language";
-import { AppContextProvider } from "@/contexts/AppContext"; // 改为从 AppContext 导入
+import { AppContextProvider } from "@/contexts/AppContext"; 
 import defaultTranslations from "@/locales/en.json";
 import Script from "next/script";
+import { generateMetadata } from './metadata'
+
+export { generateMetadata }
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mochi 1 Preview | Text to Video AI Start with Free without Watermark",
-  description: "Experience high-quality Mochi 1 Preview videos powered by advanced text-to-video AI technology. Start with Free without Watermark today and transform your text descriptions into stunning, professionally rendered videos with natural motion and precise prompt interpretation.",
-  keywords: "video generation, AI, machine learning, motion quality, open source",
-  authors: [{ name: "Genmo AI" }],
-  applicationName: "Mochi 1 Preview",
+  metadataBase: new URL('https://mochi1preview.com/'),  
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
