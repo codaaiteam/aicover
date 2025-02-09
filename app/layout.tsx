@@ -14,17 +14,6 @@ export { generateMetadata }
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://mochi1preview.com/'),  
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-  verification: {
-    google: "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
-  },
-};
-
 export const viewport: Viewport = {
   themeColor: "#ffffff",
   width: "device-width",

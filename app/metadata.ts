@@ -5,6 +5,7 @@ export async function generateMetadata({ params: { lang = 'en' } }: { params: { 
   const translations = await import(`@/locales/${lang}.json`)
 
   return {
+    metadataBase: new URL('https://mochi1preview.com/'),
     title: translations.title,
     description: translations.description,
     keywords: [
@@ -38,5 +39,12 @@ export async function generateMetadata({ params: { lang = 'en' } }: { params: { 
     },
     authors: [{ name: "Genmo AI" }],
     applicationName: "Mochi 1 Preview",
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/apple-touch-icon.png",
+    },
+    verification: {
+      google: "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
+    },
   }
 }
