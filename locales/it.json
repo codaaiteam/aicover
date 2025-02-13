@@ -163,5 +163,95 @@
   "proTip2": "Concentrati sui movimenti naturali e sugli scenari realistici per ottenere risultati migliori",
   "proTip3": "Includere descrizioni dei movimenti della telecamera per guidare il flusso video",
   "proTip4": "Genera un video alla volta per risultati ottimali",
-  "proTip5": "Prova sia i prompt semplici che quelli dettagliati per trovare quello che funziona meglio per le tue esigenze"
+  "proTip5": "Prova sia i prompt semplici che quelli dettagliati per trovare quello che funziona meglio per le tue esigenze",
+  "pricing": {
+    "title": "Scegli il tuo piano",
+    "description": "Inizia con 1 video gratuito, nessuna carta di credito richiesta",
+    "monthlyLabel": "Mensile",
+    "yearlyLabel": "Annuale",
+    "yearlySavings": "(Risparmia fino al 16%)",
+    "mostPopular": "I più popolari",
+    "plans": {
+      "free": {
+        "name": "Gratuito",
+        "price": "$0",
+        "period": "/per sempre",
+        "description": "Provalo gratuitamente",
+        "features": [
+          "1 video gratuito",
+          "Risoluzione 480p",
+          "Con filigrana",
+          "Generazione standard",
+          "Supporto della comunità",
+          "Video aggiuntivi: $ 0,9 ciascuno"
+        ],
+        "buttonText": "Inizia gratis",
+        "highlight": "Non è richiesta la carta di credito"
+      },
+      "basic": {
+        "name": "Di base",
+        "description": "Perfetto per iniziare",
+        "features": [
+          "50 video al mese",
+          "Con filigrana della piattaforma",
+          "Risoluzione 720p",
+          "Priorità coda standard",
+          "Supporto di base",
+          "Eccedenza: $0,8/video"
+        ],
+        "buttonText": "Ottieni le basi",
+        "highlight": "Risparmia il 16% con la fatturazione annuale"
+      },
+      "pro": {
+        "name": "Professionista",
+        "description": "Per i creatori professionisti",
+        "features": [
+          "150 video al mese",
+          "Filigrana gratuita",
+          "Risoluzione 1080p",
+          "Generazione di priorità",
+          "Supporto prioritario",
+          "Eccedenza: $0,6/video",
+          "Accesso API"
+        ],
+        "buttonText": "Scegli Pro",
+        "highlight": "Più popolare per le aziende"
+      },
+      "payAsYouGo": {
+        "name": "Paga mentre consumi",
+        "price": "Da $0,9",
+        "period": "/video",
+        "description": "Prezzi flessibili per volume",
+        "features": [
+          "Credito iniziale minimo di $ 50",
+          "1-100 video: $ 0,9 ciascuno",
+          "101-500 video: $ 0,7 ciascuno",
+          "500+ video: $ 0,6 ciascuno",
+          "I crediti non scadono mai",
+          "Supporto prioritario",
+          "Accesso API incluso"
+        ],
+        "buttonText": "Inizia con i crediti",
+        "highlight": "Perfetto per un utilizzo variabile"
+      }
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "questions": {
+        "freePlan": {
+          "question": "Come funziona il piano gratuito?",
+          "answer": "Ottieni 3 video gratuiti per provare il nostro servizio. Non è richiesta alcuna carta di credito. Dopo aver utilizzato i tuoi crediti gratuiti, puoi acquistare altri video a $ 0,9 ciascuno o passare a un piano di abbonamento per tariffe migliori."
+        },
+        "exceeding": {
+          "question": "Cosa succede se supero il mio limite mensile?",
+          "answer": "Ti verrà addebitata la tariffa di superamento per il tuo piano. Gli utenti del piano base pagano $ 0,8 per video aggiuntivo, mentre gli utenti del piano Pro pagano $ 0,6 per video aggiuntivo."
+        },
+        "rollover": {
+          "question": "I video non utilizzati vengono trasferiti?",
+          "answer": "No, le quote video vengono reimpostate all'inizio di ogni ciclo di fatturazione. Tuttavia, i crediti acquistati nel piano Pay As You Go non scadono mai."
+        }
+      }
+    },
+    "processing": "Elaborazione in corso..."
+  }
 }

@@ -4,7 +4,7 @@
   "guide": "Guide",
   "title": "Aperçu de Mochi 1 : Génération de vidéos open source avec mouvement haute fidélité",
   "description": "Bénéficiez d'une génération vidéo de pointe avec une qualité de mouvement exceptionnelle et une adhérence rapide, alimentée par notre architecture AsymmDiT à 10 B paramètres",
-  "keywords": "Aperçu de Mochi 1, Mochi AI, Genmo Mochi, aperçu vidéo IA, conversion de texte en vidéo IA, création de vidéo nouvelle génération, générateur de vidéo IA, technologie vidéo Mochi, animation IA avancée, narration visuelle",
+  "keywords": "Aperçu de la MARQUE_0, MARQUE_1, MARQUE_2, aperçu vidéo IA, conversion de texte en vidéo IA, création de vidéo nouvelle génération, générateur de vidéo IA, technologie vidéo Mochi, animation IA avancée, narration visuelle",
   "tryNow": "Essayez sur Playground",
   "seeInAction": "Exemples en vedette",
   "videoDescription": "Découvrez la génération vidéo open source révolutionnaire alimentée par notre nouveau transformateur de diffusion asymétrique",
@@ -78,7 +78,7 @@
     "home": {
       "title": "Aperçu de Mochi 1 : Génération de vidéos open source avec mouvement haute fidélité",
       "description": "Bénéficiez d'une génération vidéo de pointe avec une qualité de mouvement exceptionnelle et une adhérence rapide, alimentée par notre architecture AsymmDiT à 10 B paramètres",
-      "keywords": "Aperçu de Mochi 1, Mochi AI, Genmo Mochi, aperçu vidéo IA, conversion de texte en vidéo IA, création de vidéo nouvelle génération, générateur de vidéo IA, technologie vidéo Mochi, animation IA avancée, narration visuelle"
+      "keywords": "Aperçu de la MARQUE_0, MARQUE_1, MARQUE_2, aperçu vidéo IA, conversion de texte en vidéo IA, création de vidéo nouvelle génération, générateur de vidéo IA, technologie vidéo Mochi, animation IA avancée, narration visuelle"
     },
     "create": {
       "title": "Créez des vidéos IA avec Mochi 1 - Transformez le texte en mouvement de haute qualité",
@@ -87,7 +87,7 @@
     },
     "guide": {
       "title": "Guide de l'utilisateur de Mochi 1 - Apprendre la génération de vidéos par l'IA",
-      "description": "Guide complet d'utilisation de la plateforme de génération de vidéos de Mochi 1. Découvrez comment créer de superbes vidéos IA grâce à nos tutoriels étape par étape.",
+      "description": "Guide complet sur l'utilisation de la plateforme de génération de vidéos de Mochi 1. Découvrez comment créer de superbes vidéos IA grâce à nos tutoriels étape par étape.",
       "keywords": "Guide Mochi, tutoriel vidéo sur l'IA, guide de génération de vidéos, comment utiliser Mochi, conseils de création de vidéos sur l'IA"
     },
     "dashboard": {
@@ -163,5 +163,95 @@
   "proTip2": "Concentrez-vous sur les mouvements naturels et les scénarios réalistes pour de meilleurs résultats",
   "proTip3": "Inclure des descriptions de mouvements de caméra pour guider le flux vidéo",
   "proTip4": "Générez une vidéo à la fois pour des résultats optimaux",
-  "proTip5": "Testez des invites simples et détaillées pour trouver ce qui fonctionne le mieux pour vos besoins"
+  "proTip5": "Testez des invites simples et détaillées pour trouver ce qui fonctionne le mieux pour vos besoins",
+  "pricing": {
+    "title": "Choisissez votre forfait",
+    "description": "Commencez avec 1 vidéo gratuite, aucune carte de crédit requise",
+    "monthlyLabel": "Mensuel",
+    "yearlyLabel": "Annuel",
+    "yearlySavings": "(Économisez jusqu'à 16 %)",
+    "mostPopular": "Le plus populaire",
+    "plans": {
+      "free": {
+        "name": "Gratuit",
+        "price": "0 $",
+        "period": "/pour toujours",
+        "description": "Essayez-le gratuitement",
+        "features": [
+          "1 vidéo gratuite",
+          "Résolution 480p",
+          "Avec filigrane",
+          "Génération standard",
+          "Soutien communautaire",
+          "Vidéos supplémentaires : 0,9 $ chacune"
+        ],
+        "buttonText": "Commencez gratuitement",
+        "highlight": "Aucune carte de crédit requise"
+      },
+      "basic": {
+        "name": "Basique",
+        "description": "Parfait pour les débutants",
+        "features": [
+          "50 vidéos par mois",
+          "Avec filigrane de plate-forme",
+          "Résolution 720p",
+          "Priorité de file d'attente standard",
+          "Assistance de base",
+          "Dépassement : 0,8 $/vidéo"
+        ],
+        "buttonText": "Obtenez la version basique",
+        "highlight": "Économisez 16 % avec la facturation annuelle"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Pour les créateurs professionnels",
+        "features": [
+          "150 vidéos par mois",
+          "Sans filigrane",
+          "Résolution 1080p",
+          "Génération prioritaire",
+          "Assistance prioritaire",
+          "Dépassement : 0,6 $/vidéo",
+          "Accès API"
+        ],
+        "buttonText": "Choisissez Pro",
+        "highlight": "Le plus populaire pour les entreprises"
+      },
+      "payAsYouGo": {
+        "name": "Payez au fur et à mesure",
+        "price": "À partir de 0,9 $",
+        "period": "/vidéo",
+        "description": "Tarification flexible en fonction du volume",
+        "features": [
+          "Crédit initial minimum de 50$",
+          "1 à 100 vidéos : 0,9 $ chacune",
+          "101 à 500 vidéos : 0,7 $ chacune",
+          "500+ vidéos : 0,6 $ chacune",
+          "Les crédits n'expirent jamais",
+          "Assistance prioritaire",
+          "Accès API inclus"
+        ],
+        "buttonText": "Commencer avec les crédits",
+        "highlight": "Idéal pour une utilisation variable"
+      }
+    },
+    "faq": {
+      "title": "Questions fréquemment posées",
+      "questions": {
+        "freePlan": {
+          "question": "Comment fonctionne le plan gratuit ?",
+          "answer": "Vous bénéficiez de 3 vidéos gratuites pour tester notre service. Aucune carte de crédit n'est requise. Après avoir utilisé vos crédits gratuits, vous pouvez acheter des vidéos supplémentaires à 0,9 $ chacune ou passer à un abonnement pour bénéficier de tarifs plus avantageux."
+        },
+        "exceeding": {
+          "question": "Que se passe-t-il si je dépasse ma limite mensuelle ?",
+          "answer": "Le tarif excédentaire de votre forfait vous sera facturé. Les utilisateurs du forfait Basic paient 0,8 $ par vidéo supplémentaire, tandis que les utilisateurs du forfait Pro paient 0,6 $ par vidéo supplémentaire."
+        },
+        "rollover": {
+          "question": "Les vidéos inutilisées sont-elles reportées ?",
+          "answer": "Non, les quotas vidéo sont réinitialisés au début de chaque cycle de facturation. Cependant, les crédits achetés dans le cadre du forfait Pay As You Go n'expirent jamais."
+        }
+      }
+    },
+    "processing": "Traitement..."
+  }
 }

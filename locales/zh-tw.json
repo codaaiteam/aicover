@@ -5,24 +5,24 @@
   "title": "Mochi 1 預覽：具有高保真運動的開源視訊生成",
   "description": "體驗由我們的 10B 參數 AsymmDiT 架構提供支援的最先進的視訊生成，具有出色的運動品質和快速反應",
   "keywords": "Mochi 1 預覽、Mochi AI、Genmo Mochi、AI 影片預覽、文字轉影片 AI、下一代影片創作、AI 影片產生器、Mochi 影片技術、進階 AI 動畫、視覺敘事",
-  "tryNow": "去遊樂場試試",
+  "tryNow": "在 Playground 上嘗試",
   "seeInAction": "精選範例",
   "videoDescription": "探索由我們新穎的非對稱擴散變壓器提供支援的突破性開源視訊生成",
   "unleashCreativity": "最先進的視訊生成",
   "feature1Title": "高保真運動",
-  "feature1Description": "透過我們的 10B 參數擴散模型實現業界領先的運動質量，並在初步評估中具有強大的及時性",
+  "feature1Description": "透過我們的 10B 參數擴散模型實現業界領先的運動質量，並且在初步評估中具有很強的及時一致性",
   "feature2Title": "開源架構",
   "feature2Description": "基於新穎的非對稱擴散變換器 (AsymmDiT) 架構，可根據 Apache 2.0 授權免費使用",
   "feature3Title": "進階壓縮",
-  "feature3Description": "採用我們的開源 VAE，透過 8x8 空間壓縮和 6x 時間壓縮，將視訊大小壓縮至 128 倍",
+  "feature3Description": "採用我們的開源 VAE，透過 8x8 空間壓縮和 6 倍時間壓縮將視訊壓縮至 128 倍大小",
   "feature4Title": "高效處理",
   "feature4Description": "透過單一 T5-XXL 語言模型和最佳化的視覺推理能力簡化文字處理",
-  "feature5Title": "多模態架構",
+  "feature5Title": "多模式架構",
   "feature5Description": "對文字和視覺標記進行聯合注意，每個模態都有專用的 MLP 層和非方形 QKV 投影",
   "feature6Title": "開發者友善",
   "feature6Description": "簡單、可破解的架構，具有全面的文件和社群支持",
   "howToUse": "使用 Mochi 1 生成視頻",
-  "step1Title": "設定環境",
+  "step1Title": "安裝環境",
   "step1Description": "使用 uv 套件管理器克隆儲存庫並安裝依賴項",
   "step2Title": "配置參數",
   "step2Description": "設定模型目錄、CFG 比例和種子值以進行控制生成",
@@ -52,9 +52,9 @@
   "generating": "正在生成...",
   "generate": "產生",
   "needPromptIdeas": "需要及時的想法嗎？",
-  "recentCreations": "你最近的創作",
+  "recentCreations": "您最近的創作",
   "viewAllCreations": "看你的所有作品",
-  "noVideosYet": "還沒有影片。創建您的第一個影片！",
+  "noVideosYet": "還沒有影片。製作您的第一個影片！",
   "videoGenerateSuccess": "影片生成成功！",
   "creditsLeft": "剩餘 2 學分",
   "upgrade": "升級",
@@ -83,7 +83,7 @@
     "create": {
       "title": "使用 Mochi 1 建立 AI 影片 - 將文字轉換為高品質動態",
       "description": "透過精確的運動控制創建令人驚嘆的 AI 影片。使用我們最先進的生成平台將您的想法轉化為高品質的影片。",
-      "keywords": "AI影片創作、文字轉影片、動作產生、影片創作器、AI動畫、Mochi平台、影片合成"
+      "keywords": "AI 影片創作、文字轉影片、動作生成、影片創作器、AI 動畫、Mochi 平台、影片合成"
     },
     "guide": {
       "title": "Mochi 1 使用者指南 - 學習 AI 影片生成",
@@ -92,7 +92,7 @@
     },
     "dashboard": {
       "title": "您的視訊儀表板 - Mochi 1 平台",
-      "description": "在一個地方管理您的 AI 生成的影片和專案。有效率地追蹤、編輯和組織您的影片創作。",
+      "description": "在一處管理人工智慧生成的影片和專案。高效追蹤、編輯和組織您的影片創作。",
       "keywords": "視訊管理、AI 專案儀表板、Mochi 儀表板、視訊組織、內容管理"
     },
     "price": {
@@ -123,7 +123,7 @@
   },
   "guideTitle": "掌握 Mochi 1 影片提示的藝術",
   "guideDescription": "了解如何使用 Mochi 1 創建引人注目的提示，以生成令人印象深刻的 AI 視頻",
-  "tryMochi": "試試麻糬",
+  "tryMochi": "嘗試 Mochi",
   "bestPracticesTitle": "編寫提示的最佳實踐",
   "practiceSpecificTitle": "具體一點",
   "practiceSpecificDesc": "包括您想要創建的場景、動作和氛圍的詳細描述。",
@@ -132,8 +132,8 @@
   "practiceMotionTitle": "包含運動",
   "practiceMotionDesc": "指定元素在場景中如何移動和互動。",
   "practiceAtmosphereTitle": "添加氛圍",
-  "practiceAtmosphereDesc": "包括聲音、燈光和天氣狀況等感官細節。",
-  "examplePromptsTitle": "範例提示",
+  "practiceAtmosphereDesc": "包括聲音、燈光和天氣條件等感官細節。",
+  "examplePromptsTitle": "提示範例",
   "simplePrompt": "簡單提示：",
   "descriptivePrompt": "描述性提示：",
   "example1Title": "超現實天空王國",
@@ -147,9 +147,9 @@
   "example3Long": "在熙熙攘攘的城市中心，街頭市集在清晨時分開始熱鬧起來。商販們設立攤位，展示新鮮農產品、五顏六色的水果、蔬菜和當地商品。鏡頭掃視市場，捕捉談話的聲音。",
   "promptStructureTitle": "提示結構",
   "structure1Title": "1. 場景設定",
-  "structure1Desc": "從一天中的地點和時間開始",
-  "structure1Example": "例如：“在陽光普照的森林空地上......”",
-  "structure2Title": "2. 主要內容",
+  "structure1Desc": "從地點和時間開始",
+  "structure1Example": "例：“在陽光照射的森林空地上…”",
+  "structure2Title": "2. 主要元素",
   "structure2Desc": "描述關鍵主體及其行動",
   "structure2Example": "例如：“一群建築工人小心翼翼地在鋼樑上移動......”",
   "structure3Title": "3. 氛圍",
@@ -163,5 +163,95 @@
   "proTip2": "注重自然動作和現實場景以獲得更好的效果",
   "proTip3": "包括攝影機運動描述以引導視訊串流",
   "proTip4": "每次產生一個影片以獲得最佳效果",
-  "proTip5": "測試簡單和詳細的提示，找到最適合您需求的提示"
+  "proTip5": "測試簡單和詳細的提示，找到最適合你需求的提示",
+  "pricing": {
+    "title": "選擇您的計劃",
+    "description": "從 1 個免費影片開始，無需信用卡",
+    "monthlyLabel": "每月",
+    "yearlyLabel": "每年",
+    "yearlySavings": "（節省高達 16%）",
+    "mostPopular": "最受歡迎",
+    "plans": {
+      "free": {
+        "name": "自由的",
+        "price": "$0",
+        "period": "/永遠",
+        "description": "免費試用",
+        "features": [
+          "1 個免費視頻",
+          "480p 分辨率",
+          "有浮水印",
+          "標準生成",
+          "社區支持",
+          "附加影片：每個 0.9 美元"
+        ],
+        "buttonText": "免費開始",
+        "highlight": "無需信用卡"
+      },
+      "basic": {
+        "name": "基本的",
+        "description": "非常適合初學者",
+        "features": [
+          "每月 50 個視頻",
+          "附平台浮水印",
+          "720p 分辨率",
+          "標準隊列優先權",
+          "基本支持",
+          "超額費用：0.8 美元/視頻"
+        ],
+        "buttonText": "獲取基礎知識",
+        "highlight": "按年計費可省 16%"
+      },
+      "pro": {
+        "name": "專業版",
+        "description": "對於專業創作者來說",
+        "features": [
+          "每月 150 個視頻",
+          "無浮水印",
+          "1080p 分辨率",
+          "優先權生成",
+          "優先支持",
+          "超額費用：0.6 美元/視頻",
+          "API 存取"
+        ],
+        "buttonText": "選擇專業版",
+        "highlight": "最受企業歡迎"
+      },
+      "payAsYouGo": {
+        "name": "按使用量付費",
+        "price": "最低 0.9 美元",
+        "period": "/影片",
+        "description": "靈活的批量定價",
+        "features": [
+          "最低 50 美元初始信用額度",
+          "1-100 個影片：每個 0.9 美元",
+          "101-500 個影片：每個 0.7 美元",
+          "500 多個影片：每個 0.6 美元",
+          "積分永不過期",
+          "優先支持",
+          "包含 API 訪問"
+        ],
+        "buttonText": "從學分開始",
+        "highlight": "適合多種用途"
+      }
+    },
+    "faq": {
+      "title": "常見問題",
+      "questions": {
+        "freePlan": {
+          "question": "免費計劃如何運作？",
+          "answer": "您可以獲得 3 個免費影片來試用我們的服務。無需信用卡。使用免費積分後，您可以以每部 0.9 美元的價格購買額外視頻，或升級到訂閱計劃以獲得更優惠的價格。"
+        },
+        "exceeding": {
+          "question": "如果我超出了每月限額會怎麼樣？",
+          "answer": "您需要支付計劃的超額費率。基本計劃用戶為每個額外影片支付 0.8 美元，而專業計劃用戶為每個額外影片支付 0.6 美元。"
+        },
+        "rollover": {
+          "question": "未使用的影片會延續嗎？",
+          "answer": "不，視訊配額會在每個計費週期開始時重置。但是，按用量付費方案中購買的信用額度永遠不會過期。"
+        }
+      }
+    },
+    "processing": "加工..."
+  }
 }

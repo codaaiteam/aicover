@@ -163,5 +163,95 @@
   "proTip2": "Konzentrieren Sie sich auf natürliche Bewegungen und realistische Szenarien für bessere Ergebnisse",
   "proTip3": "Fügen Sie Beschreibungen der Kamerabewegungen hinzu, um den Videofluss zu leiten",
   "proTip4": "Für optimale Ergebnisse generieren Sie jeweils ein Video",
-  "proTip5": "Testen Sie sowohl einfache als auch detaillierte Eingabeaufforderungen, um herauszufinden, was für Ihre Anforderungen am besten geeignet ist"
+  "proTip5": "Testen Sie sowohl einfache als auch detaillierte Eingabeaufforderungen, um herauszufinden, was für Ihre Anforderungen am besten geeignet ist",
+  "pricing": {
+    "title": "Wählen Sie Ihren Plan",
+    "description": "Beginnen Sie mit 1 kostenlosen Video, keine Kreditkarte erforderlich",
+    "monthlyLabel": "Monatlich",
+    "yearlyLabel": "Jährlich",
+    "yearlySavings": "(Sparen Sie bis zu 16%)",
+    "mostPopular": "Am beliebtesten",
+    "plans": {
+      "free": {
+        "name": "Frei",
+        "price": "$0",
+        "period": "/für immer",
+        "description": "Kostenlos ausprobieren",
+        "features": [
+          "1 kostenloses Video",
+          "480p Auflösung",
+          "Mit Wasserzeichen",
+          "Standardgeneration",
+          "Unterstützung durch die Gemeinschaft",
+          "Zusätzliche Videos: 0,9 $ pro Stück"
+        ],
+        "buttonText": "Kostenlos starten",
+        "highlight": "Keine Kreditkarte erforderlich"
+      },
+      "basic": {
+        "name": "Basic",
+        "description": "Perfekt für den Anfang",
+        "features": [
+          "50 Videos pro Monat",
+          "Mit Plattform-Wasserzeichen",
+          "720p Auflösung",
+          "Standardmäßige Warteschlangenpriorität",
+          "Grundlegende Unterstützung",
+          "Überschreitung: 0,8 $/Video"
+        ],
+        "buttonText": "Holen Sie sich Basic",
+        "highlight": "Sparen Sie 16 % bei jährlicher Abrechnung"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Für professionelle Kreative",
+        "features": [
+          "150 Videos pro Monat",
+          "Wasserzeichenfrei",
+          "1080p Auflösung",
+          "Prioritätsgenerierung",
+          "Vorrangiger Support",
+          "Überschreitung: 0,6 $/Video",
+          "API-Zugriff"
+        ],
+        "buttonText": "Wählen Sie Pro",
+        "highlight": "Am beliebtesten für Unternehmen"
+      },
+      "payAsYouGo": {
+        "name": "Zahlen Sie, während Sie gehen",
+        "price": "Ab $0.9",
+        "period": "/Video",
+        "description": "Flexible Mengenpreise",
+        "features": [
+          "Mindestens 50 $ Startguthaben",
+          "1–100 Videos: 0,9 $ pro Video",
+          "101–500 Videos: 0,7 $ pro Video",
+          "Über 500 Videos: 0,6 $ pro Video",
+          "Credits verfallen nie",
+          "Vorrangiger Support",
+          "API-Zugriff inklusive"
+        ],
+        "buttonText": "Beginnen Sie mit Credits",
+        "highlight": "Perfekt für den variablen Einsatz"
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "questions": {
+        "freePlan": {
+          "question": "Wie funktioniert der kostenlose Plan?",
+          "answer": "Sie erhalten 3 kostenlose Videos, um unseren Service auszuprobieren. Keine Kreditkarte erforderlich. Nachdem Sie Ihre kostenlosen Credits aufgebraucht haben, können Sie weitere Videos für jeweils 0,90 $ kaufen oder auf ein Abonnement mit besseren Tarifen upgraden."
+        },
+        "exceeding": {
+          "question": "Was passiert, wenn ich mein monatliches Limit überschreite?",
+          "answer": "Ihnen wird der Überschreitungssatz für Ihren Plan in Rechnung gestellt. Benutzer des Basisplans zahlen 0,8 $ pro zusätzlichem Video, während Benutzer des Pro-Plans 0,6 $ pro zusätzlichem Video zahlen."
+        },
+        "rollover": {
+          "question": "Werden nicht verwendete Videos übertragen?",
+          "answer": "Nein, Videokontingente werden zu Beginn jedes Abrechnungszeitraums zurückgesetzt. Im Pay-As-You-Go-Plan erworbene Credits verfallen jedoch nie."
+        }
+      }
+    },
+    "processing": "Verarbeitung..."
+  }
 }

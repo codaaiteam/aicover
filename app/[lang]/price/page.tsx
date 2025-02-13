@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { useLanguage } from "@/contexts/language"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,209 +10,175 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { OrderResponse } from "@/types/order"
 
-export default function PricePage() {
+interface Plan {
+  name: string
+  price: string
+  period: string
+  description: string
+  features: string[]
+  buttonText: string
+  popular: boolean
+  highlight: string
+}
+
+const plans: Plan[] = [
+  {
+    name: 'Free',
+    price: '$0',
+    period: '/forever',
+    description: 'Try it out for free',
+    features: [
+      '1 free videos',
+      '480p resolution',
+      'With watermark',
+      'Standard generation',
+      'Community support',
+      'Additional videos: $0.9 each'
+    ],
+    buttonText: 'Start Free',
+    popular: false,
+    highlight: 'No credit card required'
+  },
+  {
+    name: 'Basic',
+    price: '$19.9',
+    period: '/month',
+    description: 'Perfect for starters',
+    features: [
+      '50 videos per month',
+      'With platform watermark',
+      '720p resolution',
+      'Standard queue priority',
+      'Basic support',
+      'Overage: $0.8/video'
+    ],
+    buttonText: 'Get Basic',
+    popular: true,
+    highlight: 'Save 16% with annual billing'
+  },
+  {
+    name: 'Pro',
+    price: '$49.9',
+    period: '/month',
+    description: 'For professional creators',
+    features: [
+      '150 videos per month',
+      'Watermark free',
+      '1080p resolution',
+      'Priority generation',
+      'Priority support',
+      'Overage: $0.6/video',
+      'API access'
+    ],
+    buttonText: 'Choose Pro',
+    popular: false,
+    highlight: 'Most popular for businesses'
+  },
+  {
+    name: 'Pay As You Go',
+    price: 'From $0.9',
+    period: '/video',
+    description: 'Flexible volume pricing',
+    features: [
+      'Minimum $50 initial credit',
+      '1-100 videos: $0.9 each',
+      '101-500 videos: $0.7 each',
+      '500+ videos: $0.6 each',
+      'Credits never expire',
+      'Priority support',
+      'API access included'
+    ],
+    buttonText: 'Start With Credits',
+    popular: false,
+    highlight: 'Perfect for variable usage'
+  }
+]
+
+function PricePage() {
   const { t } = useLanguage()
   const { user } = useUser()
-  const { getToken } = useAuth()
   const router = useRouter()
   const [isYearly, setIsYearly] = useState(false)
   const [loading, setLoading] = useState<string | null>(null)
 
-  console.log('Auth state:', { 
-    isSignedIn: !!user,
-    userId: user?.id,
-    userEmail: user?.emailAddresses[0]?.emailAddress 
-  })
-
-// app/[lang]/price/page.tsx
-const handlePlanSelect = async (plan: string) => {
-  if (!user && plan !== 'Free') {
-    router.push('/sign-in')
-    return
-  }
-
-  if (loading) return
-
-  switch (plan) {
-    case 'Free':
-      router.push('/create')
-      break
-    case 'Basic':
-    case 'Pro':
-    case 'Pay As You Go':
-      try {
-        setLoading(plan)
-
-        // 添加重试逻辑
-        const maxRetries = 3;
-        let currentTry = 0;
-        let lastError;
-
-        while (currentTry < maxRetries) {
-          try {
-            currentTry++;
-            console.log(`Attempt ${currentTry} of ${maxRetries}`);
-
-            const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 30000); // 30 秒超时
-
-            const response = await fetch('/api/orders', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                plan: plan.toLowerCase(),
-                isYearly,
-              }),
-              signal: controller.signal
-            });
-
-            clearTimeout(timeout);
-
-            const data = await response.json();
-            
-            if (!response.ok) {
-              throw new Error(data.message || `HTTP error! status: ${response.status}`);
-            }
-
-            if (!data.data?.url) {
-              throw new Error('No checkout URL in response');
-            }
-
-            // 成功获取到 URL，进行重定向
-            window.location.href = data.data.url;
-            return;
-
-          } catch (error) {
-            lastError = error;
-            if (error.name === 'AbortError') {
-              console.log('Request timed out, retrying...');
-              // 请求超时，继续重试
-              continue;
-            }
-            
-            if (currentTry === maxRetries) {
-              // 最后一次尝试也失败了
-              break;
-            }
-
-            // 等待一段时间后重试
-            await new Promise(resolve => setTimeout(resolve, 2000 * currentTry));
-          }
-        }
-
-        // 如果所有重试都失败了
-        throw lastError || new Error('Failed to create order after multiple attempts');
-
-      } catch (error) {
-        console.error('Error creating order:', error);
-        toast.error(
-          error instanceof Error 
-            ? `Failed to create order: ${error.message}` 
-            : 'Failed to process payment'
-        );
-      } finally {
-        setLoading(null);
-      }
-      break;
-  }
-};
-
-  const plans = [
-    {
-      name: 'Free',
-      price: '$0',
-      period: '/forever',
-      description: 'Try it out for free',
-      features: [
-        '3 free videos',
-        '480p resolution',
-        'With watermark',
-        'Standard generation',
-        'Community support',
-        'Additional videos: $0.9 each'
-      ],
-      buttonText: 'Start Free',
-      popular: false,
-      highlight: 'No credit card required'
-    },
-    {
-      name: 'Basic',
-      price: isYearly ? '$16.6' : '$19.9',
-      period: isYearly ? '/month' : '/month',
-      yearlyPrice: isYearly ? '$199/year' : undefined,
-      yearlyNote: isYearly ? '(billed annually)' : undefined,
-      description: 'Perfect for starters',
-      features: [
-        '50 videos per month',
-        'With platform watermark',
-        '720p resolution',
-        'Standard queue priority',
-        'Basic support',
-        'Overage: $0.8/video'
-      ],
-      buttonText: 'Get Basic',
-      popular: true,
-      highlight: 'Save 16% with annual billing'
-    },
-    {
-      name: 'Pro',
-      price: isYearly ? '$41.6' : '$49.9',
-      period: isYearly ? '/month' : '/month',
-      yearlyPrice: isYearly ? '$499/year' : undefined,
-      yearlyNote: isYearly ? '(billed annually)' : undefined,
-      description: 'For professional creators',
-      features: [
-        '150 videos per month',
-        'Watermark free',
-        '1080p resolution',
-        'Priority generation',
-        'Priority support',
-        'Overage: $0.6/video',
-        'API access'
-      ],
-      buttonText: 'Choose Pro',
-      popular: false,
-      highlight: 'Most popular for businesses'
-    },
-    {
-      name: 'Pay As You Go',
-      price: 'From $0.9',
-      period: '/video',
-      description: 'Flexible volume pricing',
-      features: [
-        'Minimum $50 initial credit',
-        '1-100 videos: $0.9 each',
-        '101-500 videos: $0.7 each',
-        '500+ videos: $0.6 each',
-        'Credits never expire',
-        'Priority support',
-        'API access included'
-      ],
-      buttonText: 'Start With Credits',
-      popular: false,
-      highlight: 'Perfect for variable usage'
+  const handlePlanSelect = async (plan: string) => {
+    if (!user && plan !== 'Free') {
+      router.push('/sign-in')
+      return
     }
-  ]
+
+    if (loading) return
+
+    if (plan === 'Free') {
+      router.push('/create')
+      return
+    }
+
+    try {
+      setLoading(plan)
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          plan: plan.toLowerCase(),
+          isYearly,
+        }),
+      })
+
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.message || `HTTP error! status: ${response.status}`)
+      }
+
+      if (!data.data?.url) {
+        throw new Error('No checkout URL in response')
+      }
+
+      window.location.href = data.data.url
+    } catch (error) {
+      console.error('Error:', error)
+      toast.error('Failed to process payment')
+    } finally {
+      setLoading(null)
+    }
+  }
+
+  const getPlanPrice = (plan: Plan) => {
+    if (plan.name === 'Free' || plan.name === 'Pay As You Go') {
+      return plan.price
+    }
+    return isYearly 
+      ? `$${(Number(plan.price.replace('$', '')) * 0.84).toFixed(1)}`
+      : plan.price
+  }
+
+  const getPlanPeriod = (plan: Plan) => {
+    if (plan.name === 'Free' || plan.name === 'Pay As You Go') {
+      return plan.period
+    }
+    return isYearly ? '/month' : '/month'
+  }
 
   return (
     <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h1 className="text-4xl font-bold">{t.pricingTitle || 'Choose Your Plan'}</h1>
+        <h1 className="text-4xl font-bold">{t.pricing?.title || 'Choose Your Plan'}</h1>
         <p className="mt-4 text-xl text-gray-600">
-          {t.pricingDescription || 'Start with 3 free videos, no credit card required'}
+          {t.pricing?.description || 'Start with 3 free videos, no credit card required'}
         </p>
       </div>
 
-      {/* Billing Toggle */}
       <div className="flex justify-center items-center mt-8 space-x-4">
         <span className={cn(
           "text-sm font-medium transition-colors",
           !isYearly ? "text-blue-600" : "text-gray-500"
-        )}>Monthly</span>
+        )}>
+          {t.pricing?.monthlyLabel || 'Monthly'}
+        </span>
         <button 
           onClick={() => setIsYearly(!isYearly)}
           className="relative rounded-full w-12 h-6 bg-blue-600 transition-colors"
@@ -225,7 +192,10 @@ const handlePlanSelect = async (plan: string) => {
           "text-sm font-medium transition-colors",
           isYearly ? "text-blue-600" : "text-gray-500"
         )}>
-          Yearly <span className="text-green-500 font-normal">(Save up to 16%)</span>
+          {t.pricing?.yearlyLabel || 'Yearly'} 
+          <span className="text-green-500 font-normal">
+            {t.pricing?.yearlySavings || '(Save up to 16%)'}
+          </span>
         </span>
       </div>
 
@@ -239,24 +209,26 @@ const handlePlanSelect = async (plan: string) => {
               {plan.popular && (
                 <div className="mb-2">
                   <span className="px-3 py-1 text-sm text-white bg-blue-600 rounded-full">
-                    {t.mostPopular || 'Most Popular'}
+                    {t.pricing?.mostPopular || 'Most Popular'}
                   </span>
                 </div>
               )}
               <CardTitle className="flex items-center justify-between">
-                {plan.name}
+                {t.pricing?.plans?.[plan.name.toLowerCase().replace(/\s+/g, '')]?.name || plan.name}
                 {plan.name === 'Free' && <Sparkles className="h-5 w-5 text-yellow-500" />}
                 {plan.name === 'Pay As You Go' && <Zap className="h-5 w-5 text-yellow-500" />}
               </CardTitle>
-              <CardDescription>{plan.description}</CardDescription>
+              <CardDescription>
+                {t.pricing?.plans?.[plan.name.toLowerCase().replace(/\s+/g, '')]?.description || plan.description}
+              </CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
               <div className="mb-4">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="text-gray-600">{plan.period}</span>
-                {plan.yearlyPrice && (
+                <span className="text-4xl font-bold">{getPlanPrice(plan)}</span>
+                <span className="text-gray-600">{getPlanPeriod(plan)}</span>
+                {isYearly && plan.name !== 'Free' && plan.name !== 'Pay As You Go' && (
                   <div className="mt-1 text-sm text-gray-600">
-                    {plan.yearlyPrice} {plan.yearlyNote}
+                    ${(Number(plan.price.replace('$', '')) * 0.84 * 12).toFixed(0)}/year (billed annually)
                   </div>
                 )}
               </div>
@@ -264,7 +236,9 @@ const handlePlanSelect = async (plan: string) => {
                 {plan.features.map((feature, index) => (
                   <li key={index} className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-2" />
-                    <span>{feature}</span>
+                    <span>
+                      {t.pricing?.plans?.[plan.name.toLowerCase().replace(/\s+/g, '')]?.features?.[index] || feature}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -281,36 +255,21 @@ const handlePlanSelect = async (plan: string) => {
                   color: plan.popular ? 'white' : '#2563eb'
                 }}
               >
-                {loading === plan.name ? 'Processing...' : plan.buttonText}
+                {loading === plan.name 
+                  ? (t.pricing?.processing || 'Processing...') 
+                  : (t.pricing?.plans?.[plan.name.toLowerCase().replace(/\s+/g, '')]?.buttonText || plan.buttonText)}
               </Button>
               {plan.highlight && (
                 <p className="text-sm text-gray-600 mt-2 text-center w-full">
-                  {plan.highlight}
+                  {t.pricing?.plans?.[plan.name.toLowerCase().replace(/\s+/g, '')]?.highlight || plan.highlight}
                 </p>
               )}
             </CardFooter>
           </Card>
         ))}
       </div>
-
-      {/* FAQ Section */}
-      <div className="mt-16">
-        <h2 className="text-2xl font-bold text-center mb-8">{t.pricingFaqTitle || 'Frequently Asked Questions'}</h2>
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="border rounded-lg p-4">
-            <h3 className="font-medium mb-2">How does the free plan work?</h3>
-            <p className="text-gray-600">You get 3 free videos to try out our service. No credit card required. After using your free credits, you can purchase additional videos at $0.9 each or upgrade to a subscription plan for better rates.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-medium mb-2">What happens if I exceed my monthly limit?</h3>
-            <p className="text-gray-600">You'll be charged the overage rate for your plan. Basic plan users pay $0.8 per additional video, while Pro plan users pay $0.6 per additional video.</p>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-medium mb-2">Do unused videos roll over?</h3>
-            <p className="text-gray-600">No, video quotas reset at the beginning of each billing cycle. However, credits purchased in the Pay As You Go plan never expire.</p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
+
+export default PricePage

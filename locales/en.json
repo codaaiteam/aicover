@@ -163,5 +163,95 @@
   "proTip2": "Focus on natural movements and realistic scenarios for better results",
   "proTip3": "Include camera movement descriptions to guide the video flow",
   "proTip4": "Generate one video at a time for optimal results",
-  "proTip5": "Test both simple and detailed prompts to find what works best for your needs"
+  "proTip5": "Test both simple and detailed prompts to find what works best for your needs",
+  "pricing": {
+    "title": "Choose Your Plan",
+    "description": "Start with 1 free video, no credit card required",
+    "monthlyLabel": "Monthly",
+    "yearlyLabel": "Yearly",
+    "yearlySavings": "(Save up to 16%)",
+    "mostPopular": "Most Popular",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "/forever",
+        "description": "Try it out for free",
+        "features": [
+          "1 free video",
+          "480p resolution",
+          "With watermark",
+          "Standard generation",
+          "Community support",
+          "Additional videos: $0.9 each"
+        ],
+        "buttonText": "Start Free",
+        "highlight": "No credit card required"
+      },
+      "basic": {
+        "name": "Basic",
+        "description": "Perfect for starters",
+        "features": [
+          "50 videos per month",
+          "With platform watermark",
+          "720p resolution",
+          "Standard queue priority",
+          "Basic support",
+          "Overage: $0.8/video"
+        ],
+        "buttonText": "Get Basic",
+        "highlight": "Save 16% with annual billing"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For professional creators",
+        "features": [
+          "150 videos per month",
+          "Watermark free",
+          "1080p resolution",
+          "Priority generation",
+          "Priority support",
+          "Overage: $0.6/video",
+          "API access"
+        ],
+        "buttonText": "Choose Pro",
+        "highlight": "Most popular for businesses"
+      },
+      "payAsYouGo": {
+        "name": "Pay As You Go",
+        "price": "From $0.9",
+        "period": "/video",
+        "description": "Flexible volume pricing",
+        "features": [
+          "Minimum $50 initial credit",
+          "1-100 videos: $0.9 each",
+          "101-500 videos: $0.7 each",
+          "500+ videos: $0.6 each",
+          "Credits never expire",
+          "Priority support",
+          "API access included"
+        ],
+        "buttonText": "Start With Credits",
+        "highlight": "Perfect for variable usage"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": {
+        "freePlan": {
+          "question": "How does the free plan work?",
+          "answer": "You get 3 free videos to try out our service. No credit card required. After using your free credits, you can purchase additional videos at $0.9 each or upgrade to a subscription plan for better rates."
+        },
+        "exceeding": {
+          "question": "What happens if I exceed my monthly limit?",
+          "answer": "You'll be charged the overage rate for your plan. Basic plan users pay $0.8 per additional video, while Pro plan users pay $0.6 per additional video."
+        },
+        "rollover": {
+          "question": "Do unused videos roll over?",
+          "answer": "No, video quotas reset at the beginning of each billing cycle. However, credits purchased in the Pay As You Go plan never expire."
+        }
+      }
+    },
+    "processing": "Processing..."
+  }
 }

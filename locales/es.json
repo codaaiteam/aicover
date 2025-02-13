@@ -163,5 +163,95 @@
   "proTip2": "Concéntrese en movimientos naturales y escenarios realistas para obtener mejores resultados.",
   "proTip3": "Incluya descripciones del movimiento de la cámara para guiar el flujo del video.",
   "proTip4": "Genere un video a la vez para obtener resultados óptimos",
-  "proTip5": "Pruebe indicaciones simples y detalladas para encontrar lo que funcione mejor para sus necesidades."
+  "proTip5": "Pruebe indicaciones simples y detalladas para encontrar lo que funcione mejor para sus necesidades.",
+  "pricing": {
+    "title": "Elige tu plan",
+    "description": "Comience con 1 video gratis, no se requiere tarjeta de crédito",
+    "monthlyLabel": "Mensual",
+    "yearlyLabel": "Anual",
+    "yearlySavings": "(Ahorra hasta un 16%)",
+    "mostPopular": "Más populares",
+    "plans": {
+      "free": {
+        "name": "Gratis",
+        "price": "$0",
+        "period": "/para siempre",
+        "description": "Pruébelo gratis",
+        "features": [
+          "1 video gratis",
+          "Resolución 480p",
+          "Con marca de agua",
+          "Generación estándar",
+          "Apoyo comunitario",
+          "Vídeos adicionales: $0,9 cada uno"
+        ],
+        "buttonText": "Empieza gratis",
+        "highlight": "No se requiere tarjeta de crédito"
+      },
+      "basic": {
+        "name": "Básico",
+        "description": "Perfecto para empezar",
+        "features": [
+          "50 videos por mes",
+          "Con marca de agua de plataforma",
+          "Resolución 720p",
+          "Prioridad de cola estándar",
+          "Soporte básico",
+          "Exceso de uso: $0,8/video"
+        ],
+        "buttonText": "Obtener lo básico",
+        "highlight": "Ahorre un 16% con la facturación anual"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Para creadores profesionales",
+        "features": [
+          "150 videos por mes",
+          "Sin marca de agua",
+          "Resolución 1080p",
+          "Generación de prioridades",
+          "Soporte prioritario",
+          "Exceso de uso: $0,6/video",
+          "Acceso a API"
+        ],
+        "buttonText": "Elija Pro",
+        "highlight": "Más popular para empresas"
+      },
+      "payAsYouGo": {
+        "name": "Paga según lo uses",
+        "price": "Desde $0.9",
+        "period": "/video",
+        "description": "Precios por volumen flexibles",
+        "features": [
+          "Crédito inicial mínimo de $50",
+          "1-100 vídeos: $0,9 cada uno",
+          "101-500 vídeos: $0,7 cada uno",
+          "Más de 500 vídeos: $0,6 cada uno",
+          "Los créditos nunca caducan",
+          "Soporte prioritario",
+          "Acceso API incluido"
+        ],
+        "buttonText": "Empezar con créditos",
+        "highlight": "Perfecto para uso variable"
+      }
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "questions": {
+        "freePlan": {
+          "question": "¿Cómo funciona el plan gratuito?",
+          "answer": "Obtendrás 3 videos gratis para probar nuestro servicio. No se requiere tarjeta de crédito. Después de usar tus créditos gratis, puedes comprar videos adicionales a $0.9 cada uno o actualizar a un plan de suscripción para obtener mejores tarifas."
+        },
+        "exceeding": {
+          "question": "¿Qué pasa si excedo mi límite mensual?",
+          "answer": "Se le cobrará la tarifa por excedente de su plan. Los usuarios del plan Básico pagan $0,8 por cada video adicional, mientras que los usuarios del plan Pro pagan $0,6 por cada video adicional."
+        },
+        "rollover": {
+          "question": "¿Los videos no utilizados se transfieren?",
+          "answer": "No, las cuotas de video se restablecen al comienzo de cada ciclo de facturación. Sin embargo, los créditos adquiridos en el plan Pago por uso nunca vencen."
+        }
+      }
+    },
+    "processing": "Tratamiento..."
+  }
 }
