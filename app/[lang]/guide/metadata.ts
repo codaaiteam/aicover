@@ -1,5 +1,7 @@
+import { Metadata } from 'next'
 import { generateMetadata as baseGenerateMetadata } from '../../metadata'
 
-export async function generateMetadata({ params }) {
-  return baseGenerateMetadata({ params, page: 'guide' })
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const metadata = await baseGenerateMetadata({ params, page: 'guide' })
+  return metadata
 }

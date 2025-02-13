@@ -47,21 +47,38 @@ const publicRoutes = [
   "/sitemap.xml",
   "/oauth/callback/(.*)",  // OAuth 回调路径
   "/v1/oauth_callback",    // Clerk OAuth 回调路径
+  "/privacy(.*)",
+  "/(en|zh|ja|ko|es|fr|de|it)/privacy(.*)",
+  "/terms(.*)",
+  "/(en|zh|ja|ko|es|fr|de|it)/terms(.*)",
 ];
 
 export default authMiddleware({
   publicRoutes,
   beforeAuth: (req) => {
-    const pathname = req.nextUrl.pathname;
+    const url = req.nextUrl;
+    const pathname = url.pathname;
+
+    // 添加路径信息到请求头
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set('x-pathname', pathname);
 
     // 如果路径已经包含语言前缀，直接继续
     if (validLanguages.some(lang => pathname.startsWith(`/${lang}/`) || pathname === `/${lang}`)) {
-      return NextResponse.next();
+      return NextResponse.next({
+        request: {
+          headers: requestHeaders,
+        },
+      });
     }
 
     // 如果是 API 路由，直接继续
     if (pathname.startsWith('/api/')) {
-      return NextResponse.next();
+      return NextResponse.next({
+        request: {
+          headers: requestHeaders,
+        },
+      });
     }
 
     // 获取用户语言

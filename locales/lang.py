@@ -30,6 +30,9 @@ class JSONTranslator:
             "Tesla",
             "Mochi 1 Preview",
             "Mochi 1",
+            "mochi 1",
+            "Mochi AI",
+            "Genmo Mochi"
             # 在这里添加更多品牌词
         }
         
