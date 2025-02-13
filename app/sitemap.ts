@@ -11,7 +11,7 @@ type RouteConfig = {
 
 const routes: RouteConfig[] = [
   { path: '', changeFrequency: 'daily', priority: 1 },
-  { path: '/create', changeFrequency: 'daily', priority: 0.8 },
+  { path: '/create', changeFrequency: 'daily', priority: 0.9 }, // 重要的转化页面，优先级提高
   { path: '/guide', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/price', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/videos', changeFrequency: 'daily', priority: 0.7 },
