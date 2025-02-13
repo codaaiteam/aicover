@@ -11,6 +11,8 @@ import { toast } from "sonner"
 import { ApiResponse, Video } from '@/types/api'
 import { AppContext } from "@/contexts/AppContext"
 import { useContext } from "react"
+import { GenerationSettingsButton } from "@/components/generation-settings"
+import { GenerationSettings, defaultSettings } from '@/types/generation-settings'
 
 const EXAMPLE_PROMPTS = [
   "A serene mountain lake at sunset with gentle ripples",
@@ -36,6 +38,7 @@ export default function CreatePage() {
   const [recentVideos, setRecentVideos] = useState<Video[]>([])
   const [publicVideos, setPublicVideos] = useState<Video[]>([])
   const [generationStatus, setGenerationStatus] = useState("")
+  const [generationSettings, setGenerationSettings] = useState<GenerationSettings>(defaultSettings)
   // 在现有 context 获取后添加
   const context = useContext(AppContext);
   console.log('AppContext value:', context);
@@ -117,7 +120,9 @@ export default function CreatePage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           description: prompt,
-          negative_prompt: "blurry, low quality, distorted, pixelated"
+          negative_prompt: generationSettings.negativePrompt,
+          seed: generationSettings.customSeed ? generationSettings.seed : undefined,
+          enable_prompt_expansion: generationSettings.enablePromptEnhancement
         }),
       });
   
@@ -300,20 +305,27 @@ const renderVideoGrid = (videos: Video[], title: string) => (
           onChange={(e) => setPrompt(e.target.value)}
           disabled={loading}
         />
-        <div className={styles.promptActions}>
-        <Button
-          onClick={handleSubmit}
-          disabled={loading || !prompt.trim()}
-        >
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {generationStatus || t.generating || "Generating..."}
-            </>
-          ) : (
-            t.generate || "Generate"
-          )}
-        </Button>
+        <div className="mt-2">
+          <GenerationSettingsButton 
+            settings={generationSettings}
+            onSettingsChange={setGenerationSettings}
+          />
+        </div>
+        <div className="mt-4 flex justify-end">
+          <Button
+            onClick={handleSubmit}
+            disabled={loading || !prompt.trim()}
+            className="h-10 px-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {t.generating || "Generating..."}
+              </>
+            ) : (
+              t.generate || "Generate"
+            )}
+          </Button>
         </div>
       </div>
 
@@ -331,6 +343,7 @@ const renderVideoGrid = (videos: Video[], title: string) => (
           </button>
         ))}
       </div>
+
       {hasPendingTasks && (
         <div className={styles.pendingTasks}>
           <h3>{t.pendingTasks || "Pending Tasks"}</h3>
@@ -345,6 +358,7 @@ const renderVideoGrid = (videos: Video[], title: string) => (
           ))}
         </div>
       )}
+
       {/* 用户已登录时显示其视频 */}
       {user && renderVideoGrid(recentVideos, t.recentCreations || "Your recent creations")}
       

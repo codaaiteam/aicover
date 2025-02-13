@@ -32,7 +32,12 @@ const withTimeout = async <T>(
   }
 };
 
-export const generateVideo = async (prompt: string, negative_prompt: string = "") => {
+export const generateVideo = async (
+  prompt: string, 
+  negative_prompt: string = "blurry, low quality, poor resolution, pixelated, low definition, compression artifacts, shaky footage, distorted, noise, grain, unstable, bad lighting, overexposed, underexposed",
+  seed?: number,
+  enable_prompt_expansion?: boolean
+) => {
   const client = getFalClient();
   let attempts = 0;
   const maxAttempts = 3;
@@ -43,13 +48,16 @@ export const generateVideo = async (prompt: string, negative_prompt: string = ""
       console.log(`Attempt ${attempts + 1} of ${maxAttempts} to generate video`);
       console.log("Prompt:", prompt);
       console.log("Negative prompt:", negative_prompt);
+      console.log("Seed:", seed);
+      console.log("Enable prompt expansion:", enable_prompt_expansion);
       
       const result = await withTimeout(
         client.subscribe("fal-ai/mochi-v1", {
           input: {
             prompt,
             negative_prompt,
-            seed: Math.floor(Math.random() * 1000000) // 添加随机种子以获得不同的结果
+            seed,
+            enable_prompt_expansion
           },
           logs: true,
           onQueueUpdate: (update) => {
@@ -59,7 +67,7 @@ export const generateVideo = async (prompt: string, negative_prompt: string = ""
           },
         }),
         timeoutMs,
-        "Video generation"
+        "Video generation timed out"
       );
 
       if (!result.data?.video?.url) {

@@ -9,17 +9,20 @@ export interface Cover {
   llm_name: string;
   llm_params: string;
   created_at: string;
-  uuid?: string;
-  status?: number; // 1: success, 2: failed, 3: processing
+  uuid: string;
+  status: number; 
   created_user?: User;
 }
 
 export interface GenerateCoverRequest {
   description: string;
   negative_prompt?: string;
+  seed?: number;
+  enable_prompt_expansion?: boolean;
 }
 
 export interface GenerateCoverResponse {
+  uuid: string;
   code: number;
   message?: string;
   data?: {

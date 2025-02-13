@@ -2,18 +2,19 @@
   "home": "首页",
   "create": "创建",
   "guide": "指南",
-  "title": "Mochi 1 预览：具有高保真运动的开源视频生成",
-  "description": "体验由我们的 10B 参数 AsymmDiT 架构提供支持的最先进的视频生成，具有出色的运动质量和快速响应",
-  "tryNow": "在 Playground 上尝试",
+  "title": "Mochi 1 预览版：开源高保真动态视频生成",
+  "description": "体验由我们10B参数AsymmDiT架构驱动的最先进视频生成技术，具有卓越的动态质量和精准的提示词响应",
+  "keywords": "Mochi 1预览版, Mochi人工智能, Genmo Mochi, AI视频预览, 文本转视频AI, 新一代视频创作, AI视频生成器, Mochi视频技术, 高级AI动画, 视觉故事叙述",
+  "tryNow": "在游乐场尝试",
   "seeInAction": "精选示例",
-  "videoDescription": "探索由我们新颖的非对称扩散变压器提供支持的突破性开源视频生成",
+  "videoDescription": "探索由我们新颖的非对称扩散变换器驱动的突破性开源视频生成",
   "unleashCreativity": "最先进的视频生成",
   
-  "feature1Title": "高保真运动",
-  "feature1Description": "通过我们的 10B 参数扩散模型实现业界领先的运动质量，并在初步评估中具有很强的及时性",
+  "feature1Title": "高保真动态",
+  "feature1Description": "通过我们的10B参数扩散模型实现行业领先的动态质量，在初步评估中展现出强大的提示词响应能力",
   
   "feature2Title": "开源架构",
-  "feature2Description": "基于新颖的非对称扩散变换器 (AsymmDiT) 架构，可根据 Apache 2.0 许可免费使用",
+  "feature2Description": "基于新颖的非对称扩散变换器（AsymmDiT）架构构建，在Apache 2.0许可下免费提供",
   
   "feature3Title": "高级压缩",
   "feature3Description": "采用我们的开源 VAE，通过 8x8 空间压缩和 6 倍时间压缩将视频压缩至 128 倍大小",
@@ -81,5 +82,89 @@
   "pricingTitle": "简单透明的价格",
   "pricingDescription": "选择最适合您需求的计划",
   "mostPopular": "最受欢迎",
-  "pricingFaqTitle": "常见问题"
+  "pricingFaqTitle": "常见问题",
+  
+  "meta": {
+    "ogTitle": "Mochi 1 预览版 - 革命性AI视频生成",
+    "ogDescription": "使用我们最先进的AI技术将文本转换为令人惊叹的视频。体验卓越的动态质量和精准的提示词响应。",
+    "ogType": "website",
+    "ogImage": "/og-image.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Mochi 1 预览版 - AI视频生成",
+    "twitterDescription": "使用我们尖端的AI技术从文本创建精彩视频。由10B参数AsymmDiT架构提供支持。",
+    "twitterImage": "/twitter-image.png"
+  },
+  "seo": {
+    "home": {
+      "title": "Mochi 1 预览版：开源高保真动态视频生成",
+      "description": "体验由我们10B参数AsymmDiT架构驱动的最先进视频生成技术，具有卓越的动态质量和精准的提示词响应",
+      "keywords": "Mochi 1预览版, Mochi人工智能, Genmo Mochi, AI视频预览, 文本转视频AI, 新一代视频创作, AI视频生成器, Mochi视频技术, 高级AI动画, 视觉故事叙述",
+      "ogTitle": "Mochi 1 预览版 - 革命性AI视频生成",
+      "ogDescription": "使用我们最先进的AI技术将文本转换为令人惊叹的视频。体验卓越的动态质量和精准的提示词响应。",
+      "ogImage": "/og-image.png",
+      "twitterTitle": "Mochi 1 预览版 - AI视频生成",
+      "twitterDescription": "使用我们尖端的AI技术从文本创建精彩视频。由10B参数AsymmDiT架构提供支持。",
+      "twitterImage": "/twitter-image.png"
+    },
+    "create": {
+      "title": "创建AI视频 - Mochi 1 预览版工作室",
+      "description": "通过精确控制动作和内容创建令人惊叹的AI生成视频。尝试我们最先进的视频生成技术。",
+      "keywords": "创建AI视频, 视频生成工作室, Mochi创作器, AI视频制作, 文本转视频创作",
+      "ogTitle": "使用Mochi 1预览版创建AI视频",
+      "ogDescription": "开始使用Mochi 1预览版创建令人惊叹的AI生成视频。将你的想法转化为高质量视频。",
+      "ogImage": "/create-og.png",
+      "twitterTitle": "使用Mochi 1预览版创建视频",
+      "twitterDescription": "使用我们的AI技术将文本转换为令人惊叹的视频。立即尝试Mochi 1预览版工作室！",
+      "twitterImage": "/create-twitter.png"
+    },
+    "guide": {
+      "title": "如何使用Mochi 1预览版 - AI视频生成指南",
+      "description": "学习如何使用Mochi 1预览版创建令人惊叹的AI生成视频。适合初学者和高级用户的分步指南。",
+      "keywords": "Mochi指南, AI视频教程, 如何创建AI视频, 视频生成指南, Mochi使用说明",
+      "ogTitle": "Mochi 1预览版完整指南",
+      "ogDescription": "掌握AI视频生成技术，了解Mochi 1预览版的所有功能。",
+      "ogImage": "/guide-og.png",
+      "twitterTitle": "Mochi 1预览版用户指南",
+      "twitterDescription": "通过我们的综合指南学习如何创建令人惊叹的AI视频。",
+      "twitterImage": "/guide-twitter.png"
+    },
+    "price": {
+      "title": "Mochi 1预览版定价 - AI视频生成计划",
+      "description": "为您的AI视频生成需求选择完美的计划。为个人和企业提供灵活的定价选项。",
+      "keywords": "Mochi定价, AI视频计划, 视频生成成本, Mochi订阅",
+      "ogTitle": "Mochi 1预览版定价 - 选择您的计划",
+      "ogDescription": "为您的AI视频生成需求找到完美的Mochi 1预览版计划。为所有用户提供灵活选项。",
+      "ogImage": "/pricing-og.png",
+      "twitterTitle": "Mochi 1预览版计划和定价",
+      "twitterDescription": "开始使用Mochi 1预览版。选择适合您需求的计划。",
+      "twitterImage": "/pricing-twitter.png"
+    },
+    "videos": {
+      "title": "AI生成视频展示 - Mochi 1预览版示例",
+      "description": "探索使用Mochi 1预览版创建的AI生成视频展示。了解我们技术的可能性。",
+      "keywords": "AI视频示例, Mochi展示, AI生成视频, 视频样本, AI视频展示",
+      "ogTitle": "Mochi 1预览版视频展示",
+      "ogDescription": "浏览我们的AI生成视频集合。体验Mochi 1预览版的质量和功能。",
+      "ogImage": "/videos-og.png",
+      "twitterTitle": "Mochi 1预览版视频示例",
+      "twitterDescription": "查看使用Mochi 1预览版创建的令人惊叹的AI生成视频。",
+      "twitterImage": "/videos-twitter.png"
+    },
+    "dashboard": {
+      "title": "您的AI视频仪表板 - Mochi 1预览版",
+      "description": "在一处管理您的AI生成视频和项目。访问您的Mochi 1预览版仪表板。",
+      "keywords": "Mochi仪表板, 视频管理, AI项目, 视频仪表板, 内容管理",
+      "ogTitle": "Mochi 1预览版仪表板",
+      "ogDescription": "在一处访问和管理所有AI生成视频。",
+      "ogImage": "/dashboard-og.png",
+      "twitterTitle": "Mochi 1预览版仪表板",
+      "twitterDescription": "使用Mochi 1预览版仪表板管理您的AI视频和项目。",
+      "twitterImage": "/dashboard-twitter.png"
+    }
+  },
+  "robots": "index, follow",
+  "googleSiteVerification": "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
+  "layout": {
+    "language": "zh"
+  }
 }

@@ -4,6 +4,7 @@
   "guide": "Guide",
   "title": "Mochi 1 Preview: Open Source Video Generation with High-Fidelity Motion",
   "description": "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence, powered by our 10B parameter AsymmDiT architecture",
+  "keywords": "Mochi 1 Preview, Mochi AI, Genmo Mochi, AI Video Preview, Text to Video AI, Next-Gen Video Creation, AI Video Generator, Mochi Video Technology, Advanced AI Animation, Visual Storytelling",
   "tryNow": "Try on Playground",
   "seeInAction": "Featured Examples",
   "videoDescription": "Explore groundbreaking open-source video generation powered by our novel Asymmetric Diffusion Transformer",
@@ -62,5 +63,88 @@
   "pricingTitle": "Simple, transparent pricing",
   "pricingDescription": "Choose the plan that best fits your needs",
   "mostPopular": "Most Popular",
-  "pricingFaqTitle": "Frequently Asked Questions"
+  "pricingFaqTitle": "Frequently Asked Questions",
+  "meta": {
+    "ogTitle": "Mochi 1 Preview - Revolutionary AI Video Generation",
+    "ogDescription": "Transform text into stunning videos with our state-of-the-art AI technology. Experience exceptional motion quality and precise prompt adherence.",
+    "ogType": "website",
+    "ogImage": "/og-image.png",
+    "twitterCard": "summary_large_image",
+    "twitterTitle": "Mochi 1 Preview - AI Video Generation",
+    "twitterDescription": "Create amazing videos from text with our cutting-edge AI technology. Powered by 10B parameter AsymmDiT architecture.",
+    "twitterImage": "/twitter-image.png"
+  },
+  "seo": {
+    "home": {
+      "title": "Mochi 1 Preview: Open Source Video Generation with High-Fidelity Motion",
+      "description": "Experience state-of-the-art video generation with exceptional motion quality and prompt adherence, powered by our 10B parameter AsymmDiT architecture",
+      "keywords": "Mochi 1 Preview, Mochi AI, Genmo Mochi, AI Video Preview, Text to Video AI, Next-Gen Video Creation, AI Video Generator, Mochi Video Technology, Advanced AI Animation, Visual Storytelling",
+      "ogTitle": "Mochi 1 Preview - Revolutionary AI Video Generation",
+      "ogDescription": "Transform text into stunning videos with our state-of-the-art AI technology. Experience exceptional motion quality and precise prompt adherence.",
+      "ogImage": "/og-image.png",
+      "twitterTitle": "Mochi 1 Preview - AI Video Generation",
+      "twitterDescription": "Create amazing videos from text with our cutting-edge AI technology. Powered by 10B parameter AsymmDiT architecture.",
+      "twitterImage": "/twitter-image.png"
+    },
+    "create": {
+      "title": "Create AI Videos - Mochi 1 Preview Studio",
+      "description": "Create stunning AI-generated videos with precise control over motion and content. Try our state-of-the-art video generation technology.",
+      "keywords": "create AI video, video generation studio, Mochi creator, AI video maker, text to video creator",
+      "ogTitle": "Create AI Videos with Mochi 1 Preview",
+      "ogDescription": "Start creating amazing AI-generated videos with Mochi 1 Preview. Transform your ideas into high-quality videos.",
+      "ogImage": "/create-og.png",
+      "twitterTitle": "Create Videos with Mochi 1 Preview",
+      "twitterDescription": "Transform your text into stunning videos using our AI technology. Try Mochi 1 Preview studio now!",
+      "twitterImage": "/create-twitter.png"
+    },
+    "guide": {
+      "title": "How to Use Mochi 1 Preview - AI Video Generation Guide",
+      "description": "Learn how to create amazing AI-generated videos with Mochi 1 Preview. Step-by-step guide for beginners and advanced users.",
+      "keywords": "Mochi guide, AI video tutorial, how to create AI videos, video generation guide, Mochi instructions",
+      "ogTitle": "Complete Guide to Mochi 1 Preview",
+      "ogDescription": "Master AI video generation with our comprehensive guide. Learn all features of Mochi 1 Preview.",
+      "ogImage": "/guide-og.png",
+      "twitterTitle": "Mochi 1 Preview User Guide",
+      "twitterDescription": "Learn how to create amazing AI videos with our comprehensive guide.",
+      "twitterImage": "/guide-twitter.png"
+    },
+    "price": {
+      "title": "Mochi 1 Preview Pricing - AI Video Generation Plans",
+      "description": "Choose the perfect plan for your AI video generation needs. Flexible pricing options for individuals and businesses.",
+      "keywords": "Mochi pricing, AI video plans, video generation cost, Mochi subscription",
+      "ogTitle": "Mochi 1 Preview Pricing - Choose Your Plan",
+      "ogDescription": "Find the perfect Mochi 1 Preview plan for your AI video generation needs. Flexible options for all users.",
+      "ogImage": "/pricing-og.png",
+      "twitterTitle": "Mochi 1 Preview Plans & Pricing",
+      "twitterDescription": "Get started with Mochi 1 Preview. Choose the plan that fits your needs.",
+      "twitterImage": "/pricing-twitter.png"
+    },
+    "videos": {
+      "title": "AI Generated Videos Gallery - Mochi 1 Preview Examples",
+      "description": "Explore our gallery of AI-generated videos created with Mochi 1 Preview. See what's possible with our technology.",
+      "keywords": "AI video examples, Mochi gallery, AI generated videos, video samples, AI video showcase",
+      "ogTitle": "Mochi 1 Preview Video Gallery",
+      "ogDescription": "Browse our collection of AI-generated videos. See the quality and capabilities of Mochi 1 Preview.",
+      "ogImage": "/videos-og.png",
+      "twitterTitle": "Mochi 1 Preview Video Examples",
+      "twitterDescription": "Check out amazing AI-generated videos created with Mochi 1 Preview.",
+      "twitterImage": "/videos-twitter.png"
+    },
+    "dashboard": {
+      "title": "Your AI Video Dashboard - Mochi 1 Preview",
+      "description": "Manage your AI-generated videos and projects in one place. Access your Mochi 1 Preview dashboard.",
+      "keywords": "Mochi dashboard, video management, AI projects, video dashboard, content management",
+      "ogTitle": "Mochi 1 Preview Dashboard",
+      "ogDescription": "Access and manage all your AI-generated videos in one place.",
+      "ogImage": "/dashboard-og.png",
+      "twitterTitle": "Mochi 1 Preview Dashboard",
+      "twitterDescription": "Manage your AI videos and projects with Mochi 1 Preview dashboard.",
+      "twitterImage": "/dashboard-twitter.png"
+    }
+  },
+  "robots": "index, follow",
+  "googleSiteVerification": "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
+  "layout": {
+    "language": "en"
+  }
 }

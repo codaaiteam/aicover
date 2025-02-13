@@ -22,7 +22,12 @@ export async function POST(req: Request) {
 
     // 2. 验证请求内容
     const body = await req.json();
-    const { description, negative_prompt } = body as GenerateCoverRequest;
+    const { 
+      description, 
+      negative_prompt, 
+      seed, 
+      enable_prompt_expansion 
+    } = body as GenerateCoverRequest;
     if (!description) {
       return respErr("invalid params: description is required");
     }
@@ -41,7 +46,8 @@ export async function POST(req: Request) {
         model: "fal-ai/mochi-v1",
         prompt: description,
         negative_prompt,
-        seed: Math.floor(Math.random() * 1000000)
+        seed: seed || Math.floor(Math.random() * 1000000),
+        enable_prompt_expansion
       }),
       created_at: new Date().toISOString(),
       uuid,

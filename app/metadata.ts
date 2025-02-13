@@ -1,42 +1,62 @@
 import { Metadata } from 'next'
 
-export async function generateMetadata({ params: { lang = 'en' } }: { params: { lang?: string } }): Promise<Metadata> {
-  // Dynamically import the language file
+const supportedLocales = ['en', 'zh'] 
+const baseUrl = 'https://mochi1preview.com'
+
+export async function generateMetadata({ params: { lang = 'en' }, page = 'home' }: { params: { lang?: string }, page?: string }): Promise<Metadata> {
+  // 
   const translations = await import(`@/locales/${lang}.json`)
+  const currentUrl = `${baseUrl}/${lang}`
+  
+  // 
+  const seoData = translations.seo?.[page]
+  
+  if (!seoData) {
+    console.warn(`No SEO data found for page ${page} in language ${lang}`)
+    return {
+      title: translations.title || 'Mochi 1 Preview',
+      description: translations.description || '',
+    }
+  }
+
+  // 
+  const languageAlternates = supportedLocales.reduce((acc, locale) => {
+    acc[locale] = `${baseUrl}/${locale}`
+    return acc
+  }, {} as Record<string, string>)
 
   return {
-    metadataBase: new URL('https://mochi1preview.com/'),
-    title: translations.title,
-    description: translations.description,
-    keywords: [
-      'Mochi 1 Preview', 
-      'Mochi AI', 
-      'Genmo Mochi', 
-      'AI Video Preview', 
-      'Text to Video AI',
-      'Next-Gen Video Creation',
-      'AI Video Generator',
-      'Mochi Video Technology',
-      'Advanced AI Animation',
-      'Visual Storytelling'
-    ],
+    metadataBase: new URL(baseUrl),
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords,
     openGraph: {
-      title: translations.title,
-      description: translations.description,
+      title: seoData.ogTitle,
+      description: seoData.ogDescription,
       type: 'website',
-      url: 'https://mochi1preview.com',
-      images: [{ url: 'https://mochi1preview.com/og-image.png' }],
+      url: currentUrl,
+      images: [{ 
+        url: seoData.ogImage,
+        width: 1200,
+        height: 630,
+        alt: seoData.ogTitle
+      }],
+      locale: lang,
+      alternateLocales: supportedLocales.filter(l => l !== lang),
     },
     twitter: {
       card: 'summary_large_image',
-      title: translations.title,
-      description: translations.description,
-      images: ['https://mochi1preview.com/twitter-image.png'],
+      title: seoData.twitterTitle,
+      description: seoData.twitterDescription,
+      images: [seoData.twitterImage],
+      creator: '@MochiAI',
+      site: '@MochiAI',
     },
-    robots: 'index, follow',
     alternates: {
-      canonical: 'https://mochi1preview.com/'
+      canonical: currentUrl,
+      languages: languageAlternates,
     },
+    robots: translations.robots || 'index, follow',
     authors: [{ name: "Genmo AI" }],
     applicationName: "Mochi 1 Preview",
     icons: {
@@ -44,7 +64,7 @@ export async function generateMetadata({ params: { lang = 'en' } }: { params: { 
       apple: "/apple-touch-icon.png",
     },
     verification: {
-      google: "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
+      google: translations.googleSiteVerification || "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
     },
   }
 }
