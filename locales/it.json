@@ -2,56 +2,56 @@
   "home": "Home",
   "create": "Creare",
   "guide": "Guida",
-  "title": "Mochi 1 Anteprima: Generazione video open source con movimento ad alta fedeltà",
-  "description": "Prova la generazione video all'avanguardia con una qualità di movimento eccezionale e un'aderenza immediata, grazie alla nostra architettura AsymmDiT a 10B parametri",
-  "keywords": "Anteprima Mochi 1, Mochi AI, Genmo Mochi, Anteprima video AI, Testo in video AI, Creazione video di nuova generazione, Generatore video AI, Tecnologia video Mochi, Animazione AI avanzata, Narrazione visiva",
-  "tryNow": "Prova su Playground",
-  "seeInAction": "Esempi in evidenza",
-  "videoDescription": "Esplora la rivoluzionaria generazione di video open source basata sul nostro innovativo trasformatore di diffusione asimmetrica",
+  "title": "Brand_0 Anteprima: generazione di video open source con movimento ad alta fedeltà",
+  "description": "Sperimenta la generazione di video all'avanguardia con un'eccezionale qualità del movimento e aderenza rapida, alimentata dalla nostra architettura da asymmdit di parametri 10B",
+  "keywords": "Brand_1 Anteprima, Brand_2, Brand_0, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva",
+  "tryNow": "Prova il parco giochi",
+  "seeInAction": "Esempi in primo piano",
+  "videoDescription": "Esplora la rivoluzionaria generazione di video open source alimentata dal nostro nuovo trasformatore di diffusione asimmetrica",
   "unleashCreativity": "Generazione video all'avanguardia",
   "feature1Title": "Movimento ad alta fedeltà",
-  "feature1Description": "Qualità del movimento leader del settore attraverso il nostro modello di diffusione dei parametri 10B con forte e rapida aderenza nella valutazione preliminare",
-  "feature2Title": "Architettura Open Source",
-  "feature2Description": "Basato sulla nuova architettura Asymmetric Diffusion Transformer (AsymmDiT), disponibile gratuitamente con licenza Apache 2.0",
+  "feature1Description": "Qualità del movimento leader del settore attraverso il nostro modello di diffusione dei parametri 10B con una forte aderenza pronta nella valutazione preliminare",
+  "feature2Title": "Architettura open source",
+  "feature2Description": "Costruito sulla nuova architettura asimmetrica di diffusione di diffusione (ASYMMDIT), liberamente disponibile con licenza Apache 2.0",
   "feature3Title": "Compressione avanzata",
-  "feature3Description": "Dotato del nostro VAE open source che comprime causalmente i video a dimensioni 128 volte inferiori con compressione spaziale 8x8 e temporale 6x",
+  "feature3Description": "Con i nostri VAE open source che comprime causalmente video a 128x dimensioni più piccole con compressione spaziale e 6x temporale 6x",
   "feature4Title": "Elaborazione efficiente",
-  "feature4Description": "Elaborazione semplificata del testo con un unico modello linguistico T5-XXL e capacità di ragionamento visivo ottimizzata",
+  "feature4Description": "Elaborazione del testo semplificata con modello di linguaggio T5-XX singolo e capacità di ragionamento visivo ottimizzato",
   "feature5Title": "Architettura multimodale",
-  "feature5Description": "Attenzione congiunta al testo e ai token visivi con livelli MLP dedicati per ciascuna modalità e proiezione QKV non quadrata",
-  "feature6Title": "Adatto agli sviluppatori",
+  "feature5Description": "Attenzione congiunta al testo e ai token visivi con livelli MLP dedicati per ogni modalità e proiezione QKV non quadrata",
+  "feature6Title": "Sviluppatore",
   "feature6Description": "Architettura semplice e hackerabile con documentazione completa e supporto della comunità",
-  "howToUse": "Genera video con Mochi 1",
-  "step1Title": "Ambiente di installazione",
-  "step1Description": "Clonare il repository e installare le dipendenze utilizzando il gestore pacchetti UV",
+  "howToUse": "Generare video con brand_0",
+  "step1Title": "Ambiente di configurazione",
+  "step1Description": "Clona il repository e installa le dipendenze utilizzando il gestore dei pacchetti UV",
   "step2Title": "Configurare i parametri",
-  "step2Description": "Imposta la directory del modello, la scala CFG e i valori iniziali per la generazione controllata",
+  "step2Description": "Imposta directory del modello, scala CFG e valori di semi per la generazione controllata",
   "step3Title": "Generare contenuti",
-  "step3Description": "Esegui l'inferenza tramite Gradio UI o l'interfaccia della riga di comando",
+  "step3Description": "Esegui l'inferenza tramite l'interfaccia dell'interfaccia utente o la riga di comando",
   "userReviews": "Feedback della comunità",
-  "review1": "La qualità del movimento e la tempestività di esecuzione stabiliscono nuovi standard per la generazione di video open source.",
-  "review2": "L'architettura semplice e modificabile lo rende perfetto per la ricerca e la sperimentazione.",
-  "review3": "Risultati impressionanti con l'approccio efficiente del modello linguistico singolo T5-XXL.",
-  "faq1Question": "Cosa rende Mochi 1 unico?",
-  "faq1Answer": "Mochi 1 rappresenta un significativo progresso nella generazione di video open source, con un modello di diffusione dei parametri da 10B con la nuova architettura AsymmDiT, che offre movimento ad alta fedeltà e forte aderenza immediata, pur essendo completamente open source.",
+  "review1": "La qualità del movimento e l'adesione rapida fissano nuovi standard per la generazione di video open source.",
+  "review2": "L'architettura semplice e hackerabile lo rende perfetto per la ricerca e la sperimentazione.",
+  "review3": "Risultati impressionanti con l'approccio del modello linguistico T5-XX singolo efficiente.",
+  "faq1Question": "Cosa rende unico Brand_0?",
+  "faq1Answer": "Brand_0 rappresenta un progresso significativo nella generazione di video open source, con un modello di diffusione dei parametri 10B con nuova architettura asimmdit, che offre movimento ad alta fedeltà e forte aderenza rapida pur essendo completamente open.",
   "faq2Question": "Quali sono le specifiche tecniche?",
-  "faq2Answer": "Mochi 1 genera video 480p utilizzando un modello di parametri 10B con compressione spaziale 8x8 e temporale 6x. Il modello richiede 4 GPU H100 per l'inferenza e utilizza un singolo T5-XXL per la codifica rapida.",
+  "faq2Answer": "Brand_0 genera video 480p utilizzando un modello di parametro 10B con compressione temporale spaziale e 6x. Il modello richiede 4 GPU H100 per l'inferenza e utilizza un singolo T5-XXL per la codifica rapida.",
   "faq3Question": "Come funziona l'architettura?",
-  "faq3Answer": "L'architettura AsymmDiT elabora in modo efficiente i prompt insieme ai token video compressi, utilizzando l'autoattenzione multimodale con livelli MLP separati per ciascuna modalità e proiezioni QKV non quadrate per requisiti di memoria ridotti.",
+  "faq3Answer": "L'architettura ASYMMDIT elabora in modo efficiente i prompt insieme a token video compressi, utilizzando l'auto-assistenza multomodale con strati MLP separati per ciascuna modalità e proiezioni QKV non quadrate per i requisiti di memoria ridotti.",
   "faq4Question": "Quali sono le limitazioni attuali?",
-  "faq4Answer": "L'anteprima della ricerca attuale è limitata alla risoluzione 480p, potrebbe presentare lievi deformazioni in casi di movimento estremo ed è ottimizzata per contenuti fotorealistici piuttosto che animati.",
-  "ctaTitle": "Unisciti alla rivoluzione della generazione video open source",
-  "ctaDescription": "Scopri il più grande modello generativo video rilasciato apertamente",
-  "ctaButton": "Prova Mochi 1",
+  "faq4Answer": "L'attuale anteprima di ricerca è limitata alla risoluzione di 480p, può mostrare un piccolo deformizione in casi di movimento estremo ed è ottimizzata per contenuti fotorealistici piuttosto che per il contenuto animato.",
+  "ctaTitle": "Unisciti alla rivoluzione della generazione di video open source",
+  "ctaDescription": "Sperimenta il più grande modello generativo video apertamente rilasciato",
+  "ctaButton": "Prova Brand_0",
   "moreVideos": "Altri video",
-  "fastVideosLeft": "video veloci rimasti",
+  "fastVideosLeft": "Video veloci rimasti",
   "until": "Fino a",
   "createTitle": "Crea il tuo video",
   "createDescription": "Descrivi il tuo video e guardalo prendere vita",
-  "promptPlaceholder": "Descrivi il tuo video...",
-  "generating": "Generazione in corso...",
+  "promptPlaceholder": "Descrivi il tuo video ...",
+  "generating": "Generare ...",
   "generate": "Generare",
-  "needPromptIdeas": "Hai bisogno di idee immediate?",
+  "needPromptIdeas": "Hai bisogno di idee pronte?",
   "recentCreations": "Le tue creazioni recenti",
   "viewAllCreations": "Visualizza tutte le tue creazioni",
   "noVideosYet": "Nessun video ancora. Crea il tuo primo video!",
@@ -61,120 +61,120 @@
   "signIn": "Registrazione",
   "signOut": "Disconnessione",
   "pricingTitle": "Prezzi semplici e trasparenti",
-  "pricingDescription": "Scegli il piano più adatto alle tue esigenze",
-  "mostPopular": "I più popolari",
+  "pricingDescription": "Scegli il piano che si adatta meglio alle tue esigenze",
+  "mostPopular": "Più popolare",
   "pricingFaqTitle": "Domande frequenti",
   "meta": {
-    "ogTitle": "Mochi 1 Anteprima - Generazione video AI rivoluzionaria",
-    "ogDescription": "Trasforma il testo in video straordinari con la nostra tecnologia AI all'avanguardia. Sperimenta una qualità di movimento eccezionale e un'aderenza precisa e immediata.",
+    "ogTitle": "Brand_0 Anteprima - Revolutionary AI Video Generation",
+    "ogDescription": "Trasforma il testo in video sbalorditivi con la nostra tecnologia AI all'avanguardia. Sperimenta un'eccezionale qualità del movimento e una rapida aderenza precisa.",
     "ogType": "sito web",
-    "ogImage": "/og-immagine.png",
-    "twitterCard": "riepilogo_immagine_grande",
-    "twitterTitle": "Anteprima Mochi 1 - Generazione video AI",
-    "twitterDescription": "Crea video straordinari dal testo con la nostra tecnologia AI all'avanguardia. Basata sull'architettura AsymmDiT a 10B di parametri.",
-    "twitterImage": "/immagine-twitter.png"
+    "ogImage": "/og-image.png",
+    "twitterCard": "Summary_large_Image",
+    "twitterTitle": "Brand_0 Anteprima - Generazione di video AI",
+    "twitterDescription": "Crea video fantastici dal testo con la nostra tecnologia AI all'avanguardia. Alimentato da un parametro 10B Architettura asimmdit.",
+    "twitterImage": "/twitter-image.png"
   },
   "seo": {
     "home": {
-      "title": "Mochi 1 Anteprima: Generazione video open source con movimento ad alta fedeltà",
-      "description": "Prova la generazione video all'avanguardia con una qualità di movimento eccezionale e un'aderenza immediata, grazie alla nostra architettura AsymmDiT a 10B parametri",
-      "keywords": "Anteprima Mochi 1, Mochi AI, Genmo Mochi, Anteprima video AI, Testo in video AI, Creazione video di nuova generazione, Generatore video AI, Tecnologia video Mochi, Animazione AI avanzata, Narrazione visiva"
+      "title": "Brand_0 Anteprima: generazione di video open source con movimento ad alta fedeltà",
+      "description": "Sperimenta la generazione di video all'avanguardia con un'eccezionale qualità del movimento e aderenza rapida, alimentata dalla nostra architettura da asymmdit di parametri 10B",
+      "keywords": "Brand_1 Anteprima, Brand_2, Brand_0, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva"
     },
     "create": {
-      "title": "Crea video AI con Mochi 1 - Trasforma il testo in movimento di alta qualità",
-      "description": "Crea video AI sbalorditivi con controllo preciso del movimento. Trasforma le tue idee in video di alta qualità utilizzando la nostra piattaforma di generazione all'avanguardia.",
-      "keywords": "Creazione video AI, testo in video, generazione di movimento, creatore video, animazione AI, piattaforma Mochi, sintesi video"
+      "title": "Crea video AI con brand_0 - trasforma il testo in movimento di alta qualità",
+      "description": "Crea splendidi video di intelligenza artificiale con un controllo di movimento preciso. Trasforma le tue idee in video di alta qualità utilizzando la nostra piattaforma di generazione all'avanguardia.",
+      "keywords": "Creazione video AI, testo al video, generazione di movimento, creatore di video, animazione AI, piattaforma mochi, sintesi video"
     },
     "guide": {
-      "title": "Guida utente Mochi 1 - Scopri la generazione di video AI",
-      "description": "Guida completa all'utilizzo della piattaforma di generazione video di Mochi 1. Scopri come creare video AI sbalorditivi con i nostri tutorial passo dopo passo.",
-      "keywords": "Guida Mochi, Tutorial video AI, Guida alla generazione video, Come usare Mochi, Suggerimenti per la creazione di video AI"
+      "title": "Guida per l'utente Brand_0 - Impara la generazione di video AI",
+      "description": "Guida completa all'utilizzo della piattaforma di generazione di video di Brand_0. Scopri come creare splendidi video di intelligenza artificiale con i nostri tutorial dettagliati.",
+      "keywords": "Mochi Guide, AI Video Tutorial, Video Generation Guide, How to Use Mochi, AI Video Creation Tips"
     },
     "dashboard": {
-      "title": "La tua dashboard video - Piattaforma Mochi 1",
-      "description": "Gestisci i tuoi video e progetti generati dall'intelligenza artificiale in un unico posto. Traccia, modifica e organizza le tue creazioni video in modo efficiente.",
-      "keywords": "Gestione video, dashboard del progetto AI, dashboard Mochi, organizzazione video, gestione dei contenuti"
+      "title": "La tua dashboard video - piattaforma brand_0",
+      "description": "Gestisci i tuoi video e progetti generati dall'intervallo AI in un unico posto. Traccia, modifica e organizza le tue creazioni video in modo efficiente.",
+      "keywords": "Gestione video, dashboard di progetto AI, dashboard Mochi, organizzazione video, gestione dei contenuti"
     },
     "price": {
-      "title": "Mochi 1 Prezzi - Piani di generazione video AI",
-      "description": "Esplora i nostri piani tariffari flessibili per la generazione di video AI. Trova il piano perfetto per le tue esigenze creative.",
-      "keywords": "Prezzi Mochi, Piani video AI, Costo generazione video, Piani abbonamento, Prezzi video AI"
+      "title": "Prezzi brand_0 - Piani di generazione di video AI",
+      "description": "Esplora i nostri piani di prezzi flessibili per la generazione di video AI. Trova il piano perfetto per le tue esigenze creative.",
+      "keywords": "Prezzi Mochi, piani video AI, costo di generazione di video, piani di abbonamento, prezzi video AI"
     },
     "privacy": {
-      "title": "Informativa sulla privacy - Mochi 1",
-      "description": "Scopri come proteggiamo la tua privacy e gestiamo i tuoi dati sulla piattaforma Mochi 1.",
+      "title": "Informativa sulla privacy - Brand_0",
+      "description": "Scopri come proteggiamo la tua privacy e gestiamo i tuoi dati sulla piattaforma Brand_0.",
       "keywords": "Informativa sulla privacy, protezione dei dati, privacy dell'utente, sicurezza Mochi, gestione dei dati"
     },
     "terms": {
-      "title": "Termini di servizio - Mochi 1",
-      "description": "Leggi i nostri termini di servizio e le linee guida per l'utilizzo della piattaforma di generazione video Mochi 1.",
-      "keywords": "Termini di servizio, Termini di utilizzo, Accordo legale, Regole della piattaforma, Termini di servizio"
+      "title": "Termini di servizio - Brand_0",
+      "description": "Leggi i nostri termini di servizio e linee guida per l'utilizzo per la piattaforma di generazione di video Brand_0.",
+      "keywords": "Termini di servizio, termini di utilizzo, accordo legale, regole della piattaforma, termini di servizio"
     },
     "videos": {
-      "title": "Galleria video - Mochi 1 Esempi",
-      "description": "Esplora la nostra raccolta di video generati dall'intelligenza artificiale che mostrano le capacità e le possibilità creative di Mochi 1.",
-      "keywords": "Esempi di video AI, video generati, vetrina video, esempi di Mochi, galleria video AI"
+      "title": "Galleria video - Esempi Brand_0",
+      "description": "Esplora la nostra raccolta di video generati dall'IA che mostrano le capacità di Brand_0 e le possibilità creative.",
+      "keywords": "Esempi video AI, video generati, vetrina video, esempi di mochi, galleria di video AI"
     }
   },
-  "robots": "indice, segui",
-  "googleSiteVerification": "O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0",
+  "robots": "indice, seguire",
+  "googleSiteVerification": "O_PEB7XRNO2XGOETEPMTJP-A4LSDYUO2XI3N4H5ZOU0",
   "layout": {
-    "language": "esso"
+    "language": "en"
   },
-  "guideTitle": "Padroneggia l'arte dei prompt video Mochi 1",
-  "guideDescription": "Scopri come creare prompt accattivanti per generare video AI impressionanti con Mochi 1",
-  "tryMochi": "Prova Mochi",
-  "bestPracticesTitle": "Le migliori pratiche per scrivere prompt",
+  "guideTitle": "Padroneggiare l'arte dei suggerimenti video brand_0",
+  "guideDescription": "Scopri come creare istruzioni convincenti per generare impressionanti video di intelligenza artificiale con brand_0",
+  "tryMochi": "Prova mochi",
+  "bestPracticesTitle": "Le migliori pratiche per la scrittura di suggerimenti",
   "practiceSpecificTitle": "Sii specifico",
-  "practiceSpecificDesc": "Includi descrizioni dettagliate delle scene, dei movimenti e dell'atmosfera che vuoi creare.",
+  "practiceSpecificDesc": "Includi descrizioni dettagliate di scene, movimenti e atmosfera che si desidera creare.",
   "practiceSceneTitle": "Imposta la scena",
-  "practiceSceneDesc": "Descrivi l'ambiente, l'illuminazione e l'ora del giorno per creare la giusta atmosfera.",
-  "practiceMotionTitle": "Includi movimento",
-  "practiceMotionDesc": "Specifica come gli elementi devono muoversi e interagire all'interno della scena.",
+  "practiceSceneDesc": "Descrivi l'ambiente, l'illuminazione e l'ora del giorno per stabilire l'umore giusto.",
+  "practiceMotionTitle": "Includere il movimento",
+  "practiceMotionDesc": "Specificare come gli elementi dovrebbero muoversi e interagire all'interno della scena.",
   "practiceAtmosphereTitle": "Aggiungi atmosfera",
-  "practiceAtmosphereDesc": "Includi dettagli sensoriali come suoni, luci e condizioni meteorologiche.",
-  "examplePromptsTitle": "Esempi di richieste",
-  "simplePrompt": "Richiesta semplice:",
-  "descriptivePrompt": "Richiesta descrittiva:",
-  "example1Title": "Regno del cielo surreale",
-  "example1Short": "REGNO DEL CIELO SURREALE IN UN GLOBO DI VETRO",
-  "example1Long": "All'interno dei confini di un enorme globo di vetro, che galleggia alto sopra un vasto mare turbolento, giace un regno surreale nel cielo. Scogliere frastagliate si ergono dalle nuvole, punteggiate da castelli eterei collegati da delicati ponti luminosi. Il cielo è un vortice di colori, un tramonto che non finisce mai, che bagna il mondo di tenui rosa, viola e oro.",
+  "practiceAtmosphereDesc": "Includi dettagli sensoriali come suoni, illuminazione e condizioni meteorologiche.",
+  "examplePromptsTitle": "Prommetti di esempio",
+  "simplePrompt": "Semplice prompt:",
+  "descriptivePrompt": "Prompt descrittivo:",
+  "example1Title": "Sky Kingdom surreale",
+  "example1Short": "Surreale Sky Kingdom in un globo di vetro",
+  "example1Long": "All'interno dei confini di un enorme globo di vetro, che galleggia in alto sopra un vasto mare turbolento, si trova un regno surreale nel cielo. Le scogliere frastagliate si alzano dalle nuvole, punteggiate da castelli eterei collegati da ponti delicati e luminosi. Il cielo è un vortice di colori, un tramonto che non finisce mai, facendo il bagno al mondo in rosa morbidi, viola e oro.",
   "example2Title": "Villaggio rurale all'alba",
-  "example2Short": "VILLAGGIO RURALE ALL'ALBA",
-  "example2Long": "Un tranquillo villaggio rurale si risveglia mentre le prime luci dell'alba si accendono all'orizzonte. Il tenue chiarore del sole illumina delicatamente i tetti di piccoli cottage in pietra, proiettando lunghe ombre sui campi di grano dorato. Gli uccelli iniziano a cinguettare e una sottile foschia indugia appena sopra il terreno.",
-  "example3Title": "Mercato di strada della città",
-  "example3Short": "MERCATO STRADALE DELLA CITTÀ AL MATTINO PRESTO",
-  "example3Long": "Nel cuore di una città vivace, un mercato di strada prende vita nelle prime ore del mattino. I venditori installano le loro bancarelle, esponendo prodotti freschi, frutta colorata, verdura e prodotti locali. La telecamera si sposta sul mercato, catturando i suoni delle conversazioni.",
+  "example2Short": "Villaggio rurale all'alba",
+  "example2Long": "Un tranquillo villaggio rurale risveglia mentre la prima luce dell'alba si rompe all'orizzonte. Il morbido bagliore del sole illumina delicatamente i tetti di piccoli cottage in pietra, lanciando lunghe ombre su campi di grano dorato. Gli uccelli iniziano a cinguettare e una nebbia sottile indugia appena sopra il suolo.",
+  "example3Title": "City Street Market",
+  "example3Short": "City Street Market al mattino presto",
+  "example3Long": "Nel cuore di una vivace città, un mercato di strada prende vita nelle prime ore del mattino. I venditori hanno creato le loro bancarelle, visualizzando prodotti freschi, frutta colorata, verdure e prodotti locali. La fotocamera si panoramica attraverso il mercato, catturando i suoni delle conversazioni.",
   "promptStructureTitle": "Struttura rapida",
   "structure1Title": "1. Impostazione della scena",
   "structure1Desc": "Inizia con la posizione e l'ora del giorno",
-  "structure1Example": "Esempio: \"In una radura soleggiata della foresta...\"",
+  "structure1Example": "Esempio: \"In una foresta illuminata dal sole ...\"",
   "structure2Title": "2. Elementi principali",
   "structure2Desc": "Descrivi i soggetti chiave e le loro azioni",
-  "structure2Example": "Esempio: \"Un gruppo di operai edili si muove con cautela su travi d'acciaio...\"",
+  "structure2Example": "Esempio: \"Un gruppo di operai edili si muove con cura attraverso le travi in ​​acciaio ...\"",
   "structure3Title": "3. Atmosfera",
-  "structure3Desc": "Aggiungi dettagli su illuminazione, meteo e umore",
-  "structure3Example": "Esempio: \"Il caldo sole pomeridiano proietta lunghe ombre...\"",
+  "structure3Desc": "Aggiungi dettagli su illuminazione, tempo e umore",
+  "structure3Example": "Esempio: \"Il caldo sole pomeridiano lancia lunghe ombre ...\"",
   "structure4Title": "4. Movimento della telecamera",
-  "structure4Desc": "Specificare come deve essere catturata la scena",
-  "structure4Example": "Esempio: \"La telecamera effettua una lenta panoramica sulla scena...\"",
-  "proTipsTitle": "Suggerimenti Pro",
-  "proTip1": "Crea prompt personalizzati per output specifici anziché affidarti al perfezionamento dei prompt",
-  "proTip2": "Concentrati sui movimenti naturali e sugli scenari realistici per ottenere risultati migliori",
-  "proTip3": "Includere descrizioni dei movimenti della telecamera per guidare il flusso video",
-  "proTip4": "Genera un video alla volta per risultati ottimali",
-  "proTip5": "Prova sia i prompt semplici che quelli dettagliati per trovare quello che funziona meglio per le tue esigenze",
+  "structure4Desc": "Specificare come la scena dovrebbe essere catturata",
+  "structure4Example": "Esempio: \"La fotocamera si lancia lentamente attraverso la scena ...\"",
+  "proTipsTitle": "Suggerimenti professionisti",
+  "proTip1": "Crea istruzioni personalizzate per output specifici piuttosto che fare affidamento sul raffinamento del prompt",
+  "proTip2": "Concentrati su movimenti naturali e scenari realistici per risultati migliori",
+  "proTip3": "Includi le descrizioni dei movimenti della fotocamera per guidare il flusso video",
+  "proTip4": "Generare un video alla volta per risultati ottimali",
+  "proTip5": "Prova i suggerimenti semplici e dettagliati per trovare ciò che funziona meglio per le tue esigenze",
   "pricing": {
     "title": "Scegli il tuo piano",
     "description": "Inizia con 1 video gratuito, nessuna carta di credito richiesta",
     "monthlyLabel": "Mensile",
     "yearlyLabel": "Annuale",
     "yearlySavings": "(Risparmia fino al 16%)",
-    "mostPopular": "I più popolari",
+    "mostPopular": "Più popolare",
     "plans": {
       "free": {
         "name": "Gratuito",
-        "price": "$0",
+        "price": "$ 0",
         "period": "/per sempre",
         "description": "Provalo gratuitamente",
         "features": [
@@ -182,57 +182,57 @@
           "Risoluzione 480p",
           "Con filigrana",
           "Generazione standard",
-          "Supporto della comunità",
+          "Supporto comunitario",
           "Video aggiuntivi: $ 0,9 ciascuno"
         ],
-        "buttonText": "Inizia gratis",
-        "highlight": "Non è richiesta la carta di credito"
+        "buttonText": "Inizia gratuitamente",
+        "highlight": "Nessuna carta di credito richiesta"
       },
       "basic": {
         "name": "Di base",
-        "description": "Perfetto per iniziare",
+        "description": "Perfetto per i principianti",
         "features": [
           "50 video al mese",
           "Con filigrana della piattaforma",
           "Risoluzione 720p",
-          "Priorità coda standard",
+          "Priorità della coda standard",
           "Supporto di base",
-          "Eccedenza: $0,8/video"
+          "Overage: $ 0,8/video"
         ],
-        "buttonText": "Ottieni le basi",
+        "buttonText": "Ottieni base",
         "highlight": "Risparmia il 16% con la fatturazione annuale"
       },
       "pro": {
-        "name": "Professionista",
-        "description": "Per i creatori professionisti",
+        "name": "Pro",
+        "description": "Per creatori professionisti",
         "features": [
           "150 video al mese",
           "Filigrana gratuita",
           "Risoluzione 1080p",
-          "Generazione di priorità",
+          "Generazione prioritaria",
           "Supporto prioritario",
-          "Eccedenza: $0,6/video",
+          "Overage: $ 0,6/video",
           "Accesso API"
         ],
         "buttonText": "Scegli Pro",
         "highlight": "Più popolare per le aziende"
       },
       "payAsYouGo": {
-        "name": "Paga mentre consumi",
-        "price": "Da $0,9",
+        "name": "Paga mentre vai",
+        "price": "Da $ 0,9",
         "period": "/video",
-        "description": "Prezzi flessibili per volume",
+        "description": "Prezzi del volume flessibile",
         "features": [
           "Credito iniziale minimo di $ 50",
           "1-100 video: $ 0,9 ciascuno",
           "101-500 video: $ 0,7 ciascuno",
-          "500+ video: $ 0,6 ciascuno",
+          "Oltre 500 video: $ 0,6 ciascuno",
           "I crediti non scadono mai",
           "Supporto prioritario",
           "Accesso API incluso"
         ],
         "buttonText": "Inizia con i crediti",
-        "highlight": "Perfetto per un utilizzo variabile"
+        "highlight": "Perfetto per l'utilizzo variabile"
       }
     },
     "faq": {
@@ -240,18 +240,27 @@
       "questions": {
         "freePlan": {
           "question": "Come funziona il piano gratuito?",
-          "answer": "Ottieni 3 video gratuiti per provare il nostro servizio. Non è richiesta alcuna carta di credito. Dopo aver utilizzato i tuoi crediti gratuiti, puoi acquistare altri video a $ 0,9 ciascuno o passare a un piano di abbonamento per tariffe migliori."
+          "answer": "Ottieni 3 video gratuiti per provare il nostro servizio. Nessuna carta di credito richiesta. Dopo aver utilizzato i tuoi crediti gratuiti, è possibile acquistare video aggiuntivi a $ 0,9 ciascuno o aggiornare a un piano di abbonamento per tariffe migliori."
         },
         "exceeding": {
-          "question": "Cosa succede se supero il mio limite mensile?",
-          "answer": "Ti verrà addebitata la tariffa di superamento per il tuo piano. Gli utenti del piano base pagano $ 0,8 per video aggiuntivo, mentre gli utenti del piano Pro pagano $ 0,6 per video aggiuntivo."
+          "question": "Cosa succede se supera il mio limite mensile?",
+          "answer": "Ti verrà addebitato il tasso di eccesso per il tuo piano. Gli utenti del piano di base pagano $ 0,8 per video aggiuntivo, mentre gli utenti del piano professionista pagano $ 0,6 per video aggiuntivo."
         },
         "rollover": {
-          "question": "I video non utilizzati vengono trasferiti?",
-          "answer": "No, le quote video vengono reimpostate all'inizio di ogni ciclo di fatturazione. Tuttavia, i crediti acquistati nel piano Pay As You Go non scadono mai."
+          "question": "I video inutilizzati si trasformano?",
+          "answer": "No, quote video ripristinate all'inizio di ogni ciclo di fatturazione. Tuttavia, i crediti acquistati nella retribuzione man mano che vai al piano non scadono mai."
         }
       }
     },
-    "processing": "Elaborazione in corso..."
+    "processing": "Elaborazione ..."
+  },
+  "errors": {
+    "video": {
+      "safety": "Il contenuto viola la politica di sicurezza",
+      "timeout": "Generazione scaduta",
+      "rateLimit": "Limite di tasso superato",
+      "invalidPrompt": "Prompt non valido o poco chiaro",
+      "unknown": "Errore sconosciuto"
+    }
   }
 }

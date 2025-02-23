@@ -93,7 +93,8 @@ export async function GET() {
         llm_params,
         status,
         created_at,
-        updated_at
+        updated_at,
+        error
       `)
       .eq("user_email", userEmail)
       .order("created_at", { ascending: false })
@@ -132,7 +133,8 @@ export async function GET() {
     // 组合视频和用户信息
     const videosWithUser = data?.map(video => ({
       ...video,
-      user: userData || null
+      user: userData || null,
+      error_reason: video.error ? getErrorReason(video.error) : null
     }));
 
     return NextResponse.json({
@@ -165,4 +167,31 @@ export async function GET() {
       { status: 500 }
     );
   }
+}
+
+// 添加错误原因解析函数
+function getErrorReason(error: string): string {
+  if (!error) return '';
+  
+  // 内容安全相关错误
+  if (error.includes('safety') || error.includes('policy') || error.includes('inappropriate')) {
+    return 'safety';
+  }
+  
+  // 生成超时
+  if (error.includes('timeout')) {
+    return 'timeout';
+  }
+  
+  // 重复请求
+  if (error.includes('rate') || error.includes('limit')) {
+    return 'rateLimit';
+  }
+  
+  // 提示词质量问题
+  if (error.includes('prompt') || error.includes('invalid')) {
+    return 'invalidPrompt';
+  }
+  
+  return 'unknown';
 }

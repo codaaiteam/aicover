@@ -253,5 +253,14 @@
       }
     },
     "processing": "Processing..."
+  },
+  "errors": {
+    "video": {
+      "safety": "Content violates safety policy",
+      "timeout": "Generation timed out",
+      "rateLimit": "Rate limit exceeded",
+      "invalidPrompt": "Invalid or unclear prompt",
+      "unknown": "Unknown error"
+    }
   }
 }

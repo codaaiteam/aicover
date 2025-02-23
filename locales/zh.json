@@ -61,7 +61,9 @@
   "signIn": "登入",
   "signOut": "登出",
   "pricingTitle": "简单、透明的定价",
-  "pricingDescription": "选择最适合您需求的计划",
+  "pricingDescription": "从 1 个免费视频开始，无需信用卡",
+  "monthlyLabel": "月付",
+  "yearlyLabel": "年付",
   "mostPopular": "最受欢迎",
   "pricingFaqTitle": "常见问题",
   "meta": {
@@ -167,8 +169,8 @@
   "pricing": {
     "title": "选择您的计划",
     "description": "从 1 个免费视频开始，无需信用卡",
-    "monthlyLabel": "每月",
-    "yearlyLabel": "每年",
+    "monthlyLabel": "月付",
+    "yearlyLabel": "年付",
     "yearlySavings": "（节省高达 16%）",
     "mostPopular": "最受欢迎",
     "plans": {
@@ -253,5 +255,14 @@
       }
     },
     "processing": "加工..."
+  },
+  "errors": {
+    "video": {
+      "safety": "内容违反安全政策",
+      "timeout": "生成超时",
+      "rateLimit": "超出速率限制",
+      "invalidPrompt": "无效或不清晰的提示词",
+      "unknown": "未知错误"
+    }
   }
 }
