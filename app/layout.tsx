@@ -34,6 +34,9 @@ export default function RootLayout({
       signUpUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
     >
       <html lang="en">
+        <head>
+          <meta name="google-site-verification" content="O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0" />
+        </head>
         <body className={inter.className}>
           <LanguageProvider defaultTranslations={defaultTranslations}>
             <AppContextProvider>
