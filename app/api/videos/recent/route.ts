@@ -37,6 +37,8 @@ export async function GET() {
       .from("videos")
       .select("*")
       .eq("user_email", userEmail)
+      .eq("status", 1)  // 只返回状态为成功的视频
+      .not("img_url", "is", null)  // 确保有URL
       .order('created_at', { ascending: false })
       .limit(1000); // 设置一个较大的限制值确保能获取所有记录
 
@@ -70,6 +72,7 @@ export async function GET() {
       `)
       .eq("user_email", userEmail)
       .eq("status", 1)
+      .not("img_url", "is", null)
       .order("created_at", { ascending: false })
       .limit(10);
 
