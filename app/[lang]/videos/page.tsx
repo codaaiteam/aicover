@@ -5,6 +5,20 @@ import { useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 import { useLanguage } from "@/contexts/language"
 import { Button } from "@/components/ui/button"
+import { Metadata } from "next"
+
+// 导出 metadata 生成函数
+export async function generateMetadata({ params: { lang } }: { params: { lang: string } }): Promise<Metadata> {
+  // 获取语言配置
+  const messages = (await import(`@/locales/${lang}.json`)).default
+  const seo = messages.seo.videos
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
+  }
+}
 
 export default function VideosPage() {
   const { user } = useUser()
@@ -28,15 +42,18 @@ export default function VideosPage() {
       setLoading(true)
       const response = await fetch('/api/videos/recent')
       const data = await response.json()
+      // console.log('API Response:', data)
       
       if (data.code === 0 && data.data) {
+        // console.log('Setting videos:', data.data)
         setVideos(data.data)
       } else {
+        // console.error('API Error:', data.message)
         setError(data.message || 'Failed to load videos')
       }
     } catch (err) {
+      console.error('Fetch Error:', err)
       setError('Failed to fetch videos')
-      console.error('Error fetching videos:', err)
     } finally {
       setLoading(false)
     }

@@ -72,7 +72,14 @@
     "twitterCard": "summary_large_image",
     "twitterTitle": "Mochi 1 Preview - AI Video Generation",
     "twitterDescription": "Create amazing videos from text with our cutting-edge AI technology. Powered by 10B parameter AsymmDiT architecture.",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "Your Videos - Mochi AI",
+        "description": "View and manage your AI-generated videos. Track generation status and browse your video creation history.",
+        "keywords": "AI videos, video generation, Mochi AI, video management, AI content creation"
+      }
+    }
   },
   "seo": {
     "home": {
@@ -111,9 +118,9 @@
       "keywords": "Terms of Service, Usage Terms, Legal Agreement, Platform Rules, Service Terms"
     },
     "videos": {
-      "title": "Video Gallery - Mochi 1 Examples",
-      "description": "Explore our collection of AI-generated videos showcasing Mochi 1's capabilities and creative possibilities.",
-      "keywords": "AI Video Examples, Generated Videos, Video Showcase, Mochi Examples, AI Video Gallery"
+      "title": "Your Videos - Mochi AI",
+      "description": "View and manage your AI-generated videos. Track generation status and browse your video creation history.",
+      "keywords": "AI videos, video generation, Mochi AI, video management, AI content creation"
     }
   },
   "robots": "index, follow",

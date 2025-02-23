@@ -67,14 +67,17 @@
   "mostPopular": "最受欢迎",
   "pricingFaqTitle": "常见问题",
   "meta": {
-    "ogTitle": "Mochi 1 预览 - 革命性的 AI 视频生成",
-    "ogDescription": "利用我们最先进的 AI 技术将文本转换为令人惊叹的视频。体验卓越的运动质量和精确的即时遵循。",
-    "ogType": "网站",
-    "ogImage": "/og-图像.png",
-    "twitterCard": "摘要大图",
-    "twitterTitle": "Mochi 1 预览 - AI 视频生成",
-    "twitterDescription": "利用我们尖端的 AI 技术从文本创建精彩的视频。由 10B 参数 AsymmDiT 架构提供支持。",
-    "twitterImage": "/twitter-image.png"
+    "ogTitle": "Mochi 1 预览版 - 革命性的 AI 视频生成",
+    "ogDescription": "使用我们最先进的 AI 技术将文本转化为精彩视频。体验卓越的动作质量和精准的提示词响应。",
+    "ogType": "website",
+    "ogImage": "/og-image.png",
+    "pages": {
+      "videos": {
+        "title": "我的视频 - Mochi AI",
+        "description": "查看和管理您的 AI 生成视频。跟踪生成状态并浏览您的视频创作历史。",
+        "keywords": "AI视频, 视频生成, Mochi AI, 视频管理, AI内容创作"
+      }
+    }
   },
   "seo": {
     "home": {
@@ -116,6 +119,11 @@
       "title": "视频库 - Mochi 1 示例",
       "description": "探索我们的 AI 生成视频集，展示 Mochi 1 的功能和创造可能性。",
       "keywords": "AI 视频示例、生成的视频、视频展示、Mochi 示例、AI 视频库"
+    },
+    "videosPage": {
+      "title": "我的视频 - Mochi AI",
+      "description": "查看和管理您的 AI 生成视频。跟踪生成状态并浏览您的视频创作历史。",
+      "keywords": "AI视频, 视频生成, Mochi AI, 视频管理, AI内容创作"
     }
   },
   "robots": "索引，关注",
