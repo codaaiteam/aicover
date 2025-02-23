@@ -74,7 +74,7 @@ export async function GET() {
       .eq("status", 1)
       .not("img_url", "is", null)
       .order("created_at", { ascending: false })
-      .limit(10);
+      .limit(1000);
 
     if (error) {
       console.error("Full query failed:", error);
