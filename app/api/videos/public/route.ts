@@ -27,8 +27,10 @@ export async function GET() {
     const { data, error } = await supabase
       .from("videos")
       .select("*")
+      .eq("status", 1)  // 只返回生成成功的视频
+      .not("img_url", "is", null)  // 确保有URL
       .order("created_at", { ascending: false })
-      .limit(10);
+      .limit(1000);
 
     if (error) {
       console.error("Database query failed:", error);

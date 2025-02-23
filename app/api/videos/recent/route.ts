@@ -32,13 +32,38 @@ export async function GET() {
     console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
     console.log("Attempting to query videos table...");
 
+    // 检查视频状态分布
+    const { data: statusData, error: statusError } = await supabase
+      .from("videos")
+      .select('status, count(*) as count')
+      .eq("user_email", userEmail)
+      .group('status');
+
+    if (statusError) {
+      console.error("Status check failed:", statusError);
+    } else {
+      console.log("Video status distribution:", statusData);
+    }
+
+    // 检查URL为空的视频
+    const { data: nullUrlData, error: nullUrlError } = await supabase
+      .from("videos")
+      .select('status, count(*) as count')
+      .eq("user_email", userEmail)
+      .is('img_url', null)
+      .group('status');
+
+    if (nullUrlError) {
+      console.error("Null URL check failed:", nullUrlError);
+    } else {
+      console.log("Videos with null URL by status:", nullUrlData);
+    }
+
     // 先尝试简单查询
     const { data: simpleData, error: simpleError } = await supabase
       .from("videos")
       .select("*")
       .eq("user_email", userEmail)
-      .eq("status", 1)  // 只返回状态为成功的视频
-      .not("img_url", "is", null)  // 确保有URL
       .order('created_at', { ascending: false })
       .limit(1000); // 设置一个较大的限制值确保能获取所有记录
 
@@ -71,8 +96,6 @@ export async function GET() {
         updated_at
       `)
       .eq("user_email", userEmail)
-      .eq("status", 1)
-      .not("img_url", "is", null)
       .order("created_at", { ascending: false })
       .limit(1000);
 
