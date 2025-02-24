@@ -187,7 +187,7 @@
         "features": [
           "1 free video",
           "480p resolution",
-          "With watermark",
+          "Watermark free",
           "Standard generation",
           "Community support",
           "Additional videos: $0.9 each"
@@ -199,8 +199,8 @@
         "name": "Basic",
         "description": "Perfect for starters",
         "features": [
-          "50 videos per month",
-          "With platform watermark",
+          "25 videos per month",
+          "Watermark free",
           "720p resolution",
           "Standard queue priority",
           "Basic support",
@@ -213,7 +213,7 @@
         "name": "Pro",
         "description": "For professional creators",
         "features": [
-          "150 videos per month",
+          "80 videos per month",
           "Watermark free",
           "1080p resolution",
           "Priority generation",

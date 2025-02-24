@@ -27,14 +27,14 @@ const plans: Plan[] = [
     name: 'Free',
     price: '$0',
     period: '/forever',
-    description: 'Try it out for free',
+    description: 'Try one video for free',
     features: [
-      '1 free videos',
+      '1 free video',
       '480p resolution',
-      'With watermark',
+      'Watermark free',
       'Standard generation',
       'Community support',
-      'Additional videos: $0.9 each'
+      'Then $2.99 for 3 videos'
     ],
     buttonText: 'Start Free',
     popular: false,
@@ -46,8 +46,8 @@ const plans: Plan[] = [
     period: '/month',
     description: 'Perfect for starters',
     features: [
-      '50 videos per month',
-      'With platform watermark',
+      '25 videos per month',
+      'Watermark free',
       '720p resolution',
       'Standard queue priority',
       'Basic support',
@@ -63,7 +63,7 @@ const plans: Plan[] = [
     period: '/month',
     description: 'For professional creators',
     features: [
-      '150 videos per month',
+      '80 videos per month',
       'Watermark free',
       '1080p resolution',
       'Priority generation',
@@ -77,21 +77,21 @@ const plans: Plan[] = [
   },
   {
     name: 'Pay As You Go',
-    price: 'From $0.9',
-    period: '/video',
-    description: 'Flexible volume pricing',
+    price: '$2.99',
+    period: '/3 videos',
+    description: 'Flexible usage',
     features: [
-      'Minimum $50 initial credit',
-      '1-100 videos: $0.9 each',
-      '101-500 videos: $0.7 each',
-      '500+ videos: $0.6 each',
+      'Buy 3 videos at once',
+      'No watermark',
+      '720p resolution',
+      'Priority generation',
       'Credits never expire',
       'Priority support',
       'API access included'
     ],
-    buttonText: 'Start With Credits',
+    buttonText: 'Buy Now',
     popular: false,
-    highlight: 'Perfect for variable usage'
+    highlight: 'Most flexible option'
   }
 ]
 

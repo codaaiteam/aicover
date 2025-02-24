@@ -28,35 +28,35 @@ const PLANS: { [key: string]: PlanDetails } = {
   "basic-monthly": {
     name: "Basic Monthly",
     price: 1990, // $19.90
-    credits: 50,
+    credits: 25,  // 25 videos per month
     duration: 1,
     currency: "usd"
   },
   "basic-yearly": {
     name: "Basic Yearly",
     price: 19900, // $199.00
-    credits: 50,
+    credits: 25,  // 25 videos per month
     duration: 12,
     currency: "usd"
   },
   "pro-monthly": {
     name: "Pro Monthly",
     price: 4990, // $49.90
-    credits: 150,
+    credits: 80,  // 80 videos per month
     duration: 1,
     currency: "usd"
   },
   "pro-yearly": {
     name: "Pro Yearly",
     price: 49900, // $499.00
-    credits: 150,
+    credits: 80,  // 80 videos per month
     duration: 12,
     currency: "usd"
   },
   "pay-as-you-go": {
     name: "Pay As You Go",
-    price: 5000, // $50.00
-    credits: 55,
+    price: 299, // $2.99
+    credits: 3,  // 3 videos
     duration: 0,
     currency: "usd"
   }
