@@ -5,20 +5,6 @@ import { useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 import { useLanguage } from "@/contexts/language"
 import { Button } from "@/components/ui/button"
-import { Metadata } from "next"
-
-// 导出 metadata 生成函数
-export async function generateMetadata({ params: { lang } }: { params: { lang: string } }): Promise<Metadata> {
-  // 获取语言配置
-  const messages = (await import(`@/locales/${lang}.json`)).default
-  const seo = messages.seo.videos
-
-  return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords,
-  }
-}
 
 export default function VideosPage() {
   const { user } = useUser()

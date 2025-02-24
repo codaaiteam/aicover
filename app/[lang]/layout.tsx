@@ -8,8 +8,11 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   // 从请求头中获取当前路径
   const headersList = headers()
   const pathname = headersList.get('x-pathname') || '/'
-  const segments = pathname.split('/')
-  const page = segments[segments.length - 1] || 'home'
+  
+  // 移除开头的斜杠和语言代码
+  const cleanPath = pathname.replace(/^\/[a-z-]+\//, '')
+  // 获取最后一个路径段
+  const page = cleanPath || 'home'
   
   return baseGenerateMetadata({ params, page })
 }
