@@ -4,7 +4,7 @@
   "guide": "ガイド",
   "title": "Brand_0プレビュー：高忠実度のモーションを備えたオープンソースビデオ生成",
   "description": "10BパラメーターASYMMDITアーキテクチャを搭載した、並外れたモーション品質と迅速なアドヒアランスを備えた最先端のビデオ生成を体験してください",
-  "keywords": "Brand_1 Preview、Brand_2、Brand_0、AIビデオプレビュー、ビデオからビデオAI、次世代ビデオ作成、AIビデオジェネレーター、Mochi Video Technology、Advanced AI Animation、Visual StoryTelling",
+  "keywords": "Brand_1 Preview、Brand_0、Brand_3、AIビデオプレビュー、ビデオからビデオAI、次世代ビデオ作成、AIビデオジェネレーター、Mochi Video Technology、Advanced AI Animation、Visual StoryTelling",
   "tryNow": "遊び場で試してみてください",
   "seeInAction": "特集例",
   "videoDescription": "私たちの新しい非対称拡散トランスを搭載した画期的なオープンソースビデオ生成を探索する",
@@ -72,13 +72,20 @@
     "twitterCard": "summary_large_image",
     "twitterTitle": "Brand_0プレビュー-AIビデオ生成",
     "twitterDescription": "最先端のAIテクノロジーを使用して、テキストから素晴らしいビデオを作成します。 10BパラメーターASYMMDITアーキテクチャを搭載しています。",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "あなたのビデオ-Brand_0",
+        "description": "AIに生成されたビデオを表示および管理します。生成ステータスを追跡し、ビデオ作成の履歴を閲覧します。",
+        "keywords": "AIビデオ、ビデオ生成、Brand_0、ビデオ管理、AIコンテンツ作成"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0プレビュー：高忠実度のモーションを備えたオープンソースビデオ生成",
       "description": "10BパラメーターASYMMDITアーキテクチャを搭載した、並外れたモーション品質と迅速なアドヒアランスを備えた最先端のビデオ生成を体験してください",
-      "keywords": "Brand_1 Preview、Brand_2、Brand_0、AIビデオプレビュー、ビデオからビデオAI、次世代ビデオ作成、AIビデオジェネレーター、Mochi Video Technology、Advanced AI Animation、Visual StoryTelling"
+      "keywords": "Brand_1 Preview、Brand_0、Brand_3、AIビデオプレビュー、ビデオからビデオAI、次世代ビデオ作成、AIビデオジェネレーター、Mochi Video Technology、Advanced AI Animation、Visual StoryTelling"
     },
     "create": {
       "title": "Brand_0を使用してAIビデオを作成する - テキストを高品質のモーションに変換する",
@@ -111,9 +118,9 @@
       "keywords": "利用規約、使用条件、法的契約、プラットフォームルール、サービス条件"
     },
     "videos": {
-      "title": "ビデオギャラリー-Brand_0の例",
-      "description": "Brand_0の機能と創造的な可能性を紹介するAIに生成されたビデオのコレクションを調べてください。",
-      "keywords": "AIビデオの例、生成されたビデオ、ビデオショーケース、モチの例、AIビデオギャラリー"
+      "title": "あなたのビデオ-Brand_0",
+      "description": "AIに生成されたビデオを表示および管理します。生成ステータスを追跡し、ビデオ作成の履歴を閲覧します。",
+      "keywords": "AIビデオ、ビデオ生成、Brand_0、ビデオ管理、AIコンテンツ作成"
     }
   },
   "robots": "インデックス、フォローしてください",
@@ -180,7 +187,7 @@
         "features": [
           "1つの無料ビデオ",
           "480p解像度",
-          "透かしで",
+          "透かし無料",
           "標準生成",
           "コミュニティサポート",
           "追加ビデオ：それぞれ0.9ドル"
@@ -192,8 +199,8 @@
         "name": "基本",
         "description": "手始めに最適です",
         "features": [
-          "1か月あたり50ビデオ",
-          "プラットフォームの透かし",
+          "1か月あたり25本",
+          "透かし無料",
           "720p解像度",
           "標準キューの優先順位",
           "基本的なサポート",
@@ -206,7 +213,7 @@
         "name": "プロ",
         "description": "プロのクリエイターのために",
         "features": [
-          "1か月あたり150個のビデオ",
+          "月に80個のビデオ",
           "透かし無料",
           "1080p解像度",
           "優先生成",

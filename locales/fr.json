@@ -4,7 +4,7 @@
   "guide": "Guide",
   "title": "Brand_0 Aperçu: génération de vidéos open source avec mouvement à haute fidélité",
   "description": "Expérience de la génération de vidéos de pointe avec une qualité de mouvement exceptionnelle et une adhérence rapide, alimentée par notre architecture ASYMMDIT des paramètres 10B",
-  "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI Aperçu vidéo, texte à la vidéo AI, création vidéo de nouvelle génération, générateur vidéo AI, technologie vidéo Mochi, animation AI avancée, narration visuelle",
+  "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI Aperçu vidéo, texte à vidéo AI, création vidéo de nouvelle génération, générateur vidéo AI, technologie vidéo Mochi, animation AI avancée, narration visuelle",
   "tryNow": "Essayez sur l'aire de jeux",
   "seeInAction": "Exemples en vedette",
   "videoDescription": "Explorez la génération de vidéo open source révolutionnaire alimentée par notre nouveau transformateur de diffusion asymétrique",
@@ -72,13 +72,20 @@
     "twitterCard": "résumé_large_image",
     "twitterTitle": "Brand_0 Aperçu - Génération de vidéo AI",
     "twitterDescription": "Créez des vidéos incroyables à partir de texte avec notre technologie d'IA de pointe. Propulsé par l'architecture ASYMMDIT des paramètres 10B.",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "Vos vidéos - Brand_0",
+        "description": "Affichez et gérez vos vidéos générées par l'IA. Suivez l'état de la génération et parcourez votre historique de création vidéo.",
+        "keywords": "Vidéos AI, génération de vidéos, Brand_0, gestion vidéo, création de contenu AI"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0 Aperçu: génération de vidéos open source avec mouvement à haute fidélité",
       "description": "Expérience de la génération de vidéos de pointe avec une qualité de mouvement exceptionnelle et une adhérence rapide, alimentée par notre architecture ASYMMDIT des paramètres 10B",
-      "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI Aperçu vidéo, texte à la vidéo AI, création vidéo de nouvelle génération, générateur vidéo AI, technologie vidéo Mochi, animation AI avancée, narration visuelle"
+      "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI Aperçu vidéo, texte à vidéo AI, création vidéo de nouvelle génération, générateur vidéo AI, technologie vidéo Mochi, animation AI avancée, narration visuelle"
     },
     "create": {
       "title": "Créer des vidéos AI avec Brand_0 - Transformer le texte en mouvement de haute qualité",
@@ -111,9 +118,9 @@
       "keywords": "Conditions d'utilisation, Conditions d'utilisation, accord juridique, règles de la plate-forme, Conditions de service"
     },
     "videos": {
-      "title": "Galerie vidéo - Brand_0 Exemples",
-      "description": "Explorez notre collection de vidéos générées par AI-présentant les capacités de Brand_0 et les possibilités créatives de Brand_0.",
-      "keywords": "Exemples vidéo AI, vidéos générées, vitrine vidéo, exemples mochi, galerie vidéo AI"
+      "title": "Vos vidéos - Brand_0",
+      "description": "Affichez et gérez vos vidéos générées par l'IA. Suivez l'état de la génération et parcourez votre historique de création vidéo.",
+      "keywords": "Vidéos AI, génération de vidéos, Brand_0, gestion vidéo, création de contenu AI"
     }
   },
   "robots": "index, suivez",
@@ -180,7 +187,7 @@
         "features": [
           "1 vidéo gratuite",
           "Résolution 480p",
-          "Avec filigrane",
+          "Filigrane gratuitement",
           "Génération standard",
           "Soutien communautaire",
           "Vidéos supplémentaires: 0,9 $ chacun"
@@ -192,8 +199,8 @@
         "name": "Basique",
         "description": "Parfait pour commencer",
         "features": [
-          "50 vidéos par mois",
-          "Avec filigrane de la plate-forme",
+          "25 vidéos par mois",
+          "Filigrane gratuitement",
           "Résolution 720p",
           "Priorité de file d'attente standard",
           "Soutien de base",
@@ -206,7 +213,7 @@
         "name": "Pro",
         "description": "Pour les créateurs professionnels",
         "features": [
-          "150 vidéos par mois",
+          "80 vidéos par mois",
           "Filigrane gratuitement",
           "Résolution 1080p",
           "Génération de priorité",

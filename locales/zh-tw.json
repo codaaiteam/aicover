@@ -4,7 +4,7 @@
   "guide": "指導",
   "title": "Brand_0預覽：高保真動作的開源視頻生成",
   "description": "經驗最先進的視頻發電，具有出色的運動質量和及時的依從性，由我們的10b參數Asymmdit體系結構提供支持",
-  "keywords": "Brand_1預覽，Brand_2，Brand_0，AI視頻預覽，視頻AI的文本，下一代視頻創建，AI視頻生成器，Mochi Video Technology，Advanced AI動畫，視覺講故事",
+  "keywords": "Brand_1預覽，Brand_0，Brand_3，AI視頻預覽，視頻AI的文本，下一代視頻創建，AI視頻生成器，Mochi Video Technology，Advanced AI動畫，視覺講故事",
   "tryNow": "嘗試在操場上",
   "seeInAction": "特色示例",
   "videoDescription": "探索由我們的小說不對稱擴散變壓器提供動力的開創性開源視頻生成",
@@ -72,13 +72,20 @@
     "twitterCard": "summary_large_image",
     "twitterTitle": "Brand_0預覽 -  AI視頻生成",
     "twitterDescription": "使用我們的尖端AI技術從文本中創建出色的視頻。由10B參數Asymmdit體系結構提供動力。",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "您的視頻-Brand_0",
+        "description": "查看和管理您的AI生成的視頻。跟踪生成狀態並瀏覽您的視頻創建歷史記錄。",
+        "keywords": "AI視頻，視頻生成，Brand_0，視頻管理，AI內容創建"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0預覽：高保真動作的開源視頻生成",
       "description": "經驗最先進的視頻發電，具有出色的運動質量和及時的依從性，由我們的10b參數Asymmdit體系結構提供支持",
-      "keywords": "Brand_1預覽，Brand_2，Brand_0，AI視頻預覽，視頻AI的文本，下一代視頻創建，AI視頻生成器，Mochi Video Technology，Advanced AI動畫，視覺講故事"
+      "keywords": "Brand_1預覽，Brand_0，Brand_3，AI視頻預覽，視頻AI的文本，下一代視頻創建，AI視頻生成器，Mochi Video Technology，Advanced AI動畫，視覺講故事"
     },
     "create": {
       "title": "使用Brand_0創建AI視頻 - 將文本轉換為高質量運動",
@@ -111,9 +118,9 @@
       "keywords": "服務條款，使用條款，法律協議，平台規則，服務條款"
     },
     "videos": {
-      "title": "視頻庫-Brand_0示例",
-      "description": "探索我們的AI生成視頻收藏，展示了Brand_0的功能和創造性的可能性。",
-      "keywords": "AI視頻示例，生成的視頻，視頻展示櫃，摩爾衛星示例，AI視頻庫"
+      "title": "您的視頻-Brand_0",
+      "description": "查看和管理您的AI生成的視頻。跟踪生成狀態並瀏覽您的視頻創建歷史記錄。",
+      "keywords": "AI視頻，視頻生成，Brand_0，視頻管理，AI內容創建"
     }
   },
   "robots": "索引，關注",
@@ -180,7 +187,7 @@
         "features": [
           "1個免費視頻",
           "480p分辨率",
-          "與水印",
+          "免費水印",
           "標準生成",
           "社區支持",
           "其他視頻：每個$ 0.9"
@@ -192,8 +199,8 @@
         "name": "基本的",
         "description": "非常適合初學者",
         "features": [
-          "每月50個視頻",
-          "帶有平台水印",
+          "每月25個視頻",
+          "免費水印",
           "720p分辨率",
           "標準隊列優先級",
           "基本支持",
@@ -206,7 +213,7 @@
         "name": "Pro",
         "description": "適用於專業創作者",
         "features": [
-          "每月150個視頻",
+          "每月80個視頻",
           "免費水印",
           "1080p分辨率",
           "優先生成",

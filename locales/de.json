@@ -4,7 +4,7 @@
   "guide": "Führung",
   "title": "Brand_0 Vorschau: Open-Source-Videogenerierung mit hoher Anfängerschaftsbewegung",
   "description": "Erfahrung auf der neuesten Videogenerierung mit außergewöhnlicher Bewegungsqualität und sofortiger Einhaltung, die von unserer 10B-Parameter-Asymmdit-Architektur angetrieben wird",
-  "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI-Video-Vorschau, Text an Video-KI, Videoerstellung der nächsten Generation, AI-Videogenerator, Mochi-Videotechnologie, fortschrittliche AI-Animation, visuelles Geschichtenerzählen",
+  "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI-Video-Vorschau, Text zu Video-KI, Videoerstellung der nächsten Generation, AI-Videogenerator, Mochi-Videotechnologie, fortschrittliche AI-Animation, visuelles Geschichtenerzählen",
   "tryNow": "Probieren Sie den Spielplatz an",
   "seeInAction": "Ausgewählte Beispiele",
   "videoDescription": "Erforschen",
@@ -72,13 +72,20 @@
     "twitterCard": "summary_large_image",
     "twitterTitle": "Brand_0 Preview - KI -Videogenerierung",
     "twitterDescription": "Erstellen Sie erstaunliche Videos aus Text mit unserer modernsten KI-Technologie. Angetrieben von 10B -Parameter -Asymmdit -Architektur.",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "Ihre Videos - Brand_0",
+        "description": "Zeigen und verwalten Sie Ihre AI-generierten Videos. Verfolgen Sie den Status der Generierung und stöbern Sie in Ihrer Videoerstellung.",
+        "keywords": "KI -Videos, Videogenerierung, Brand_0, Videomedizin, KI -Inhaltserstellung"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0 Vorschau: Open-Source-Videogenerierung mit hoher Anfängerschaftsbewegung",
       "description": "Erfahrung auf der neuesten Videogenerierung mit außergewöhnlicher Bewegungsqualität und sofortiger Einhaltung, die von unserer 10B-Parameter-Asymmdit-Architektur angetrieben wird",
-      "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI-Video-Vorschau, Text an Video-KI, Videoerstellung der nächsten Generation, AI-Videogenerator, Mochi-Videotechnologie, fortschrittliche AI-Animation, visuelles Geschichtenerzählen"
+      "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI-Video-Vorschau, Text zu Video-KI, Videoerstellung der nächsten Generation, AI-Videogenerator, Mochi-Videotechnologie, fortschrittliche AI-Animation, visuelles Geschichtenerzählen"
     },
     "create": {
       "title": "Erstellen Sie AI -Videos mit Brand_0 - Verwandeln Sie Text in hochwertige Bewegung",
@@ -111,9 +118,9 @@
       "keywords": "Nutzungsbedingungen, Nutzungsbedingungen, rechtliche Vereinbarung, Plattformregeln, Servicebedingungen"
     },
     "videos": {
-      "title": "Videogalerie - Brand_0 Beispiele",
-      "description": "Erkunden Sie unsere Sammlung von AI-generierten Videos, in denen die Fähigkeiten und die kreativen Möglichkeiten von Brand_0 vorgestellt werden.",
-      "keywords": "AI -Video -Beispiele, generierte Videos, Videokasse, Mochi -Beispiele, AI Video Gallery"
+      "title": "Ihre Videos - Brand_0",
+      "description": "Zeigen und verwalten Sie Ihre AI-generierten Videos. Verfolgen Sie den Status der Generierung und stöbern Sie in Ihrer Videoerstellung.",
+      "keywords": "KI -Videos, Videogenerierung, Brand_0, Videomedizin, KI -Inhaltserstellung"
     }
   },
   "robots": "Index, folgen",
@@ -180,7 +187,7 @@
         "features": [
           "1 kostenloses Video",
           "480p -Auflösung",
-          "Mit Wasserzeichen",
+          "Wasserzeichen frei",
           "Standardgenerierung",
           "Unterstützung der Gemeinschaft",
           "Zusätzliche Videos: jeweils 0,9 $"
@@ -192,8 +199,8 @@
         "name": "Basic",
         "description": "Perfekt für den Anfang",
         "features": [
-          "50 Videos pro Monat",
-          "Mit Plattform -Wasserzeichen",
+          "25 Videos pro Monat",
+          "Wasserzeichen frei",
           "720p -Auflösung",
           "Standard -Warteschlangenpriorität",
           "Grundunterstützung",
@@ -206,7 +213,7 @@
         "name": "Pro",
         "description": "Für professionelle Schöpfer",
         "features": [
-          "150 Videos pro Monat",
+          "80 Videos pro Monat",
           "Wasserzeichen frei",
           "1080p -Auflösung",
           "Prioritätserzeugung",

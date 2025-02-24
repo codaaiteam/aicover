@@ -123,8 +123,8 @@ function PricePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          plan: plan.toLowerCase(),
-          isYearly,
+          plan: plan === 'Pay As You Go' ? 'pay-as-you-go' : plan.toLowerCase().replace(/\s+/g, '-'),
+          isYearly: plan === 'Pay As You Go' ? false : isYearly,
         }),
       })
 

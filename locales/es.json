@@ -4,7 +4,7 @@
   "guide": "Guía",
   "title": "Brand_0 Vista previa: generación de videos de código abierto con movimiento de alta fidelidad",
   "description": "Experimente la generación de videos de vanguardia con una calidad de movimiento excepcional y una pronta adherencia, impulsada por nuestra arquitectura de asymmdit de parámetros 10B",
-  "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI Video Preview, texto a video ai, creación de video de próxima generación, generador de videos de IA, tecnología de video mochi, animación avanzada de IA, narración visual",
+  "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI Video Preview, texto a video ai, creación de video de próxima generación, generador de videos de IA, tecnología de video mochi, animación avanzada de IA, narración visual",
   "tryNow": "Prueba en el patio de recreo",
   "seeInAction": "Ejemplos destacados",
   "videoDescription": "Explore la innovadora generación de videos de código abierto impulsada por nuestro nuevo transformador de difusión asimétrica",
@@ -72,13 +72,20 @@
     "twitterCard": "resumen_large_image",
     "twitterTitle": "Brand_0 Vista previa - Generación de videos de IA",
     "twitterDescription": "Cree videos increíbles a partir de texto con nuestra tecnología AI de vanguardia. Impulsado por la arquitectura de asymmdit de parámetros 10B.",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "Tus videos - Brand_0",
+        "description": "Ver y administrar sus videos generados por IA. Rastree el estado de la generación y navegue por su historial de creación de video.",
+        "keywords": "Videos de IA, Generación de Video, Brand_0, Gestión de video, Creación de contenido de IA"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0 Vista previa: generación de videos de código abierto con movimiento de alta fidelidad",
       "description": "Experimente la generación de videos de vanguardia con una calidad de movimiento excepcional y una pronta adherencia, impulsada por nuestra arquitectura de asymmdit de parámetros 10B",
-      "keywords": "Brand_1 Preview, Brand_2, Brand_0, AI Video Preview, texto a video ai, creación de video de próxima generación, generador de videos de IA, tecnología de video mochi, animación avanzada de IA, narración visual"
+      "keywords": "Brand_1 Preview, Brand_0, Brand_3, AI Video Preview, texto a video ai, creación de video de próxima generación, generador de videos de IA, tecnología de video mochi, animación avanzada de IA, narración visual"
     },
     "create": {
       "title": "Cree videos de IA con Brand_0 - Transforme el texto en movimiento de alta calidad",
@@ -111,9 +118,9 @@
       "keywords": "Términos de servicio, términos de uso, acuerdo legal, reglas de plataforma, términos de servicio"
     },
     "videos": {
-      "title": "Video Gallery - Ejemplos de marca_0",
-      "description": "Explore nuestra colección de videos generados por IA que muestran las capacidades de Brand_0 y las posibilidades creativas.",
-      "keywords": "Ejemplos de video de IA, videos generados, videos, ejemplos de mochi, AI Video Gallery"
+      "title": "Tus videos - Brand_0",
+      "description": "Ver y administrar sus videos generados por IA. Rastree el estado de la generación y navegue por su historial de creación de video.",
+      "keywords": "Videos de IA, Generación de Video, Brand_0, Gestión de video, Creación de contenido de IA"
     }
   },
   "robots": "índice, sigue",
@@ -180,7 +187,7 @@
         "features": [
           "1 video gratis",
           "Resolución de 480p",
-          "Con marca de agua",
+          "Watermark Free",
           "Generación estándar",
           "Apoyo comunitario",
           "Videos adicionales: $ 0.9 cada uno"
@@ -192,8 +199,8 @@
         "name": "Básico",
         "description": "Perfecto para empezar",
         "features": [
-          "50 videos por mes",
-          "Con plataforma de agua de agua",
+          "25 videos por mes",
+          "Watermark Free",
           "Resolución de 720p",
           "Prioridad de cola estándar",
           "Soporte básico",
@@ -206,7 +213,7 @@
         "name": "Pro",
         "description": "Para creadores profesionales",
         "features": [
-          "150 videos por mes",
+          "80 videos por mes",
           "Watermark Free",
           "Resolución de 1080p",
           "Generación prioritaria",

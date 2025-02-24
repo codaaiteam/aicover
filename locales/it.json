@@ -4,7 +4,7 @@
   "guide": "Guida",
   "title": "Brand_0 Anteprima: generazione di video open source con movimento ad alta fedeltà",
   "description": "Sperimenta la generazione di video all'avanguardia con un'eccezionale qualità del movimento e aderenza rapida, alimentata dalla nostra architettura da asymmdit di parametri 10B",
-  "keywords": "Brand_1 Anteprima, Brand_2, Brand_0, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva",
+  "keywords": "Brand_1 Anteprima, Brand_0, Brand_3, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva",
   "tryNow": "Prova il parco giochi",
   "seeInAction": "Esempi in primo piano",
   "videoDescription": "Esplora la rivoluzionaria generazione di video open source alimentata dal nostro nuovo trasformatore di diffusione asimmetrica",
@@ -72,13 +72,20 @@
     "twitterCard": "Summary_large_Image",
     "twitterTitle": "Brand_0 Anteprima - Generazione di video AI",
     "twitterDescription": "Crea video fantastici dal testo con la nostra tecnologia AI all'avanguardia. Alimentato da un parametro 10B Architettura asimmdit.",
-    "twitterImage": "/twitter-image.png"
+    "twitterImage": "/twitter-image.png",
+    "pages": {
+      "videos": {
+        "title": "I tuoi video - Brand_0",
+        "description": "Visualizza e gestisci i tuoi video generati dall'IA. Traccia lo stato della generazione e sfoglia la cronologia della creazione di video.",
+        "keywords": "Video AI, generazione di video, brand_0, gestione video, creazione di contenuti AI"
+      }
+    }
   },
   "seo": {
     "home": {
       "title": "Brand_0 Anteprima: generazione di video open source con movimento ad alta fedeltà",
       "description": "Sperimenta la generazione di video all'avanguardia con un'eccezionale qualità del movimento e aderenza rapida, alimentata dalla nostra architettura da asymmdit di parametri 10B",
-      "keywords": "Brand_1 Anteprima, Brand_2, Brand_0, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva"
+      "keywords": "Brand_1 Anteprima, Brand_0, Brand_3, Anteprima video AI, testo al video AI, creazione video di prossima generazione, generatore di video AI, tecnologia video Mochi, animazione AI avanzata, narrazione visiva"
     },
     "create": {
       "title": "Crea video AI con brand_0 - trasforma il testo in movimento di alta qualità",
@@ -111,9 +118,9 @@
       "keywords": "Termini di servizio, termini di utilizzo, accordo legale, regole della piattaforma, termini di servizio"
     },
     "videos": {
-      "title": "Galleria video - Esempi Brand_0",
-      "description": "Esplora la nostra raccolta di video generati dall'IA che mostrano le capacità di Brand_0 e le possibilità creative.",
-      "keywords": "Esempi video AI, video generati, vetrina video, esempi di mochi, galleria di video AI"
+      "title": "I tuoi video - Brand_0",
+      "description": "Visualizza e gestisci i tuoi video generati dall'IA. Traccia lo stato della generazione e sfoglia la cronologia della creazione di video.",
+      "keywords": "Video AI, generazione di video, brand_0, gestione video, creazione di contenuti AI"
     }
   },
   "robots": "indice, seguire",
@@ -180,7 +187,7 @@
         "features": [
           "1 video gratuito",
           "Risoluzione 480p",
-          "Con filigrana",
+          "Filigrana gratuita",
           "Generazione standard",
           "Supporto comunitario",
           "Video aggiuntivi: $ 0,9 ciascuno"
@@ -192,8 +199,8 @@
         "name": "Di base",
         "description": "Perfetto per i principianti",
         "features": [
-          "50 video al mese",
-          "Con filigrana della piattaforma",
+          "25 video al mese",
+          "Filigrana gratuita",
           "Risoluzione 720p",
           "Priorità della coda standard",
           "Supporto di base",
@@ -206,7 +213,7 @@
         "name": "Pro",
         "description": "Per creatori professionisti",
         "features": [
-          "150 video al mese",
+          "80 video al mese",
           "Filigrana gratuita",
           "Risoluzione 1080p",
           "Generazione prioritaria",
