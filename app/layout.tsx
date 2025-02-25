@@ -36,6 +36,11 @@ export default function RootLayout({
       <html lang="en">
         <head>
           <meta name="google-site-verification" content="O_PEb7XrNO2XGoETepMtJp-a4LSDyuO2xi3N4H5zOu0" />
+          <Script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5451478429268021"
+            crossorigin="anonymous"
+            strategy="afterInteractive"
+          />
         </head>
         <body className={inter.className}>
           <LanguageProvider defaultTranslations={defaultTranslations}>
