@@ -1,10 +1,13 @@
+# *
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /sign-in/
-Disallow: /sign-up/
-Disallow: /dashboard/
+Disallow: /api/*
+Disallow: /sign-in/*
+Disallow: /sign-up/*
+Disallow: /dashboard/*
 
+# Host
 Host: https://mochi1preview.com
 
+# Sitemaps
 Sitemap: https://mochi1preview.com/sitemap.xml

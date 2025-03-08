@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.mochi1preview.com',
+  siteUrl: 'https://mochi1preview.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   additionalPaths: async (config) => {
@@ -15,7 +15,7 @@ module.exports = {
       { path: '/terms', priority: 0.5 },
       { path: '/privacy', priority: 0.5 }
     ];
-
+    
     // 生成所有語言版本的路徑
     for (const lang of languages) {
       for (const route of routes) {
@@ -29,7 +29,7 @@ module.exports = {
         });
       }
     }
-
+    
     return paths;
   },
   exclude: [
@@ -49,6 +49,10 @@ module.exports = {
         allow: '/',
         disallow: ['/api/*', '/sign-in/*', '/sign-up/*', '/dashboard/*']
       }
-    ]
+    ],
+    additionalSitemaps: [
+      'https://mochi1preview.com/sitemap.xml'
+    ],
+    host: 'https://mochi1preview.com'
   }
 }
