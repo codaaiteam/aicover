@@ -39,6 +39,7 @@ export default function RootLayout({
           {/* eslint-disable-next-line @next/next/no-sync-scripts */}
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5451478429268021"
             crossOrigin="anonymous"></script>
+          <script defer data-domain="mochi1preview.com" src="https://app.pageview.app/js/script.js"></script>
         </head>
         <body className={inter.className}>
           <LanguageProvider defaultTranslations={defaultTranslations}>
