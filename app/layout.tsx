@@ -61,6 +61,35 @@ export default function RootLayout({
               gtag('config', 'G-LLSSGYG1PT');
             `}
           </Script>
+          <Script id="adsense-init" strategy="afterInteractive">
+          {`
+            try {
+              if (typeof window !== 'undefined') {
+                const initAds = () => {
+                  if (!window.adsbygoogleInit) {
+                    window.adsbygoogleInit = true;
+                    (window.adsbygoogle = window.adsbygoogle || []).push({
+                      google_ad_client: "ca-pub-5451478429268021",
+                      enable_page_level_ads: true
+                    });
+                  }
+                };
+
+                initAds();
+
+                // Re-initialize ads on route change
+                window.addEventListener('routechangecomplete', initAds);
+                
+                // Cleanup listener on component unmount
+                return () => {
+                  window.removeEventListener('routechangecomplete', initAds);
+                };
+              }
+            } catch (err) {
+              console.error('AdSense initialization error:', err);
+            }
+          `}
+        </Script>
         </body>
       </html>
     </ClerkProvider>
