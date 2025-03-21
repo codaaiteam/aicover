@@ -78,7 +78,9 @@ export default function Footer() {
             Aireword Tool
           </a>
           <a href="https://AIToolly.com/" title="AIToolly AI Tools Directory">AIToolly</a>
-          
+          <a href="https://www.smoldocling.net" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+            Smoldocling Pdf Processor
+          </a>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
